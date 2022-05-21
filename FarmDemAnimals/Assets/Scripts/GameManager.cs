@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState { MENU, PREPARE, BATTLE, GAMEOVER }
+
 public class GameManager : MonoBehaviour
 {
+
+    public GameState state;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = GameState.MENU;
     }
 
     // Update is called once per frame
