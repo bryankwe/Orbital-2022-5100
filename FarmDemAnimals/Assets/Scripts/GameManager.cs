@@ -7,15 +7,16 @@ public enum GameState { MENU, PREPARE, BATTLE, GAMEOVER }
 public class GameManager : MonoBehaviour
 {
 
-    public GameState state;
+    //Dictionary<Team, List<???>>
+    
+    //public GameState state;
 
-    // Start is called before the first frame update
     void Start()
     {
-        state = GameState.MENU;
+        //state = GameState.MENU;
+        //InstantiateUnits();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
