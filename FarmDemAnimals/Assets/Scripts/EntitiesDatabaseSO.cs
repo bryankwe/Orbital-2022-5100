@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntitiesDatabaseSO : MonoBehaviour
+[CreateAssetMenu(fileName = "Entity Database", menuName = "CustomSO/EntityDatabase")]
+public class EntitiesDatabaseSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public struct EntityData {
+        public BaseEntity prefab;
+        public string name;
+        public Sprite icon;
+
+        public int cost;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<EntityData> allEntities;
 }
