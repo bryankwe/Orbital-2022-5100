@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Simple UI Stats Tracker, sets the stats based on the linked StatsTracker
@@ -9,8 +10,11 @@ public class StatsTrackerUI : MonoBehaviour {
     [Tooltip("Optional; Either assign a reference in the Editor (that implements IGetStatsTracker) or manually call SetStatsTracker()")]
     [SerializeField] private GameObject getStatsTrackerGameObject;
 
-    [Tooltip("Image to show the Health Bar, should be set as Fill, the script modifies fillAmount")]
-    [SerializeField] private Image image;
+    [Tooltip("TextMesh that displays the attack stats")]
+    [SerializeField] private TextMeshProUGUI attackText;
+
+    [Tooltip("TextMesh that displays the health stats")]
+    [SerializeField] private TextMeshProUGUI healthText;
 
 
     private StatsTracker statsTracker;
@@ -23,38 +27,60 @@ public class StatsTrackerUI : MonoBehaviour {
     }
 
     /// <summary>
-    /// Set the Health System for this Health Bar
+    /// Set the Health and Attack for this StatsTracker
     /// </summary>
     public void SetStatsTracker(StatsTracker statsTracker) {
         if (this.statsTracker != null) {
-            this.statsTracker.OnHealthChanged -= HealthSystem_OnHealthChanged;
+            this.statsTracker.OnHealthChanged -= StatsTracker_OnHealthChanged;
+            this.statsTracker.OnAttackChanged -= StatsTracker_OnAttackChanged;
         }
         this.statsTracker = statsTracker;
 
-        UpdateHealthBar();
+        UpdateHealthComponent();
+        UpdateAttackComponent();
 
-        statsTracker.OnHealthChanged += HealthSystem_OnHealthChanged;
+        statsTracker.OnHealthChanged += StatsTracker_OnHealthChanged;
+        statsTracker.OnAttackChanged += StatsTracker_OnAttackChanged;
     }
 
     /// <summary>
-    /// Event fired from the Health System when Health Amount changes, update Health Bar
+    /// Event fired from the StatsTracker when Health Amount changes, update Health Stats
     /// </summary>
-    private void HealthSystem_OnHealthChanged(object sender, System.EventArgs e) {
-        UpdateHealthBar();
+    private void StatsTracker_OnHealthChanged(object sender, System.EventArgs e) {
+        UpdateHealthComponent();
     }
 
     /// <summary>
-    /// Update Health Bar using the Image fillAmount based on the current Health Amount
+    /// Update Health Stats to the current Health Amount
     /// </summary>
-    private void UpdateHealthBar() {
-        //image.fillAmount = healthSystem.GetHealthNormalized();
+    private void UpdateHealthComponent() {
+        var child = transform.GetChild(2);
+        healthText = child.GetComponentInChildren<TextMeshProUGUI>();
+        healthText.text = statsTracker.GetHealth().ToString();
+    }
+
+    /// <summary>
+    /// Event fired from the StatsTracker when Attack Amount changes, update Attack Stats
+    /// </summary>
+    private void StatsTracker_OnAttackChanged(object sender, System.EventArgs e) {
+        UpdateAttackComponent();
+    }
+
+    /// <summary>
+    /// Update Attack Stats to the current Attack Amount
+    /// </summary>
+    private void UpdateAttackComponent() {
+        var child = transform.GetChild(3);
+        attackText = child.GetComponentInChildren<TextMeshProUGUI>();
+        attackText.text = statsTracker.GetAttack().ToString();
     }
 
     /// <summary>
     /// Clean up events when this Game Object is destroyed
     /// </summary>
     private void OnDestroy() {
-        statsTracker.OnHealthChanged -= HealthSystem_OnHealthChanged;
+        statsTracker.OnHealthChanged -= StatsTracker_OnHealthChanged;
+        statsTracker.OnHealthChanged -= StatsTracker_OnAttackChanged;
     }
 
 }
