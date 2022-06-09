@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7643386966fd4b349bb4572b01c1d38d, type: 3}
   m_Name: Entity Database
   m_EditorClassIdentifier: 
+  allEntities:
+  - prefab: {fileID: 4365309023949226796, guid: eb91a31f013dece4594a0306e072b9c9, type: 3}
+    name: Rhino
+    icon: {fileID: 8622714528915189041, guid: eb91a31f013dece4594a0306e072b9c9, type: 3}
+  - prefab: {fileID: 8576878554573127917, guid: ba99f55d49ed4094fb75e994ddf12bd2, type: 3}
+    name: Bee
+    icon: {fileID: 5035153300634185550, guid: ba99f55d49ed4094fb75e994ddf12bd2, type: 3}

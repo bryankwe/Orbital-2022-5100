@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public enum GameState { MENU, PREPARE, BATTLE, GAMEOVER }
+//public enum GameState { MENU, PREPARE, BATTLE, GAMEOVER }
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : Manager<GameManager> {
 
+    public EntitiesDatabaseSO entitiesDatabase;
     //Dictionary<Team, List<???>>
     
     //public GameState state;

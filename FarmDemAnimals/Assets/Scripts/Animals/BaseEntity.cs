@@ -20,27 +20,24 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         Destroy(gameObject);
     }
 
-    public abstract void Damage();
+    /// <summary>
+    /// Animal takes input amount of damage (decrease health)
+    /// Override if special ability upon Damage
+    /// </summary>
+    public virtual void Damage(int amount) {
+        statsTracker.Damage(amount);
+    }
 
+    /// <summary>
+    /// Animal heals by input amount (increase health)
+    /// Override if special ability upon Heal
+    /// </summary>
+    public virtual void Heal(int amount) {
+        statsTracker.Heal(amount);
+    }
+    
     public StatsTracker GetStatsTracker() {
         return statsTracker;
     }
-
-    /*private void Awake() {
-        statsTracker = new StatsTracker(99,99);
-        statsTracker.OnDead += StatsTracker_OnDead;
-    }
-
-    private void StatsTracker_OnDead(object sender, System.EventArgs e) {
-        Destroy(gameObject);
-    }
-
-    public void Damage() {
-        statsTracker.Damage(60);
-    }
-
-    public StatsTracker GetStatsTracker() {
-        return statsTracker;
-    }*/
 
 }

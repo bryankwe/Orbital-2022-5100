@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rhino : BaseEntity {
+public class Bee : BaseEntity {
     /*public override void Damage(int amount) {
         statsTracker.Damage(amount);
     }
