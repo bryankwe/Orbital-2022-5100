@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2277f6104b6db43a897741ee2ad90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 0
-  initialAttack: 0
-  animalID: 0
-  animalName: 
-  animalTier: 0
+  initialHealth: 2
+  initialAttack: 2
+  animalID: 2
+  animalName: Bee
+  animalTier: 1
