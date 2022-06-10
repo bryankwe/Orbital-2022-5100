@@ -8,8 +8,8 @@ public class UIShop : MonoBehaviour {
     public Text money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
-    private int entitiyCost = 3;
-    private int rerollCost = 1;
+    //private int entitiyCost = 3;
+    //private int rerollCost = 1;
 
     private void Start() {
         cachedDb = GameManager.Instance.entitiesDatabase;
