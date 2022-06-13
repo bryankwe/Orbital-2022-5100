@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
-      value: BaseCard
+      value: Rhino
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Pivot.x
@@ -25,19 +25,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_SizeDelta.x

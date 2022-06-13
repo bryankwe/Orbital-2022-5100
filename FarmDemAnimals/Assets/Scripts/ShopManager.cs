@@ -8,6 +8,8 @@ public class ShopManager : MonoBehaviour {
 
     /*
     NOTE: JUST COPYING CODE FROM TUTORIAL (NEED TO THINK HOW TO ADAPT TO OUR GAME)
+    //OLD VERSION (FOR non-UI draggable)
+    //Reference Tutorial: TaroDev (https://www.youtube.com/watch?v=Tv82HIvKcZQ) & (https://www.youtube.com/watch?v=o_qEXZhQR-M)
 
     [SerializeField] private List<DropSlot> slots;
     [SerializeField] private Draggable draggable;

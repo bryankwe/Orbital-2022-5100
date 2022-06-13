@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropSlot : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+//OLD VERSION (FOR non-UI draggable)
+//Reference Tutorial: TaroDev (https://www.youtube.com/watch?v=Tv82HIvKcZQ) & (https://www.youtube.com/watch?v=o_qEXZhQR-M)
+public class DropSlot : MonoBehaviour {
+    
+    public void Placed() {
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
