@@ -597,7 +597,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1989927088}
-  - component: {fileID: 1989927090}
   - component: {fileID: 1989927089}
   m_Layer: 5
   m_Name: Victory Menu
@@ -638,15 +637,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded13c8c6199abc42a5aa7dda8237799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1989927090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989927087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  myPrefab: {fileID: 7271873958671675811, guid: e9031f0bc448a014fa98f7a654839e10, type: 3}
+  gameManager: {fileID: 0}
