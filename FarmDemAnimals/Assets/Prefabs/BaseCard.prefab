@@ -279,8 +279,8 @@ GameObject:
   - component: {fileID: 7901097197990843590}
   - component: {fileID: 8111280807716664547}
   - component: {fileID: 7326473458265368463}
-  - component: {fileID: 6978346645232801871}
   - component: {fileID: 4153037606811526547}
+  - component: {fileID: 1389675950158592750}
   m_Layer: 5
   m_Name: BaseCard
   m_TagString: Untagged
@@ -348,18 +348,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &6978346645232801871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901097197990843589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707c9fdba7122d0418ce4ad8f65ff779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!225 &4153037606811526547
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -372,6 +360,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1389675950158592750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7901097197990843589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e80fff119098764a99ee5e425b44c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfItem: 0
+  originalPos: {x: 0, y: 0}
 --- !u!1 &7901097198264907181
 GameObject:
   m_ObjectHideFlags: 0

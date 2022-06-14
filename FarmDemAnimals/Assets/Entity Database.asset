@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: Entity Database
   m_EditorClassIdentifier: 
   allEntities:
-  - prefab: {fileID: 4365309023949226796, guid: eb91a31f013dece4594a0306e072b9c9, type: 3}
-    name: Rhino
-    icon: {fileID: 8622714528915189041, guid: eb91a31f013dece4594a0306e072b9c9, type: 3}
-  - prefab: {fileID: 8576878554573127917, guid: ba99f55d49ed4094fb75e994ddf12bd2, type: 3}
-    name: Bee
-    icon: {fileID: 5035153300634185550, guid: ba99f55d49ed4094fb75e994ddf12bd2, type: 3}
+  - prefab: {fileID: 7010852356510992669, guid: 6083e7fbaa286784d8b27dca59f165a6, type: 3}
+  - prefab: {fileID: 959310553577168450, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}

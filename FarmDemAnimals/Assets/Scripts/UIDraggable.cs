@@ -10,18 +10,19 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public Transform parentToReturnTo = null;
 
-    // Shop items can be dragged to WARBAND & FREEZE
-    // Warband items can be dragged to SELL (& SWAPPED around WARBAND)
-    public enum Slot { WARBAND, SHOP, SELL, FREEZE};
+    // Shop items can be dragged to:
+    //     - WARBAND slot [buying / combining] (if empty slots available / if same ID)
+    //     - FREEZE slot [freezing]
+    // Warband items can be dragged to:
+    //     - SELL [selling]
+    //     - WARBAND [swapping / combining] ( / if same ID)
+    public enum Slot { WARBAND, SHOP, BOTH};
     public Slot typeOfItem = Slot.WARBAND; // Change this in Unity
 
-    //[SerializeField] private Canvas canvas;
-    //private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
     private void Awake() 
     {
-        //rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -34,16 +35,15 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         canvasGroup.blocksRaycasts = false;
 
         //TODO: Make Droppable Slots glow?
-        /*UIDroppable[] slots = GameObject.FindObjectsOfType<UIDroppable>();
-        for (int i = 0; i < slots.Length; i++) {
-
-        }*/
+        //UIDroppable[] slots = GameObject.FindObjectsOfType<UIDroppable>();
+        //for (int i = 0; i < slots.Length; i++) {
+        //
+        //}
     }
 
     public void OnDrag(PointerEventData eventData) {
         //Debug.Log("OnDrag");
         this.transform.position = eventData.position;
-        //rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData) {
@@ -51,6 +51,9 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         this.transform.SetParent(parentToReturnTo);
 
         canvasGroup.blocksRaycasts = true;
+
+        //For combinables? dk...
+        //EventSystem.current.RaycastAll(eventData,);
     }
 
 }

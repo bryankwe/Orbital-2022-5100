@@ -10,7 +10,7 @@ public class Draggable : MonoBehaviour {
     private bool dragging, placed;
     private Vector2 offset, originalPosition;
     private Camera cam;
-    private float speed = 10;
+    //private float speed = 10;
     private DropSlot slot;
 
     void Awake() {

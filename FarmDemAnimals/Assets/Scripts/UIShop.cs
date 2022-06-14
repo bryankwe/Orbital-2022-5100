@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour {
     public List<UICard> allCards;
-    public Text money; //Display the amount of money available
+    //public Text money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
     //private int entitiyCost = 3;
@@ -19,6 +19,7 @@ public class UIShop : MonoBehaviour {
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
             allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
+            Debug.Log("Generated: " + i);
         }
     }
 

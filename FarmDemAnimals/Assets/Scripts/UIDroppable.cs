@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 // Reference Tutorial: quill18creates (https://www.youtube.com/watch?v=AM7wBz9azyU)
 public class UIDroppable : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
     
+    // Following Slots Available:
+    //    - WARBAND: UIDraggable.Slot.BOTH => Deduct Money / Combine / Swap Position
+    //    - FREEZE: UIDraggable.Slot.SHOP => Return to original position in Shop & Freeze
+    //    - SELL: UIDraggable.Slot.WARBAND => Destroy & Give $$
     public UIDraggable.Slot typeOfItem = UIDraggable.Slot.SHOP; // Change this in Unity
     public void OnPointerEnter(PointerEventData eventData) {
         //Debug.Log("OnPointerEnter");
