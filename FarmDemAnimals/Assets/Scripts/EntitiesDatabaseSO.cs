@@ -7,7 +7,7 @@ public class EntitiesDatabaseSO : ScriptableObject {
     
     [System.Serializable]
     public struct EntityData {
-        public GameObject prefab;
+        public BaseEntity prefab;
         //public string name;
         //public GameObject icon;
 

@@ -19,7 +19,6 @@ public class UIShop : MonoBehaviour {
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
             allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
-            Debug.Log("Generated: " + i);
         }
     }
 
