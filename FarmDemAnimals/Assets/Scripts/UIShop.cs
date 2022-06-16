@@ -28,6 +28,10 @@ public class UIShop : MonoBehaviour {
         }
     }
 
+    /*public bool AllowDragToWarband() {
+        return PlayerData.Instance.CanAfford(entitiyCost);
+    }*/
+    
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
         if(PlayerData.Instance.CanAfford(rerollCost)) {

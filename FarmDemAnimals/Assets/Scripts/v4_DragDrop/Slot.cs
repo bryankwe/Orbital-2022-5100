@@ -11,7 +11,10 @@ public class Slot : MonoBehaviour, IDropHandler {
     //    - WARBAND: DragHandler.Origin.BOTH => Deduct Money / Combine / Swap Position
     //    - FREEZE: DragHandler.Origin.SHOP => Return to original position in Shop & Freeze
     //    - SELL: DragHandler.Origin.WARBAND => Destroy & Give $$
-    //public DragHandler.Origin typeOfItem = DragHandler.Origin.BOTH; // Change this in Unity
+    
+    // Change this in Unity. NO need to modify during RUNTIME
+    // Note: Set this to the allowed origin of the draggable
+    public DragHandler.Origin typeOfItem = DragHandler.Origin.BOTH;
 
     // Returns the GameObject that is in the Slot, if available
     public GameObject item {
@@ -26,8 +29,15 @@ public class Slot : MonoBehaviour, IDropHandler {
     public void OnDrop(PointerEventData eventData) {
         Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
 
-        if(!item) {
-            DragHandler.itemBeingDragged.transform.SetParent(transform);
+        DragHandler d = eventData.pointerDrag.GetComponent<DragHandler>();
+
+        if(!item && d != null) {
+            /*if(DragHandler.itemBeingDragged.tag == "Shop") {
+
+            }*/
+            if(typeOfItem == d.typeOfItem || typeOfItem == DragHandler.Origin.BOTH) {
+                DragHandler.itemBeingDragged.transform.SetParent(transform);
+            }
         }
 
         //UIDraggable d = eventData.pointerDrag.GetComponent<UIDraggable>();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Note: ONLY the GameObject under the Shop's Slots are UICards
+//       The actual Animals Instantiated are NOT UICards
 public class UICard : MonoBehaviour {
     //public GameObject icon;
     //public Text animalName;

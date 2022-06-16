@@ -13,8 +13,11 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     // Warband items (Origin) can be dragged to:
     //     - SELL slot [selling]
     //     - WARBAND slot [swapping / combining] ( / if same ID)
-    //public enum Origin { WARBAND, SHOP, BOTH};
-    //public Origin typeOfItem = Origin.WARBAND; // Change this in Unity
+    
+    public enum Origin { WARBAND, SHOP, BOTH};
+    
+    // Always starts off as SHOP because instantiated in SHOP. MODIFY during runtime
+    public Origin typeOfItem = Origin.SHOP;
     
     public static GameObject itemBeingDragged;
     Vector3 startPosition;
