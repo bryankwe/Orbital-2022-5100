@@ -8,7 +8,7 @@ public class UICard : MonoBehaviour {
     //public Text animalName;
     //public BaseEntity display;
 
-    public Transform parentTrans;
+    //public Transform parentTrans;
     
     private UIShop shopRef;
     private EntitiesDatabaseSO.EntityData myData;
@@ -21,7 +21,9 @@ public class UICard : MonoBehaviour {
         this.myData = myData;
         this.shopRef = shopRef;
         BaseEntity newCard = Instantiate(myData.prefab, this.transform.position, Quaternion.identity);
-        newCard.transform.SetParent(parentTrans);
+        newCard.transform.SetParent(this.transform.parent);
+        newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        newCard.transform.SetAsFirstSibling();
         Debug.Log("Generated: " + newCard.name);
     }
 
