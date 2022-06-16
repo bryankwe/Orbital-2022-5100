@@ -18,12 +18,16 @@ public class UIShop : MonoBehaviour {
 
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
+            if(allCards[i].transform.parent.transform.childCount > 1) {
+                Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
+            }
             allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
         }
     }
 
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
+        GenerateCard();
     }
 
     /*public void OnCardClick(EntitiesDatabaseSO.EntityData cardData) {

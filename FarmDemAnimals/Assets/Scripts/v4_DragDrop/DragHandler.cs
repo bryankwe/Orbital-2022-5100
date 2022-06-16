@@ -7,6 +7,15 @@ using UnityEngine.EventSystems;
 // Reference Tutorial: Kiwasi Games (https://www.youtube.com/watch?v=c47QYgsJrWc&t=11s)
 public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
+    // Shop items (Origin) can be dragged to:
+    //     - WARBAND slot [buying / combining] (if empty slots available / if same ID)
+    //     - FREEZE slot [freezing]
+    // Warband items (Origin) can be dragged to:
+    //     - SELL slot [selling]
+    //     - WARBAND slot [swapping / combining] ( / if same ID)
+    //public enum Origin { WARBAND, SHOP, BOTH};
+    //public Origin typeOfItem = Origin.WARBAND; // Change this in Unity
+    
     public static GameObject itemBeingDragged;
     Vector3 startPosition;
     Transform startParent;
