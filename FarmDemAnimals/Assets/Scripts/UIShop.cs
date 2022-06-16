@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIShop : MonoBehaviour {
     public List<UICard> allCards;
-    //public Text money; //Display the amount of money available
+    public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
     //private int entitiyCost = 3;
-    //private int rerollCost = 1;
+    private int rerollCost = 1;
 
     private void Start() {
         cachedDb = GameManager.Instance.entitiesDatabase;
         GenerateCard();
+        PlayerData.Instance.OnUpdate += Refresh;
+        Refresh();
     }
 
     public void GenerateCard() {
@@ -27,7 +30,14 @@ public class UIShop : MonoBehaviour {
 
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
-        GenerateCard();
+        if(PlayerData.Instance.CanAfford(rerollCost)) {
+            PlayerData.Instance.SpendMoney(rerollCost);
+            GenerateCard();
+        }
+    }
+
+    void Refresh() {
+        money.text = PlayerData.Instance.Money.ToString();
     }
 
     /*public void OnCardClick(EntitiesDatabaseSO.EntityData cardData) {
