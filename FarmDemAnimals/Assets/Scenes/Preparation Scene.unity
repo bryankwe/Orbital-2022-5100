@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &64439150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,6 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!224 &306573551 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5653385538956978485, guid: bf788bb61137e99468948e0ed2b8c5b7, type: 3}
@@ -1590,6 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &323808067 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7010852356510992669, guid: 6083e7fbaa286784d8b27dca59f165a6, type: 3}
@@ -2212,6 +2215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &489029228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,6 +3222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allCards: []
+  warband: []
   money: {fileID: 0}
 --- !u!1 &712790746
 GameObject:
@@ -3653,6 +3658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!224 &823754075 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 959310553577168449, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}
@@ -4122,6 +4128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!224 &900892316 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5653385538956978485, guid: bf788bb61137e99468948e0ed2b8c5b7, type: 3}
@@ -4636,6 +4643,7 @@ MonoBehaviour:
   - {fileID: 730507744}
   - {fileID: 368383463}
   - {fileID: 1232832810}
+  warband: []
   money: {fileID: 1996865463}
 --- !u!224 &988210252 stripped
 RectTransform:
@@ -5114,6 +5122,7 @@ MonoBehaviour:
   - {fileID: 95473287}
   - {fileID: 1787117952}
   - {fileID: 1278255661}
+  warband: []
   money: {fileID: 0}
 --- !u!1 &1204859068
 GameObject:
@@ -5206,6 +5215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff5e46bd64fe9d47bd7da3b1f6df342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopRef: {fileID: 0}
   initialHealth: 2
   initialAttack: 2
   animalID: 1
@@ -6569,6 +6579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &1501056391
 GameObject:
   m_ObjectHideFlags: 0
@@ -6683,6 +6694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &1540491048
 GameObject:
   m_ObjectHideFlags: 0
@@ -6798,6 +6810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1 &1546432471
 GameObject:
   m_ObjectHideFlags: 0
@@ -8363,6 +8376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1192b26eb4618245b85567efa8af50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfItem: 2
 --- !u!1001 &1902888797
 PrefabInstance:
   m_ObjectHideFlags: 0

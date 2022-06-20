@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIShop : MonoBehaviour {
-    public List<UICard> allCards;
+    public List<UICard> allCards; // These are just empty GameObjects used for Instantiation
+    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated
     public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
-    //private int entitiyCost = 3;
+    private int entitiyCost = 3;
     private int rerollCost = 1;
 
     private void Start() {
@@ -27,10 +28,6 @@ public class UIShop : MonoBehaviour {
             allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
         }
     }
-
-    /*public bool AllowDragToWarband() {
-        return PlayerData.Instance.CanAfford(entitiyCost);
-    }*/
     
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
@@ -40,11 +37,19 @@ public class UIShop : MonoBehaviour {
         }
     }
 
+    public bool OnDragToWarband() {
+        bool ans = AllowDragToWarband();
+        if(ans) {
+            PlayerData.Instance.SpendMoney(entitiyCost);
+        }
+        return ans;
+    }
+
+    bool AllowDragToWarband() {
+        return PlayerData.Instance.CanAfford(entitiyCost);
+    }
+
     void Refresh() {
         money.text = PlayerData.Instance.Money.ToString();
     }
-
-    /*public void OnCardClick(EntitiesDatabaseSO.EntityData cardData) {
-        Debug.Log("Card clicked!");
-    }*/
 }

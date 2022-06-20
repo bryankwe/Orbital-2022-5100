@@ -26,6 +26,7 @@ public class UICard : MonoBehaviour {
         newCard.transform.SetParent(this.transform.parent);
         newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         newCard.transform.SetAsFirstSibling();
+        newCard.shopRef = this.shopRef;
         Debug.Log("Generated: " + newCard.name);
     }
 

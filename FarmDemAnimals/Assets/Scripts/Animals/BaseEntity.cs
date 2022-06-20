@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
+    public UIShop shopRef = null;
+
     private protected StatsTracker statsTracker;
     [SerializeField] private protected int initialHealth;
     [SerializeField] private protected int initialAttack;

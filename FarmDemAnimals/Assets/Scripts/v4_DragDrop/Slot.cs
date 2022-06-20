@@ -26,27 +26,34 @@ public class Slot : MonoBehaviour, IDropHandler {
         }
     }
 
+    // Need to include logic for combine => Check if id is same? but I cannot access BaseEntity.id through DragHandler
     public void OnDrop(PointerEventData eventData) {
         Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
 
         DragHandler d = eventData.pointerDrag.GetComponent<DragHandler>();
 
-        if(!item && d != null) {
-            /*if(DragHandler.itemBeingDragged.tag == "Shop") {
+        BaseEntity a = eventData.pointerDrag.GetComponent<BaseEntity>();
 
-            }*/
-            if(typeOfItem == d.typeOfItem || typeOfItem == DragHandler.Origin.BOTH) {
-                DragHandler.itemBeingDragged.transform.SetParent(transform);
+        /*if (eventData.pointerDrag.TryGetComponent(out BaseEntity animal)) { // Always true
+            animal.shopRef.AllowDragToWarband
+        }*/
+
+        if(!item && d != null) {
+
+            if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
+                //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
+                if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
+                    if (a.shopRef.OnDragToWarband()) { // If enough money to buy animal
+                        d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
+                        DragHandler.itemBeingDragged.transform.SetParent(transform);
+                    }
+                }
+            } else if(typeOfItem == DragHandler.Origin.SHOP) { // if the slot is FREEZE
+                //activate the freeze mechanism ... Maybe activeSelf/setActive a freeze icon?
+            } else if(typeOfItem == DragHandler.Origin.WARBAND) { // if the slot is SELL
+                //destroy the animal
+                //add money => How to access UIShop via this script?
             }
         }
-
-        //UIDraggable d = eventData.pointerDrag.GetComponent<UIDraggable>();
-
-        /*if(d != null) {
-            if(typeOfItem == d.typeOfItem) {// || typeOfItem == UIDraggable.Slot.INVENTORY) {
-                d.parentToReturnTo = this.transform;
-                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            }
-        }*/
     }
 }

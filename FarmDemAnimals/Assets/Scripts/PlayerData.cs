@@ -22,4 +22,9 @@ public class PlayerData : Manager<PlayerData> {
         Money -= amount;
         OnUpdate?.Invoke(); //Use this to update UI
     }
+
+    /*public void AddMoney(int amount) {
+        Money += amount;
+        OnUpdate?.Invoke();
+    }*/
 }

@@ -21,7 +21,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     
     public static GameObject itemBeingDragged;
     Vector3 startPosition;
-    Transform startParent;
+    Transform startParent; //Updated only OnBeginDrag
     private CanvasGroup canvasGroup;
 
     private void Awake() 
