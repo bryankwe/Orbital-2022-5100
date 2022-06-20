@@ -38,22 +38,42 @@ public class Slot : MonoBehaviour, IDropHandler {
             animal.shopRef.AllowDragToWarband
         }*/
 
+        //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
+
         if(!item && d != null) {
 
             if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
-                //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
                 if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
-                    if (a.shopRef.OnDragToWarband()) { // If enough money to buy animal
-                        d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
-                        DragHandler.itemBeingDragged.transform.SetParent(transform);
-                    }
+                    ShopToWarband(d, a);
+                } else { // If dragged from Warband (Swap positions)
+                    WarbandToWarband(d, a);
                 }
             } else if(typeOfItem == DragHandler.Origin.SHOP) { // if the slot is FREEZE
-                //activate the freeze mechanism ... Maybe activeSelf/setActive a freeze icon?
+                ShopToFreeze(d, a);
             } else if(typeOfItem == DragHandler.Origin.WARBAND) { // if the slot is SELL
                 //destroy the animal
                 //add money => How to access UIShop via this script?
             }
+        }
+    }
+
+    void ShopToWarband(DragHandler d, BaseEntity a) {
+        if (a.shopRef.OnDragToWarband()) { // If enough money to buy animal
+            if(a.isFrozen) {
+                a.FreezeToggle(); // Unfreeze
+            }
+            d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
+            DragHandler.itemBeingDragged.transform.SetParent(transform);
+        }
+    }
+
+    void WarbandToWarband(DragHandler d, BaseEntity a) {
+        DragHandler.itemBeingDragged.transform.SetParent(transform);
+    }
+
+    void ShopToFreeze(DragHandler d, BaseEntity a) {
+        if(!a.isFrozen) {
+            a.FreezeToggle(); // Freeze
         }
     }
 }

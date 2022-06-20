@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     public UIShop shopRef = null;
+    public bool isFrozen = false;
 
     private protected StatsTracker statsTracker;
     [SerializeField] private protected int initialHealth;
@@ -20,6 +21,12 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     private void StatsTracker_OnDead(object sender, System.EventArgs e) {
         Destroy(gameObject);
+    }
+
+    public virtual void FreezeToggle() {
+        transform.Find("FreezeBG").gameObject.SetActive(!isFrozen);
+        isFrozen = !isFrozen;
+        Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 
     /// <summary>

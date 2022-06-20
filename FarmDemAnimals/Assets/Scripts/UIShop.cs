@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIShop : MonoBehaviour {
     public List<UICard> allCards; // These are just empty GameObjects used for Instantiation
-    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated
+    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
     public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
@@ -23,9 +23,13 @@ public class UIShop : MonoBehaviour {
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
             if(allCards[i].transform.parent.transform.childCount > 1) {
-                Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
+                if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) {
+                    Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
+                    allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
+                }
+            } else {
+                allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
             }
-            allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
         }
     }
     
