@@ -39,28 +39,28 @@ public class StatsTracker {
     /// <summary>
     /// Get the current health
     /// </summary>
-    public float GetHealth() {
+    public int GetHealth() {
         return health;
     }
 
     /// <summary>
     /// Get the current max amount of health
     /// </summary>
-    public float GetHealthMax() {
+    public int GetHealthMax() {
         return healthMax;
     }
 
     /// <summary>
     /// Get the current attack
     /// </summary>
-    public float GetAttack() {
+    public int GetAttack() {
         return attack;
     }
 
     /// <summary>
     /// Get the current max amount of attack
     /// </summary>
-    public float GetAttackMax() {
+    public int GetAttackMax() {
         return attackMax;
     }
 

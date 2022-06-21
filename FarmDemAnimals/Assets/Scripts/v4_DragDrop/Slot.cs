@@ -34,23 +34,13 @@ public class Slot : MonoBehaviour, IDropHandler {
 
         BaseEntity a = eventData.pointerDrag.GetComponent<BaseEntity>();
 
-        
-
         /*if (eventData.pointerDrag.TryGetComponent(out BaseEntity animal)) { // Always true
             animal.shopRef.AllowDragToWarband
         }*/
 
         //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
 
-        if(d != null && !item) {
-
-            /*if(!item) { // Nothing in Slot
-
-            } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // Same Unit in Slot (Combine)
-
-            } else if () { // Different Unit in Slot (Swap)
-
-            }*/
+        if(d != null) {
 
             if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
                 if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
@@ -66,24 +56,37 @@ public class Slot : MonoBehaviour, IDropHandler {
                 if(d.typeOfItem == DragHandler.Origin.WARBAND) { // If dragged from Warband
                     WarbandToSell(d, a);
                 }
-                //destroy the animal
-                //add money => How to access UIShop via this script?
             }
         }
     }
 
     void ShopToWarband(DragHandler d, BaseEntity a) {
-        if (a.shopRef.OnDragToWarband()) { // If enough money to buy animal
+        if (!item && a.shopRef.OnDragToWarband()) { // If enough money to buy animal & the warband slot is empty
             if(a.isFrozen) {
                 a.FreezeToggle(); // Unfreeze
             }
             d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+        } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
+            // If enough money to buy animal & Same Unit in Slot (Combine)
+            // Update the current animal's stats
+            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
+            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
+            Destroy(a.gameObject); // Destroy dragged (duplicate) animal
         }
     }
 
     void WarbandToWarband(DragHandler d, BaseEntity a) {
-        DragHandler.itemBeingDragged.transform.SetParent(transform);
+        if (!item) { // If warband slot is empty
+            DragHandler.itemBeingDragged.transform.SetParent(transform);
+        } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
+            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
+            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
+            Destroy(a.gameObject); // Destroy dragged (duplicate) animal
+        } else { // If different unit in Slot (Swap)
+            item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
+            DragHandler.itemBeingDragged.transform.SetParent(transform);
+        }
     }
 
     void ShopToFreeze(DragHandler d, BaseEntity a) {
@@ -93,7 +96,7 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void WarbandToSell(DragHandler d, BaseEntity a) {
-        a.shopRef.SellSuccess();
-        Destroy(d.gameObject);
+        a.shopRef.SellSuccess(); // Add Money
+        Destroy(d.gameObject); // Destroy Animal
     }
 }
