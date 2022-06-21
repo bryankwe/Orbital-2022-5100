@@ -34,13 +34,23 @@ public class Slot : MonoBehaviour, IDropHandler {
 
         BaseEntity a = eventData.pointerDrag.GetComponent<BaseEntity>();
 
+        
+
         /*if (eventData.pointerDrag.TryGetComponent(out BaseEntity animal)) { // Always true
             animal.shopRef.AllowDragToWarband
         }*/
 
         //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
 
-        if(!item && d != null) {
+        if(d != null && !item) {
+
+            /*if(!item) { // Nothing in Slot
+
+            } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // Same Unit in Slot (Combine)
+
+            } else if () { // Different Unit in Slot (Swap)
+
+            }*/
 
             if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
                 if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
@@ -49,8 +59,13 @@ public class Slot : MonoBehaviour, IDropHandler {
                     WarbandToWarband(d, a);
                 }
             } else if(typeOfItem == DragHandler.Origin.SHOP) { // if the slot is FREEZE
-                ShopToFreeze(d, a);
+                if(d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
+                    ShopToFreeze(d, a);
+                }
             } else if(typeOfItem == DragHandler.Origin.WARBAND) { // if the slot is SELL
+                if(d.typeOfItem == DragHandler.Origin.WARBAND) { // If dragged from Warband
+                    WarbandToSell(d, a);
+                }
                 //destroy the animal
                 //add money => How to access UIShop via this script?
             }
@@ -75,5 +90,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         if(!a.isFrozen) {
             a.FreezeToggle(); // Freeze
         }
+    }
+
+    void WarbandToSell(DragHandler d, BaseEntity a) {
+        a.shopRef.SellSuccess();
+        Destroy(d.gameObject);
     }
 }

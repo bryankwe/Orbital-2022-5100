@@ -12,6 +12,7 @@ public class UIShop : MonoBehaviour {
     private EntitiesDatabaseSO cachedDb;
     private int entitiyCost = 3;
     private int rerollCost = 1;
+    private int sellCost = 1;
 
     private void Start() {
         cachedDb = GameManager.Instance.entitiesDatabase;
@@ -47,6 +48,10 @@ public class UIShop : MonoBehaviour {
             PlayerData.Instance.SpendMoney(entitiyCost);
         }
         return ans;
+    }
+
+    public void SellSuccess() {
+        PlayerData.Instance.AddMoney(sellCost);
     }
 
     bool AllowDragToWarband() {

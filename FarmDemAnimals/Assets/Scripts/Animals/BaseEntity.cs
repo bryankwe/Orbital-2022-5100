@@ -26,7 +26,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public virtual void FreezeToggle() {
         transform.Find("FreezeBG").gameObject.SetActive(!isFrozen);
         isFrozen = !isFrozen;
-        Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
+        // Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 
     /// <summary>
@@ -47,6 +47,10 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     
     public StatsTracker GetStatsTracker() {
         return statsTracker;
+    }
+
+    public int GetAnimalID() {
+        return animalID;
     }
 
 }
