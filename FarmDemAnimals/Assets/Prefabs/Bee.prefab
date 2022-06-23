@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: header
+      value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: content
+      value: 'Death: Give the animal behind +1/+1 until the end of battle'
+      objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Bee
@@ -101,6 +109,7 @@ PrefabInstance:
       objectReference: {fileID: -7659945631384244969, guid: 8721cbbfe3ba6a8418cd21a8de3a410c, type: 3}
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+    - {fileID: -3054322138711710988, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
 --- !u!1 &7010852356510992669 stripped
 GameObject:
@@ -119,8 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2277f6104b6db43a897741ee2ad90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 2
+  shopRef: {fileID: 0}
+  isFrozen: 0
+  initialHealth: 1
   initialAttack: 2
-  animalID: 2
+  animalID: 1
   animalName: Bee
   animalTier: 1

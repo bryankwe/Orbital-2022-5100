@@ -6,6 +6,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     public UIShop shopRef = null;
     public bool isFrozen = false;
+    public int combineCount = 0; // Number of times the entity has been combined
 
     private protected StatsTracker statsTracker;
     [SerializeField] private protected int initialHealth;
@@ -23,11 +24,19 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         Destroy(gameObject);
     }
 
-    public virtual void FreezeToggle() {
+    public void FreezeToggle() {
         transform.Find("FreezeBG").gameObject.SetActive(!isFrozen);
         isFrozen = !isFrozen;
-        // Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
+        //Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
+
+    /*public int GetHealth() {
+        statsTracker.GetHealth();
+    }
+
+    public int GetAttack() {
+        statsTracker.GetAttack();
+    }*/
 
     /// <summary>
     /// Animal takes input amount of damage (decrease health)

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Entity Database
   m_EditorClassIdentifier: 
   allEntities:
-  - prefab: {fileID: 5414995438313324886, guid: 19515aaa28988494d8ff6fbeafd1c88a, type: 3}
-  - prefab: {fileID: 2275567466515895725, guid: 16402e0dbd41aa54594b4c618acadbbd, type: 3}
+  - prefab: {fileID: 5414995437848182537, guid: 6083e7fbaa286784d8b27dca59f165a6, type: 3}
+  - prefab: {fileID: 4366405430963773312, guid: 2861e5b030f1c7242aee205979de10fe, type: 3}
+  - prefab: {fileID: 1182053326509915748, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}

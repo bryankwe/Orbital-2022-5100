@@ -37,12 +37,14 @@ public class UIShop : MonoBehaviour {
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
         if(PlayerData.Instance.CanAfford(rerollCost)) {
+            //Debug.Log("Rerolled");
             PlayerData.Instance.SpendMoney(rerollCost);
             GenerateCard();
         }
     }
 
     public bool OnDragToWarband() {
+        //Debug.Log("Bought");
         bool ans = AllowDragToWarband();
         if(ans) {
             PlayerData.Instance.SpendMoney(entitiyCost);
@@ -51,6 +53,7 @@ public class UIShop : MonoBehaviour {
     }
 
     public void SellSuccess() {
+        //Debug.Log("Sold");
         PlayerData.Instance.AddMoney(sellCost);
     }
 

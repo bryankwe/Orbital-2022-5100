@@ -30,7 +30,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        Debug.Log("OnBeginDrag");
+        //Debug.Log("OnBeginDrag");
         itemBeingDragged = gameObject;
         startPosition = transform.position;
         startParent = transform.parent;
@@ -43,7 +43,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-        Debug.Log("OnEndDrag");
+        //Debug.Log("OnEndDrag");
         itemBeingDragged = null;
         canvasGroup.blocksRaycasts = true;
         if(transform.parent == startParent) {

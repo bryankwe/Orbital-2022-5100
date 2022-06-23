@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: header
+      value: Rhino
+      objectReference: {fileID: 0}
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: content
+      value: 'Kill: Gain +3/+1 until the end of the battle'
+      objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Rhino
@@ -94,6 +102,22 @@ PrefabInstance:
     - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097199138762701, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1630955626, guid: d2b594447d57729489773bdae1e6c43b, type: 3}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: animalID
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: animalTier
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: initialHealth
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
