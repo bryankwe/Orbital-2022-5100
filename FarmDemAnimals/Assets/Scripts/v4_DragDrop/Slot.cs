@@ -79,9 +79,12 @@ public class Slot : MonoBehaviour, IDropHandler {
     void WarbandToWarband(DragHandler d, BaseEntity a) {
         if (!item) { // If warband slot is empty
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+        } else if (item == a.gameObject) { // If unit is dragged onto same slot
+            return;
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
-            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
-            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
+            item.transform.GetComponent<BaseEntity>().IncreasePreparationStats(a.GetHealth(), a.GetAttack());
+            //item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
+            //item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
             Destroy(a.gameObject); // Destroy dragged (duplicate) animal
         } else { // If different unit in Slot (Swap)
             item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
@@ -90,9 +93,10 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void ShopToFreeze(DragHandler d, BaseEntity a) {
-        if(!a.isFrozen) {
+        /*if(!a.isFrozen) {
             a.FreezeToggle(); // Freeze
-        }
+        }*/
+        a.FreezeToggle(); // Freeze or Unfreeze
     }
 
     void WarbandToSell(DragHandler d, BaseEntity a) {

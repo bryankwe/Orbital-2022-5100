@@ -30,15 +30,28 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         //Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 
-    /*public int GetHealth() {
-        statsTracker.GetHealth();
+    public int GetHealth() {
+        return statsTracker.GetHealth();
     }
 
     public int GetAttack() {
-        statsTracker.GetAttack();
-    }*/
+        return statsTracker.GetAttack();
+    }
 
     /// <summary>
+    /// PREPARATION PHASE
+    /// Animal increase health and damage by input amounts
+    /// Override if special ability in Preparation Phase
+    /// </summary>
+    /// <param name="healthAmount">The health amount to increase by</param>
+    /// <param name="damageAmount">The damage amount to increase by</param>
+    public virtual void IncreasePreparationStats(int healthAmount, int damageAmount) {
+        statsTracker.IncreaseHealthMax(healthAmount);
+        statsTracker.IncreaseAttackMax(damageAmount);
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
     /// Animal takes input amount of damage (decrease health)
     /// Override if special ability upon Damage
     /// </summary>
@@ -47,6 +60,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     }
 
     /// <summary>
+    /// BATTLE PHASE
     /// Animal heals by input amount (increase health)
     /// Override if special ability upon Heal
     /// </summary>
