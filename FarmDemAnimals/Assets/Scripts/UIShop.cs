@@ -17,19 +17,23 @@ public class UIShop : MonoBehaviour {
     private void Start() {
         cachedDb = GameManager.Instance.entitiesDatabase;
         GenerateCard();
-        PlayerData.Instance.OnUpdate += Refresh;
+        PlayerData.Instance.OnUpdateMoney += Refresh;
         Refresh();
+    }
+
+    private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
+        return cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
     }
 
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
-            if(allCards[i].transform.parent.transform.childCount > 1) {
-                if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) {
-                    Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
-                    allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
+            if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
+                if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) { // If not frozen
+                    Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject); // Destroy animal
+                    allCards[i].Setup(ChooseAnimalFromDatabase(), this); //Generate new animal
                 }
             } else {
-                allCards[i].Setup(cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)], this);
+                allCards[i].Setup(ChooseAnimalFromDatabase(), this);
             }
         }
     }
@@ -52,9 +56,9 @@ public class UIShop : MonoBehaviour {
         return ans;
     }
 
-    public void SellSuccess() {
-        //Debug.Log("Sold");
-        PlayerData.Instance.AddMoney(sellCost);
+    public void SellSuccess(int totalEntityCount) {
+        Debug.Log("Sold " + totalEntityCount);
+        PlayerData.Instance.AddMoney(sellCost * totalEntityCount);
     }
 
     bool AllowDragToWarband() {

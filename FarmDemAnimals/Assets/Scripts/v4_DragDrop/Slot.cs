@@ -69,10 +69,7 @@ public class Slot : MonoBehaviour, IDropHandler {
             DragHandler.itemBeingDragged.transform.SetParent(transform);
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
             // If enough money to buy animal & Same Unit in Slot (Combine)
-            // Update the current animal's stats
-            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
-            item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
-            Destroy(a.gameObject); // Destroy dragged (duplicate) animal
+            CombineAnimals(a);
         }
     }
 
@@ -82,10 +79,7 @@ public class Slot : MonoBehaviour, IDropHandler {
         } else if (item == a.gameObject) { // If unit is dragged onto same slot
             return;
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
-            item.transform.GetComponent<BaseEntity>().IncreasePreparationStats(a.GetHealth(), a.GetAttack());
-            //item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseAttackMax(a.GetStatsTracker().GetAttack());
-            //item.transform.GetComponent<BaseEntity>().GetStatsTracker().IncreaseHealthMax(a.GetStatsTracker().GetHealth());
-            Destroy(a.gameObject); // Destroy dragged (duplicate) animal
+            CombineAnimals(a);
         } else { // If different unit in Slot (Swap)
             item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
             DragHandler.itemBeingDragged.transform.SetParent(transform);
@@ -100,7 +94,13 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void WarbandToSell(DragHandler d, BaseEntity a) {
-        a.shopRef.SellSuccess(); // Add Money
+        a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
         Destroy(d.gameObject); // Destroy Animal
+    }
+
+    void CombineAnimals(BaseEntity a) {
+        item.transform.GetComponent<BaseEntity>().IncreasePreparationStats(a.GetHealth(), a.GetAttack());
+        item.transform.GetComponent<BaseEntity>().totalEntityCount += 1;
+        Destroy(a.gameObject); // Destroy dragged (duplicate) animal
     }
 }
