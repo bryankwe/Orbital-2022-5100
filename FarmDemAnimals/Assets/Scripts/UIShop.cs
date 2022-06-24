@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIShop : MonoBehaviour {
-    public List<UICard> allCards; // These are just empty GameObjects used for Instantiation
+    public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
     public TextMeshProUGUI money; //Display the amount of money available
     
@@ -22,7 +22,11 @@ public class UIShop : MonoBehaviour {
     }
 
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
-        return cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+         EntitiesDatabaseSO.EntityData randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+         while (randomAnimal.prefab.GetAnimalTier() > PlayerData.Instance.TurnNumber) {
+            randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+         }
+         return randomAnimal;
     }
 
     public void GenerateCard() {

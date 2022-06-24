@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour {
+public class PreparationManager : Manager<PreparationManager> {
     
     public EntitiesDatabaseSO entitiesDatabase;
 

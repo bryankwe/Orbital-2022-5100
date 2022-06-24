@@ -1612,7 +1612,7 @@ GameObject:
   - component: {fileID: 368383462}
   - component: {fileID: 368383463}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameObject_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3207,7 +3207,7 @@ GameObject:
   - component: {fileID: 730507743}
   - component: {fileID: 730507744}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameObject_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
   isFrozen: 0
-  combineCount: 0
+  totalEntityCount: 1
   initialHealth: 2
   initialAttack: 2
   animalID: 1
@@ -5502,7 +5502,7 @@ GameObject:
   - component: {fileID: 1232832809}
   - component: {fileID: 1232832810}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameObject_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6442,7 +6442,7 @@ GameObject:
   - component: {fileID: 1365666532}
   - component: {fileID: 1365666533}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameObject_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6849,7 +6849,7 @@ GameObject:
   - component: {fileID: 1468264411}
   - component: {fileID: 1468264412}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: GameObject_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
