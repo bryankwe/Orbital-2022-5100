@@ -5,7 +5,33 @@ using UnityEngine;
 public class PreparationManager : Manager<PreparationManager> {
     
     public EntitiesDatabaseSO entitiesDatabase;
+    public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
+    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
 
+    /// <summary>
+    /// Control the number of shop slots available
+    /// </summary>
+    public void ActivateShopSlots() {
+        int turnNumber = PlayerData.Instance.TurnNumber;
+        if (turnNumber == 1) {
+            // 3 slots
+            SetActiveSpecifiedSlots(3);
+        } else if (turnNumber == 2) {
+            // 4 slots
+            SetActiveSpecifiedSlots(4);
+        } else {
+            // 5 slots
+            SetActiveSpecifiedSlots(5);
+        }
+    }
+
+    private void SetActiveSpecifiedSlots(int number) {
+        for (int i = 0; i < number; i++) {
+            allCards[i].EnableCard();
+        }
+    }
+
+    
     /*
     NOTE: JUST COPYING CODE FROM TUTORIAL (NEED TO THINK HOW TO ADAPT TO OUR GAME)
     //OLD VERSION (FOR non-UI draggable)

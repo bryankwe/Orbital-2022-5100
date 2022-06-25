@@ -15,6 +15,20 @@ public class UICard : MonoBehaviour {
     private UIShop shopRef;
     private EntitiesDatabaseSO.EntityData myData;
 
+    /// <summary>
+    /// Deactivate the shop slot on awake
+    /// </summary>
+    private void Awake() {
+        transform.parent.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Activate the shop slot on awake
+    /// </summary>
+    public void EnableCard() {
+        transform.parent.gameObject.SetActive(true);
+    }
+
     public void Setup(EntitiesDatabaseSO.EntityData myData, UIShop shopRef) {
         //icon = myData.icon;
         //animalName.text = myData.name;
@@ -30,7 +44,11 @@ public class UICard : MonoBehaviour {
         Debug.Log("Generated: " + newCard.name);
     }
 
-    /*public void OnClick() {
-        shopRef.OnCardClick(myData);
-    }*/
+    /// <summary>
+    /// Returns whether or not the UICard is active in scene
+    /// Determine whether or not to instantiate an animal on this UICard
+    /// </summary>
+    public bool CanGenerate() {
+        return gameObject.activeInHierarchy;
+    }
 }

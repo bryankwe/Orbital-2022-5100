@@ -3058,8 +3058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faca607ec74e883458c2bc3e8aea7144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allCards: []
-  warband: []
   money: {fileID: 0}
 --- !u!1 &712790746
 GameObject:
@@ -4474,13 +4472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faca607ec74e883458c2bc3e8aea7144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allCards:
-  - {fileID: 1365666533}
-  - {fileID: 1468264412}
-  - {fileID: 730507744}
-  - {fileID: 368383463}
-  - {fileID: 1232832810}
-  warband: []
   money: {fileID: 1996865463}
 --- !u!224 &988210252 stripped
 RectTransform:
@@ -5226,11 +5217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faca607ec74e883458c2bc3e8aea7144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allCards:
-  - {fileID: 95473287}
-  - {fileID: 1787117952}
-  - {fileID: 1278255661}
-  warband: []
   money: {fileID: 0}
 --- !u!1 &1202111175
 GameObject:
@@ -5835,6 +5821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1284963004}
   - component: {fileID: 1284963005}
+  - component: {fileID: 1284963006}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -5877,6 +5864,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284963003}
   m_CullTransparentMesh: 1
+--- !u!114 &1284963006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284963003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493f89653ecdb0e458e456e39ec5ce9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entitiesDatabase: {fileID: 11400000, guid: e5f06d556bbbcdf43a269edff119e658, type: 2}
+  allCards:
+  - {fileID: 1365666533}
+  - {fileID: 1468264412}
+  - {fileID: 730507744}
+  - {fileID: 368383463}
+  - {fileID: 1232832810}
+  warband: []
 --- !u!224 &1291765856 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5653385538956978485, guid: bf788bb61137e99468948e0ed2b8c5b7, type: 3}

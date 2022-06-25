@@ -5,17 +5,20 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIShop : MonoBehaviour {
-    public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
-    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
+    //public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
+    //public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
     public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO cachedDb;
+    private List<UICard> allCards;
     private int entitiyCost = 3;
     private int rerollCost = 1;
     private int sellCost = 1;
 
     private void Start() {
-        cachedDb = GameManager.Instance.entitiesDatabase;
+        cachedDb = PreparationManager.Instance.entitiesDatabase;
+        PreparationManager.Instance.ActivateShopSlots();
+        allCards = PreparationManager.Instance.allCards;
         GenerateCard();
         PlayerData.Instance.OnUpdateMoney += Refresh;
         Refresh();
@@ -31,13 +34,15 @@ public class UIShop : MonoBehaviour {
 
     public void GenerateCard() {
         for (int i = 0; i < allCards.Count; i++) {
-            if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
-                if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) { // If not frozen
-                    Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject); // Destroy animal
-                    allCards[i].Setup(ChooseAnimalFromDatabase(), this); //Generate new animal
+            if(allCards[i].CanGenerate()) { // If slot is active
+                if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
+                    if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) { // If not frozen
+                        Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject); // Destroy animal
+                        allCards[i].Setup(ChooseAnimalFromDatabase(), this); //Generate new animal
+                    }
+                } else {
+                    allCards[i].Setup(ChooseAnimalFromDatabase(), this);
                 }
-            } else {
-                allCards[i].Setup(ChooseAnimalFromDatabase(), this);
             }
         }
     }
