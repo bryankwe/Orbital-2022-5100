@@ -67,7 +67,12 @@ public class Slot : MonoBehaviour, IDropHandler {
             }
             d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+            
             PreparationManager.Instance.OnUpdateWarband?.Invoke();
+            if(a.ability == "BUY") {
+                a.activateAbility();
+                //PreparationManager.Instance.OnBuy?.Invoke();
+            }
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
             // If enough money to buy animal & Same Unit in Slot (Combine)
             CombineAnimals(a);

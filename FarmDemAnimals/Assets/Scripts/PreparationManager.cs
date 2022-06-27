@@ -7,15 +7,22 @@ public class PreparationManager : Manager<PreparationManager> {
     public EntitiesDatabaseSO entitiesDatabase;
     public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
-    public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
+    public List<BaseEntity> warband = new List<BaseEntity>(); // Actual List of Animals in Warband (Updated with every Change)
 
-    public System.Action OnUpdateWarband; // Buy, Combine, Swap Positions, Sell
+    public System.Action OnUpdateWarband;
+    public System.Action OnBuy;
+    public System.Action OnSell;
+    public System.Action OnTurnStart;
+    public System.Action OnTurnEnd;
+    public System.Action OnCombine;
+
     
     private void Start() {
         OnUpdateWarband += UpdateWarband;
     }
 
     private void UpdateWarband() {
+        warband = new List<BaseEntity>();
         foreach (Slot slot in warbandSlots) {
             if (slot.transform.childCount > 0) { // If animal in slot
                 if (slot.transform.GetChild(0).gameObject.TryGetComponent(out BaseEntity animal)) { // Always true
@@ -33,6 +40,19 @@ public class PreparationManager : Manager<PreparationManager> {
                 Debug.Log("null ");
             }
         }*/
+    }
+
+    /// <summary>
+    /// Counts the number of animals in the warband AFTER any action is carried out (before OnUpdateWarband is invoked);
+    /// </summary>
+    public int CountWarbandAnimals() {
+        int counter = 0;
+        foreach (BaseEntity animal in warband) {
+            if (animal != null) {
+                counter++;
+            }
+        }
+        return counter;
     }
     
     /// <summary>
