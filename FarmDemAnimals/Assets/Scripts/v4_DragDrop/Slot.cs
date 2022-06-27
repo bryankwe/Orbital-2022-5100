@@ -67,22 +67,27 @@ public class Slot : MonoBehaviour, IDropHandler {
             }
             d.typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
             // If enough money to buy animal & Same Unit in Slot (Combine)
             CombineAnimals(a);
+            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         }
     }
 
     void WarbandToWarband(DragHandler d, BaseEntity a) {
         if (!item) { // If warband slot is empty
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         } else if (item == a.gameObject) { // If unit is dragged onto same slot
             return;
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
             CombineAnimals(a);
+            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         } else { // If different unit in Slot (Swap)
             item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
             DragHandler.itemBeingDragged.transform.SetParent(transform);
+            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         }
     }
 
@@ -96,6 +101,7 @@ public class Slot : MonoBehaviour, IDropHandler {
     void WarbandToSell(DragHandler d, BaseEntity a) {
         a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
         Destroy(d.gameObject); // Destroy Animal
+        PreparationManager.Instance.OnUpdateWarband?.Invoke();
     }
 
     void CombineAnimals(BaseEntity a) {

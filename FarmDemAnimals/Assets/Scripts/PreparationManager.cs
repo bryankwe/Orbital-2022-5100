@@ -6,8 +6,35 @@ public class PreparationManager : Manager<PreparationManager> {
     
     public EntitiesDatabaseSO entitiesDatabase;
     public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
+    public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
 
+    public System.Action OnUpdateWarband; // Buy, Combine, Swap Positions, Sell
+    
+    private void Start() {
+        OnUpdateWarband += UpdateWarband;
+    }
+
+    private void UpdateWarband() {
+        foreach (Slot slot in warbandSlots) {
+            if (slot.transform.childCount > 0) { // If animal in slot
+                if (slot.transform.GetChild(0).gameObject.TryGetComponent(out BaseEntity animal)) { // Always true
+                    warband.Add(animal);
+                }
+            } else {
+                warband.Add(null);
+            }
+        }
+        
+        /*foreach (BaseEntity baseEntity in warband) { // DEBUG purpose only
+            if (baseEntity != null) {
+                Debug.Log(baseEntity.name + " ");
+            } else {
+                Debug.Log("null ");
+            }
+        }*/
+    }
+    
     /// <summary>
     /// Control the number of shop slots available
     /// </summary>
@@ -25,8 +52,8 @@ public class PreparationManager : Manager<PreparationManager> {
         }
     }
 
-    private void SetActiveSpecifiedSlots(int number) {
-        for (int i = 0; i < number; i++) {
+    private void SetActiveSpecifiedSlots(int limit) {
+        for (int i = 0; i < limit; i++) {
             allCards[i].EnableCard();
         }
     }

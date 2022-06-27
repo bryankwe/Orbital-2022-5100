@@ -20,7 +20,7 @@ public class UIShop : MonoBehaviour {
         PreparationManager.Instance.ActivateShopSlots();
         allCards = PreparationManager.Instance.allCards;
         GenerateCard();
-        PlayerData.Instance.OnUpdateMoney += Refresh;
+        PlayerData.Instance.OnUpdateMoney += Refresh; // Everytime a function calls OnUpdateMoney?.Invoke(), Refresh() is called
         Refresh();
     }
 

@@ -5883,6 +5883,12 @@ MonoBehaviour:
   - {fileID: 730507744}
   - {fileID: 368383463}
   - {fileID: 1232832810}
+  warbandSlots:
+  - {fileID: 1501056396}
+  - {fileID: 297304114}
+  - {fileID: 43378092}
+  - {fileID: 803254460}
+  - {fileID: 888128702}
   warband: []
 --- !u!224 &1291765856 stripped
 RectTransform:
