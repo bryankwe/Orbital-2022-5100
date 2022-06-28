@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
-    //public enum Ability { BUY, SELL, TURNSTART, TURNEND, COMBINE, DEATH, ENRAGE, KILL };
-    //public Ability ability;
-    public abstract string ability { get; }
+    public enum Ability { BUY, SELL, TURNSTART, TURNEND, COMBINE, DEATH, ENRAGE, KILL };
+    public abstract Ability ability { get; }// public abstract string ability { get; }
     public UIShop shopRef = null;
     public bool isFrozen = false;
     public int totalEntityCount = 1; // Number of times the entity has been combined

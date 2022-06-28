@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rhino : BaseEntity {
 
-    public override string ability { get { return "KILL";} }
+    public override Ability ability { get { return Ability.KILL; } } //public override string ability { get { return "KILL";} }
 
     public override void activateAbility() {
         

@@ -69,7 +69,7 @@ public class Slot : MonoBehaviour, IDropHandler {
             DragHandler.itemBeingDragged.transform.SetParent(transform);
             
             PreparationManager.Instance.OnUpdateWarband?.Invoke();
-            if(a.ability == "BUY") {
+            if(a.ability == BaseEntity.Ability.BUY) { //if(a.ability == "BUY") {
                 a.activateAbility();
                 //PreparationManager.Instance.OnBuy?.Invoke();
             }

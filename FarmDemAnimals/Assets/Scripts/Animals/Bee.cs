@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bee : BaseEntity {
 
-    public override string ability { get { return "DEATH";} }
+    public override Ability ability { get { return Ability.DEATH; } } //public override string ability { get { return "DEATH";} }
 
     public override void activateAbility() {
         

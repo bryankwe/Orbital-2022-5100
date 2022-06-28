@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bat : BaseEntity {
 
-    public override string ability { get { return "BUY";} }
+    public override Ability ability { get { return Ability.BUY; } } //public override string ability { get { return "BUY";} }
     
     private void OnEnable() {
         //PreparationManager.Instance.OnBuy += Bought;
