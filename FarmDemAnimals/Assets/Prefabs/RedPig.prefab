@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1077667937256127305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: header
+      value: Red Pig
+      objectReference: {fileID: 0}
+    - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: content
+      value: 'Sell: Give a random animal +1/+2'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Name
+      value: RedPig
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097197990843590, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901097198577340855, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3474578761864754926, guid: 6991e54fe8bb5724bafb4aba16583d49, type: 3}
+    - target: {fileID: 7901097199138762701, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -833707154, guid: d2b594447d57729489773bdae1e6c43b, type: 3}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: animalID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: animalName
+      value: Pig
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: animalTier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: initialAttack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: initialHealth
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+--- !u!1 &7157050271358431116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 1077667937256127305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8615510949908251278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7157050271358431116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5923ad15dc6ae1142b890700c551ae3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopRef: {fileID: 0}
+  isFrozen: 0
+  totalEntityCount: 1
+  initialHealth: 3
+  initialAttack: 2
+  animalID: 3
+  animalName: Red Pig
+  animalTier: 2

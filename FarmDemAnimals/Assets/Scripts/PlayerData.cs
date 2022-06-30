@@ -20,7 +20,7 @@ public class PlayerData : Manager<PlayerData> {
         Money = 10;
         Lives = 2;
         Trophies = 0;
-        TurnNumber = 1;
+        TurnNumber = 5;
     }
 
     public bool CanAfford(int amount)

@@ -15,4 +15,14 @@ MonoBehaviour:
   allEntities:
   - prefab: {fileID: 5414995437848182537, guid: 6083e7fbaa286784d8b27dca59f165a6, type: 3}
   - prefab: {fileID: 4366405430963773312, guid: 2861e5b030f1c7242aee205979de10fe, type: 3}
+  - prefab: {fileID: 8615510949908251278, guid: 031856aae1e822e4bae57af73415bef0, type: 3}
+  - prefab: {fileID: 8378567299866215582, guid: 2c20ab72cd63bba4285fd3e0de7e0886, type: 3}
+  - prefab: {fileID: 8075812754764431743, guid: 8161c56b10e255b4a9c50c6c3f4b2001, type: 3}
+  - prefab: {fileID: 8622487020101107699, guid: d775ce10eb5e95a40a5154dceb5ac898, type: 3}
+  - prefab: {fileID: 5829711105245764277, guid: 8eb8dbbb03164214aabd81059e1a512e, type: 3}
+  - prefab: {fileID: 3532287497123496676, guid: fd77b7cc75590044cafaa02225c995c5, type: 3}
+  - prefab: {fileID: 122142469771873828, guid: 5d0d23198fcb9714d96af969e670c00c, type: 3}
+  - prefab: {fileID: 7115060969454610046, guid: 928a88661ad8aab449226ced84d6c819, type: 3}
   - prefab: {fileID: 1182053326509915748, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}
+  - prefab: {fileID: 913553569576953316, guid: 1c5b8dd7aeb02dd45b5f213919ac12c3, type: 3}
+  - prefab: {fileID: 8359043956636676550, guid: 0b702179ba543394392350e66f7eb8d8, type: 3}
