@@ -113,7 +113,7 @@ public class Slot : MonoBehaviour, IDropHandler {
 
     void CombineAnimals(BaseEntity a) {
         BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
-        itemBE.IncreasePreparationStats(a.GetHealth(), a.GetAttack());
+        itemBE.IncreasePreparationStats(a.GetAttack(), a.GetHealth());
         itemBE.totalEntityCount += 1;
         Destroy(a.gameObject); // Destroy dragged (duplicate) animal
         PreparationManager.Instance.OnUpdateWarband?.Invoke();

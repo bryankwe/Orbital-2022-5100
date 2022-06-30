@@ -53,9 +53,9 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     /// </summary>
     /// <param name="healthAmount">The health amount to increase by</param>
     /// <param name="damageAmount">The damage amount to increase by</param>
-    public virtual void IncreasePreparationStats(int healthAmount, int damageAmount) {
-        statsTracker.IncreaseHealthMax(healthAmount);
+    public virtual void IncreasePreparationStats(int damageAmount, int healthAmount) {
         statsTracker.IncreaseAttackMax(damageAmount);
+        statsTracker.IncreaseHealthMax(healthAmount);
     }
 
     /// <summary>
