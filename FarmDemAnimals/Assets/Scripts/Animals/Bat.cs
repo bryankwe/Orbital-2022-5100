@@ -6,21 +6,20 @@ public class Bat : BaseEntity {
 
     public override Ability ability { get { return Ability.BUY; } } //public override string ability { get { return "BUY";} }
     
-    private void OnEnable() {
+    /*private void OnEnable() {
         //PreparationManager.Instance.OnBuy += Bought;
     }
 
     private void OnDisable() {
         //PreparationManager.Instance.OnBuy -= Bought;
-    }
+    }*/
     
     // Why do all Bats call this event? ==> Because of OnEnable() ==> Need to only Bought() when actually buying and not OnEnable()
     // Incomplete ==> Did not cater for Combine()
     public override void activateAbility() { // private void Bought() {
-        //Debug.Log("Bought Event Called by " + gameObject.name);
+        
         List<BaseEntity> currentWarband = PreparationManager.Instance.warband;
-        //Debug.Log("Warband Animals Count: " + PreparationManager.Instance.CountWarbandAnimals());
-        //Debug.Log(" Same Check: " + (currentWarband[0] == currentWarband[1]));
+        
         if (PreparationManager.Instance.CountWarbandAnimals() > 1) { // If there are other animals in warband
             bool executing = true;
             while (executing) {

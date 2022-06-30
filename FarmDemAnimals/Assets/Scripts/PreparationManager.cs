@@ -21,6 +21,9 @@ public class PreparationManager : Manager<PreparationManager> {
         OnUpdateWarband += UpdateWarband;
     }
 
+    /// <summary>
+    /// Update the animals in the warband
+    /// </summary>
     private void UpdateWarband() {
         warband = new List<BaseEntity>();
         foreach (Slot slot in warbandSlots) {
@@ -41,6 +44,12 @@ public class PreparationManager : Manager<PreparationManager> {
             }
         }*/
     }
+
+    /*public void InvokeOnBuyEvent(BaseEntity animal) {
+        OnBuy += animal.activateAbility;
+        OnBuy?.Invoke();
+        OnBuy -= animal.activateAbility;
+    }*/
 
     /// <summary>
     /// Counts the number of animals in the warband AFTER any action is carried out (before OnUpdateWarband is invoked);
@@ -78,23 +87,9 @@ public class PreparationManager : Manager<PreparationManager> {
         }
     }
 
-    
-    /*
-    NOTE: JUST COPYING CODE FROM TUTORIAL (NEED TO THINK HOW TO ADAPT TO OUR GAME)
-    //OLD VERSION (FOR non-UI draggable)
-    //Reference Tutorial: TaroDev (https://www.youtube.com/watch?v=Tv82HIvKcZQ) & (https://www.youtube.com/watch?v=o_qEXZhQR-M)
-
-    [SerializeField] private List<DropSlot> slots;
-    [SerializeField] private Draggable draggable;
-    [SerializeField] private Transform slotParent, draggableParent;
-    
-    void Spawn() {
-        var randomSet = slots.OrderBy(s => Random.value).Take(3).ToList();
-
-        for (int i = 0; i < randomSet.Count; i++) {
-            var spawnedSlot = Instantiate(randomSet[i], slotParent.GetChild(i).position, Quaternion.identity);
-
-            var spawnedDraggable = Instantiate(draggable, draggableParent.GetChild(i).position, Quaternion.identity);
-        }
+    /*public enum CurrentState { 
+        TURNSTART,
+        PREPARE,
+        TURNEND
     }*/
 }

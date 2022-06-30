@@ -69,14 +69,13 @@ public class Slot : MonoBehaviour, IDropHandler {
             DragHandler.itemBeingDragged.transform.SetParent(transform);
             
             PreparationManager.Instance.OnUpdateWarband?.Invoke();
-            if(a.ability == BaseEntity.Ability.BUY) { //if(a.ability == "BUY") {
+            if(a.ability == BaseEntity.Ability.BUY) { // Activate animal's BUY special ability
                 a.activateAbility();
                 //PreparationManager.Instance.OnBuy?.Invoke();
             }
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
             // If enough money to buy animal & Same Unit in Slot (Combine)
             CombineAnimals(a);
-            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         }
     }
 
@@ -88,7 +87,6 @@ public class Slot : MonoBehaviour, IDropHandler {
             return;
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
             CombineAnimals(a);
-            PreparationManager.Instance.OnUpdateWarband?.Invoke();
         } else { // If different unit in Slot (Swap)
             item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
             DragHandler.itemBeingDragged.transform.SetParent(transform);
@@ -105,13 +103,25 @@ public class Slot : MonoBehaviour, IDropHandler {
 
     void WarbandToSell(DragHandler d, BaseEntity a) {
         a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
+        if(a.ability == BaseEntity.Ability.SELL) { // Activate animal's SELL special ability
+            a.activateAbility(); // Must ensure the ability does not apply to self (haven't destroy self yet)
+            //PreparationManager.Instance.OnSell?.Invoke();
+        }
         Destroy(d.gameObject); // Destroy Animal
         PreparationManager.Instance.OnUpdateWarband?.Invoke();
     }
 
     void CombineAnimals(BaseEntity a) {
-        item.transform.GetComponent<BaseEntity>().IncreasePreparationStats(a.GetHealth(), a.GetAttack());
-        item.transform.GetComponent<BaseEntity>().totalEntityCount += 1;
+        BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
+        itemBE.IncreasePreparationStats(a.GetHealth(), a.GetAttack());
+        itemBE.totalEntityCount += 1;
         Destroy(a.gameObject); // Destroy dragged (duplicate) animal
+        PreparationManager.Instance.OnUpdateWarband?.Invoke();
+        if(itemBE.ability == BaseEntity.Ability.BUY) { //if(a.ability == "BUY") {
+            itemBE.activateAbility();
+            //PreparationManager.Instance.OnBuy?.Invoke();
+        } else if (itemBE.ability == BaseEntity.Ability.COMBINE) {
+            itemBE.activateAbility();
+        }
     }
 }
