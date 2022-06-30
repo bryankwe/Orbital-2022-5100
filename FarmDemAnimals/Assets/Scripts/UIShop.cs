@@ -56,6 +56,11 @@ public class UIShop : MonoBehaviour {
         }
     }
 
+    public void OnEndTurnClick() {
+        PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
+        // Go to next scene
+    }
+
     public bool OnDragToWarband() {
         //Debug.Log("Bought");
         bool ans = AllowDragToWarband();

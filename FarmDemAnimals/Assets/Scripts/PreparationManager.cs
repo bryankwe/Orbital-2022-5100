@@ -9,16 +9,20 @@ public class PreparationManager : Manager<PreparationManager> {
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // Actual List of Animals in Warband (Updated with every Change)
 
+    public CurrentState currentState;
+
     public System.Action OnUpdateWarband;
-    public System.Action OnBuy;
+    /*public System.Action OnBuy;
     public System.Action OnSell;
     public System.Action OnTurnStart;
     public System.Action OnTurnEnd;
-    public System.Action OnCombine;
+    public System.Action OnCombine;*/
 
     
     private void Start() {
         OnUpdateWarband += UpdateWarband;
+        UpdateWarband();
+        ChangeState(CurrentState.TURNSTART);
     }
 
     /// <summary>
@@ -45,6 +49,32 @@ public class PreparationManager : Manager<PreparationManager> {
         }*/
     }
 
+    /// <summary>
+    /// Activate any START OF TURN special abilities
+    /// </summary>
+    private void StartTurn() {
+        foreach (BaseEntity baseEntity in warband) {
+            if (baseEntity != null) {
+                if (baseEntity.ability == BaseEntity.Ability.TURNSTART) {
+                    baseEntity.activateAbility();
+                }
+            }
+        }
+        ChangeState(CurrentState.PREPARE);
+    }
+
+    /// <summary>
+    /// Activate any END OF TURN special abilities
+    /// </summary>
+    private void EndTurn() {
+        foreach (BaseEntity baseEntity in warband) {
+            if (baseEntity != null) {
+                if (baseEntity.ability == BaseEntity.Ability.TURNEND) {
+                    baseEntity.activateAbility();
+                }
+            }
+        }
+    }
     /*public void InvokeOnBuyEvent(BaseEntity animal) {
         OnBuy += animal.activateAbility;
         OnBuy?.Invoke();
@@ -87,9 +117,25 @@ public class PreparationManager : Manager<PreparationManager> {
         }
     }
 
-    /*public enum CurrentState { 
+    public void ChangeState(CurrentState newState) {
+        currentState = newState;
+        switch (newState) {
+            case CurrentState.TURNSTART:
+                StartTurn();
+                break;
+            case CurrentState.PREPARE:
+                break;
+            case CurrentState.TURNEND:
+                EndTurn();
+                break;
+            default:
+                throw new System.ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+    }
+    
+    public enum CurrentState { 
         TURNSTART,
         PREPARE,
         TURNEND
-    }*/
+    }
 }
