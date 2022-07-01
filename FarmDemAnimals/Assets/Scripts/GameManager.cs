@@ -5,21 +5,9 @@ using System;
 
 //public enum GameState { MENU, PREPARE, BATTLE, GAMEOVER }
 
-public class GameManager : Manager<GameManager> {
+public class GameManager : SingletonManager<GameManager> {
 
-    public EntitiesDatabaseSO entitiesDatabase;
+    //public EntitiesDatabaseSO entitiesDatabase;
     //Dictionary<Team, List<???>>
-    
-    //public GameState state;
-
-    void Start()
-    {
-        //state = GameState.MENU;
-        //InstantiateUnits();
-    }
-
-    void Update()
-    {
-        
-    }
+    public List<BaseEntity> playerWarband; // Only updated when clicking "End Turn" in Preparation Phase
 }

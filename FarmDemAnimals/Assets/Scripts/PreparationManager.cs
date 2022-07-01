@@ -60,6 +60,7 @@ public class PreparationManager : Manager<PreparationManager> {
                 }
             }
         }
+        OnUpdateWarband?.Invoke();
         ChangeState(CurrentState.PREPARE);
     }
 
@@ -74,7 +75,16 @@ public class PreparationManager : Manager<PreparationManager> {
                 }
             }
         }
+        OnUpdateWarband?.Invoke();
     }
+
+    private void TransferWarbandInfo() {
+        // !! MUST CHANGE, only pointing, doesn't work
+        // Possible ways to fix:
+        //     (i) Deep Copy
+        //     (ii) Move warband from PreparationManager to GameManager
+        GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying! (not sure if required)
+    }    
     /*public void InvokeOnBuyEvent(BaseEntity animal) {
         OnBuy += animal.activateAbility;
         OnBuy?.Invoke();
@@ -127,6 +137,7 @@ public class PreparationManager : Manager<PreparationManager> {
                 break;
             case CurrentState.TURNEND:
                 EndTurn();
+                TransferWarbandInfo();
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newState), newState, null);
