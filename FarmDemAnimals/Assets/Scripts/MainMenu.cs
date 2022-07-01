@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame () 
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        SceneController.Instance.LoadScene("Scenes/Preparation Scene");
+
+        //SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, 1, 2)
     } 
 }

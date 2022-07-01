@@ -58,7 +58,8 @@ public class UIShop : MonoBehaviour {
 
     public void OnEndTurnClick() {
         PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
-        // Go to next scene
+        // Go to next scene ==> Should implement some sort of wait first
+        SceneController.Instance.LoadScene("Scenes/Battle Scene");
     }
 
     public bool OnDragToWarband() {

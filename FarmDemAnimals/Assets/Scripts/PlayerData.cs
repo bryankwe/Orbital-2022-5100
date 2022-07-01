@@ -17,10 +17,10 @@ public class PlayerData : Manager<PlayerData> {
     public System.Action OnUpdateTurnNumber;
 
     private void Start() {
-        Money = 10;
+        Money = 50;
         Lives = 2;
         Trophies = 0;
-        TurnNumber = 1;
+        TurnNumber = 5;
     }
 
     public bool CanAfford(int amount)
