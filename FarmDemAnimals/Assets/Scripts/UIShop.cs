@@ -16,6 +16,7 @@ public class UIShop : MonoBehaviour {
     private int sellCost = 1;
 
     private void Start() {
+        Debug.Log("Enter UIShop Start()");
         cachedDb = PreparationManager.Instance.entitiesDatabase;
         PreparationManager.Instance.ActivateShopSlots();
         allCards = PreparationManager.Instance.allCards;
@@ -25,14 +26,16 @@ public class UIShop : MonoBehaviour {
     }
 
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
-         EntitiesDatabaseSO.EntityData randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
-         while (randomAnimal.prefab.GetAnimalTier() > PlayerData.Instance.TurnNumber) {
+        Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
+        EntitiesDatabaseSO.EntityData randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+        while (randomAnimal.prefab.GetAnimalTier() > PlayerData.Instance.TurnNumber) {
             randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
-         }
-         return randomAnimal;
+        }
+        return randomAnimal;
     }
 
     public void GenerateCard() {
+        Debug.Log("Enter UIShop GenerateCard()");
         for (int i = 0; i < allCards.Count; i++) {
             if(allCards[i].CanGenerate()) { // If slot is active
                 if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
@@ -60,6 +63,10 @@ public class UIShop : MonoBehaviour {
         PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
         // Go to next scene ==> Should implement some sort of wait first
         SceneController.Instance.LoadScene("Scenes/Battle Scene");
+    }
+
+    public void OnMainMenuClick() {
+        SceneController.Instance.LoadScene("Scenes/Main Menu");
     }
 
     public bool OnDragToWarband() {

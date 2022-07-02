@@ -20,6 +20,7 @@ public class PreparationManager : Manager<PreparationManager> {
 
     
     private void Start() {
+        Debug.Log("Enter PrepManager Start()");
         OnUpdateWarband += UpdateWarband;
         UpdateWarband();
         ChangeState(CurrentState.TURNSTART);
@@ -29,6 +30,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Update the animals in the warband
     /// </summary>
     private void UpdateWarband() {
+        Debug.Log("Enter PrepManager UpdateWarband()");
         warband = new List<BaseEntity>();
         foreach (Slot slot in warbandSlots) {
             if (slot.transform.childCount > 0) { // If animal in slot
@@ -45,6 +47,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Activate any START OF TURN special abilities
     /// </summary>
     private void StartTurn() {
+        Debug.Log("Enter PrepManager StartTurn()");
         foreach (BaseEntity baseEntity in warband) {
             if (baseEntity != null) {
                 if (baseEntity.ability == BaseEntity.Ability.TURNSTART) {
@@ -78,13 +81,13 @@ public class PreparationManager : Manager<PreparationManager> {
         //     (iii) Move warband from PreparationManager to GameManager
         
         // FIRST WAY (In Battle Phase: Set parent to Canvas, Disable TierBG, Set scale to 0.75)
-        GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying!
+        /*GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying!
         foreach (BaseEntity baseEntity in GameManager.Instance.playerWarband) {
             if (baseEntity != null) {
                 baseEntity.transform.parent = null;
                 DontDestroyOnLoad(baseEntity);
             }
-        }
+        }*/
     }
 
     /// <summary>
@@ -104,6 +107,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Control the number of shop slots available
     /// </summary>
     public void ActivateShopSlots() {
+        Debug.Log("Enter PrepManager ActivateShopSlots()");
         int turnNumber = PlayerData.Instance.TurnNumber;
         if (turnNumber == 1) {
             // 3 slots

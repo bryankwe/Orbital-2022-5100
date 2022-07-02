@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : Manager<PlayerData> {
+public class PlayerData : SingletonManager<PlayerData> {
     public int Money { get; private set; }
     public int Lives { get; private set; }
     public int Trophies { get; private set; }
@@ -17,6 +17,7 @@ public class PlayerData : Manager<PlayerData> {
     public System.Action OnUpdateTurnNumber;
 
     private void Start() {
+        Debug.Log("Enter PlayerData Start()");
         Money = 50;
         Lives = 2;
         Trophies = 0;

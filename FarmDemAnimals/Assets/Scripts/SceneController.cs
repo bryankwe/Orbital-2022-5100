@@ -29,6 +29,7 @@ public class SceneController : SingletonManager<SceneController> {
 
         scene.allowSceneActivation = true;
         loaderCanvas.SetActive(false);
+        Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
     }
 
     void Update() {
