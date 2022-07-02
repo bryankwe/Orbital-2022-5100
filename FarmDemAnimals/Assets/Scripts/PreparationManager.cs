@@ -39,14 +39,6 @@ public class PreparationManager : Manager<PreparationManager> {
                 warband.Add(null);
             }
         }
-        
-        /*foreach (BaseEntity baseEntity in warband) { // DEBUG purpose only
-            if (baseEntity != null) {
-                Debug.Log(baseEntity.name + " ");
-            } else {
-                Debug.Log("null ");
-            }
-        }*/
     }
 
     /// <summary>
@@ -81,15 +73,19 @@ public class PreparationManager : Manager<PreparationManager> {
     private void TransferWarbandInfo() {
         // !! MUST CHANGE, only pointing, doesn't work
         // Possible ways to fix:
-        //     (i) Deep Copy
-        //     (ii) Move warband from PreparationManager to GameManager
-        GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying! (not sure if required)
-    }    
-    /*public void InvokeOnBuyEvent(BaseEntity animal) {
-        OnBuy += animal.activateAbility;
-        OnBuy?.Invoke();
-        OnBuy -= animal.activateAbility;
-    }*/
+        //     (i)   Set parent to null and DontDestroyOnLoad
+        //     (ii)  Deep Copy
+        //     (iii) Move warband from PreparationManager to GameManager
+        
+        // FIRST WAY (In Battle Phase: Set parent to Canvas, Disable TierBG, Set scale to 0.75)
+        GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying!
+        foreach (BaseEntity baseEntity in GameManager.Instance.playerWarband) {
+            if (baseEntity != null) {
+                baseEntity.transform.parent = null;
+                DontDestroyOnLoad(baseEntity);
+            }
+        }
+    }
 
     /// <summary>
     /// Counts the number of animals in the warband AFTER any action is carried out (before OnUpdateWarband is invoked);

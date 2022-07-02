@@ -9,5 +9,8 @@ public class GameManager : SingletonManager<GameManager> {
 
     //public EntitiesDatabaseSO entitiesDatabase;
     //Dictionary<Team, List<???>>
-    public List<BaseEntity> playerWarband; // Only updated when clicking "End Turn" in Preparation Phase
+    public List<BaseEntity> playerWarband = new List<BaseEntity>(); // Only updated when clicking "End Turn" in Preparation Phase
+    //public System.Action OnUpdateWarband;
+
+
 }
