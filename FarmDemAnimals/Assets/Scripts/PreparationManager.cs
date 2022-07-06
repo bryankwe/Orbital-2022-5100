@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreparationManager : Manager<PreparationManager> {
     
     public EntitiesDatabaseSO entitiesDatabase;
+    private WarbandDataSO warbandData;
     public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // Actual List of Animals in Warband (Updated with every Change)
@@ -23,6 +25,7 @@ public class PreparationManager : Manager<PreparationManager> {
         Debug.Log("Enter PrepManager Start()");
         OnUpdateWarband += UpdateWarband;
         UpdateWarband();
+        warbandData = GameManager.Instance.warbandData;
         ChangeState(CurrentState.TURNSTART);
     }
 
@@ -30,7 +33,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Update the animals in the warband
     /// </summary>
     private void UpdateWarband() {
-        Debug.Log("Enter PrepManager UpdateWarband()");
+        // Debug.Log("Enter PrepManager UpdateWarband()");
         warband = new List<BaseEntity>();
         foreach (Slot slot in warbandSlots) {
             if (slot.transform.childCount > 0) { // If animal in slot
@@ -47,7 +50,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Activate any START OF TURN special abilities
     /// </summary>
     private void StartTurn() {
-        Debug.Log("Enter PrepManager StartTurn()");
+        // Debug.Log("Enter PrepManager StartTurn()");
         foreach (BaseEntity baseEntity in warband) {
             if (baseEntity != null) {
                 if (baseEntity.ability == BaseEntity.Ability.TURNSTART) {
@@ -77,8 +80,9 @@ public class PreparationManager : Manager<PreparationManager> {
         // !! MUST CHANGE, only pointing, doesn't work
         // Possible ways to fix:
         //     (i)   Set parent to null and DontDestroyOnLoad
-        //     (ii)  Deep Copy
-        //     (iii) Move warband from PreparationManager to GameManager
+        //     (ii)  [X] Deep Copy (Won't work I think)
+        //     (iii) [X] Move warband from PreparationManager to GameManager (Won't work I think)
+        //     (iv)  Store data in ScriptableObject and instantiate in each Preparation / Battle Scene
         
         // FIRST WAY (In Battle Phase: Set parent to Canvas, Disable TierBG, Set scale to 0.75)
         /*GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying!
@@ -88,6 +92,21 @@ public class PreparationManager : Manager<PreparationManager> {
                 DontDestroyOnLoad(baseEntity);
             }
         }*/
+        
+        // FOURTH WAY
+        for (int i = 0; i < 5; i++) {
+            BaseEntity baseEntity = Instance.warband[i];
+            if (baseEntity != null) {
+                int animalID = baseEntity.GetAnimalID();
+                Sprite animalSprite = baseEntity.transform.Find("Animal").gameObject.GetComponent<Image>().sprite;
+                int attack = baseEntity.GetAttack();
+                int health = baseEntity.GetHealth();
+                int position = i;
+                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, animalSprite, attack, health, position);
+                Debug.Log("Created Animal ID: " + currentAnimal.animalID);
+                warbandData.warbandEntities.Add(currentAnimal);
+            }
+        }
     }
 
     /// <summary>
@@ -107,7 +126,7 @@ public class PreparationManager : Manager<PreparationManager> {
     /// Control the number of shop slots available
     /// </summary>
     public void ActivateShopSlots() {
-        Debug.Log("Enter PrepManager ActivateShopSlots()");
+        // Debug.Log("Enter PrepManager ActivateShopSlots()");
         int turnNumber = PlayerData.Instance.TurnNumber;
         if (turnNumber == 1) {
             // 3 slots

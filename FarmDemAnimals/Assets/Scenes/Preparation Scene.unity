@@ -4335,6 +4335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWarband: []
+  warbandData: {fileID: 11400000, guid: 47d04cf5b6e7dcc429e0be505b6ec5cc, type: 2}
 --- !u!4 &921019460
 Transform:
   m_ObjectHideFlags: 0
