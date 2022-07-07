@@ -18,12 +18,38 @@ public class PlayerData : SingletonManager<PlayerData> {
 
     private void Start() {
         Debug.Log("Enter PlayerData Start()");
-        Money = 50;
+        Money = 10;
         Lives = 2;
         Trophies = 0;
-        TurnNumber = 5;
+        TurnNumber = 1;
     }
 
+    /// <summary>
+    /// Call this function if BATTLE outcome is Victory
+    /// </summary>
+    public void Victory() {
+        Instance.ResetMoney();
+        Instance.IncreaseTrophies();
+        Instance.IncreaseTurnNumber();
+    }
+
+    /// <summary>
+    /// Call this function if BATTLE outcome is Draw
+    /// </summary>
+    public void Draw() {
+        Instance.ResetMoney();
+        Instance.IncreaseTurnNumber();
+    }
+
+    /// <summary>
+    /// Call this function if BATTLE outcome is Lose
+    /// </summary>
+    public void Lose() {
+        Instance.ResetMoney();
+        Instance.LoseLife();
+        Instance.IncreaseTurnNumber();
+    }
+    
     public bool CanAfford(int amount)
     {
         return amount <= Money;
@@ -37,6 +63,11 @@ public class PlayerData : SingletonManager<PlayerData> {
 
     public void AddMoney(int amount) {
         Money += amount;
+        OnUpdateMoney?.Invoke();
+    }
+
+    public void ResetMoney() {
+        Money = 10;
         OnUpdateMoney?.Invoke();
     }
 

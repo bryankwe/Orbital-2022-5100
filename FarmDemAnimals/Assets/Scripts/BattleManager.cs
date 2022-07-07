@@ -48,6 +48,7 @@ public class BattleManager : Manager<BattleManager> {
     }
 
     public void onGoBackClick() {
+        PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");
     }
 

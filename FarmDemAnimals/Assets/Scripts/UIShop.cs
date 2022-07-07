@@ -16,7 +16,7 @@ public class UIShop : MonoBehaviour {
     private int sellCost = 1;
 
     private void Start() {
-        Debug.Log("Enter UIShop Start()");
+        //Debug.Log("Enter UIShop Start()");
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
         PreparationManager.Instance.ActivateShopSlots();
         allCards = PreparationManager.Instance.allCards;
@@ -25,8 +25,11 @@ public class UIShop : MonoBehaviour {
         Refresh();
     }
 
+    /// <summary>
+    /// Randomly Selects an Animal of the Correct Tier from EntitiesDatabaseSO
+    /// </summary>
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
-        Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
+        //Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
         EntitiesDatabaseSO.EntityData randomAnimal = entitiesDatabase.allEntities[Random.Range(0, entitiesDatabase.allEntities.Count)];
         while (randomAnimal.prefab.GetAnimalTier() > PlayerData.Instance.TurnNumber) {
             randomAnimal = entitiesDatabase.allEntities[Random.Range(0, entitiesDatabase.allEntities.Count)];
@@ -34,8 +37,11 @@ public class UIShop : MonoBehaviour {
         return randomAnimal;
     }
 
+    /// <summary>
+    /// Generates the card returned by ChooseAnimalFromDatabase() and Instantiates into the game through UICard.Setup()
+    /// </summary>
     public void GenerateCard() {
-        Debug.Log("Enter UIShop GenerateCard()");
+        //Debug.Log("Enter UIShop GenerateCard()");
         for (int i = 0; i < allCards.Count; i++) {
             if(allCards[i].CanGenerate()) { // If slot is active
                 if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
@@ -65,6 +71,7 @@ public class UIShop : MonoBehaviour {
         SceneController.Instance.LoadScene("Scenes/Battle Scene");
     }
 
+    /// For DEBUG only
     public void OnMainMenuClick() {
         SceneController.Instance.LoadScene("Scenes/Main Menu");
     }
@@ -79,7 +86,7 @@ public class UIShop : MonoBehaviour {
     }
 
     public void SellSuccess(int totalEntityCount) {
-        Debug.Log("Sold " + totalEntityCount);
+        //Debug.Log("Sold " + totalEntityCount);
         PlayerData.Instance.AddMoney(sellCost * totalEntityCount);
     }
 

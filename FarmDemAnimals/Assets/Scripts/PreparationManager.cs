@@ -48,6 +48,32 @@ public class PreparationManager : Manager<PreparationManager> {
     }
 
     /// <summary>
+    /// Instantiates Warband Animals after BATTLE Phase
+    /// </summary>
+    private void RestoreWarbandAnimals() {
+        // Not required for the first turn
+        if (PlayerData.Instance.TurnNumber == 1) {
+            return;
+        }
+        foreach (WarbandDataSO.EntityData animalInfo in warbandData.warbandEntities) {
+
+            // Grab the base Prefab based on animalID from entitiesDatabaseSO
+            BaseEntity actualPrefab = entitiesDatabase.allEntities[animalInfo.animalID - 1].prefab;
+            // Instantiate at respective position
+            BaseEntity newCard = Instantiate(actualPrefab, 
+                                            warbandSlots[animalInfo.position].transform.position, 
+                                            Quaternion.identity);
+            newCard.transform.SetParent(warbandSlots[animalInfo.position].transform);
+            // Edit instantiated animal to suit Preparation Scene
+            newCard.gameObject.GetComponent<DragHandler>().typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
+            newCard.shopRef = animalInfo.shopRef; // Set the shopRef to the current shop
+            newCard.totalEntityCount = animalInfo.totalEntityCount; // Set the correct totalEntityCount
+            newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f); // Change Scale
+            newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
+        }
+    }
+    
+    /// <summary>
     /// Activate any START OF TURN special abilities
     /// </summary>
     private void StartTurn() {
@@ -77,6 +103,9 @@ public class PreparationManager : Manager<PreparationManager> {
         OnUpdateWarband?.Invoke();
     }
 
+    /// <summary>
+    /// Only done in Preparation Phase "End Turn"
+    /// </summary>
     private void TransferWarbandInfo() {
         // !! MUST CHANGE, only pointing, doesn't work
         // Possible ways to fix:
@@ -105,7 +134,8 @@ public class PreparationManager : Manager<PreparationManager> {
                 int health = baseEntity.GetHealthMax();
                 int position = i;
                 int totalEntityCount = baseEntity.totalEntityCount;
-                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, animalSprite, attack, health, position, totalEntityCount);
+                UIShop shopRef = baseEntity.shopRef;
+                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, animalSprite, attack, health, position, totalEntityCount, shopRef);
                 Debug.Log("Created Animal ID: " + currentAnimal.animalID);
                 warbandData.warbandEntities.Add(currentAnimal);
             }
@@ -153,6 +183,7 @@ public class PreparationManager : Manager<PreparationManager> {
         currentState = newState;
         switch (newState) {
             case CurrentState.TURNSTART:
+                RestoreWarbandAnimals();
                 StartTurn();
                 break;
             case CurrentState.PREPARE:
