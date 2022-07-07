@@ -9,7 +9,7 @@ public class UIShop : MonoBehaviour {
     //public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
     public TextMeshProUGUI money; //Display the amount of money available
     
-    private EntitiesDatabaseSO cachedDb;
+    private EntitiesDatabaseSO entitiesDatabase;
     private List<UICard> allCards;
     private int entitiyCost = 3;
     private int rerollCost = 1;
@@ -17,7 +17,7 @@ public class UIShop : MonoBehaviour {
 
     private void Start() {
         Debug.Log("Enter UIShop Start()");
-        cachedDb = PreparationManager.Instance.entitiesDatabase;
+        entitiesDatabase = GameManager.Instance.entitiesDatabase;
         PreparationManager.Instance.ActivateShopSlots();
         allCards = PreparationManager.Instance.allCards;
         GenerateCard();
@@ -27,9 +27,9 @@ public class UIShop : MonoBehaviour {
 
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
         Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
-        EntitiesDatabaseSO.EntityData randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+        EntitiesDatabaseSO.EntityData randomAnimal = entitiesDatabase.allEntities[Random.Range(0, entitiesDatabase.allEntities.Count)];
         while (randomAnimal.prefab.GetAnimalTier() > PlayerData.Instance.TurnNumber) {
-            randomAnimal = cachedDb.allEntities[Random.Range(0, cachedDb.allEntities.Count)];
+            randomAnimal = entitiesDatabase.allEntities[Random.Range(0, entitiesDatabase.allEntities.Count)];
         }
         return randomAnimal;
     }

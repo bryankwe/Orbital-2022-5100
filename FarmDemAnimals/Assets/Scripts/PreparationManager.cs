@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PreparationManager : Manager<PreparationManager> {
     
-    public EntitiesDatabaseSO entitiesDatabase;
+    private EntitiesDatabaseSO entitiesDatabase;
     private WarbandDataSO warbandData;
     public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
@@ -23,6 +23,7 @@ public class PreparationManager : Manager<PreparationManager> {
     
     private void Start() {
         Debug.Log("Enter PrepManager Start()");
+        entitiesDatabase = GameManager.Instance.entitiesDatabase;
         OnUpdateWarband += UpdateWarband;
         UpdateWarband();
         warbandData = GameManager.Instance.warbandData;
@@ -93,7 +94,8 @@ public class PreparationManager : Manager<PreparationManager> {
             }
         }*/
         
-        // FOURTH WAY
+        // FOURTH WAY (In Battle Phase: Initialize from EntitiesDatabase based on animalID and change stats)
+        warbandData.warbandEntities.Clear();
         for (int i = 0; i < 5; i++) {
             BaseEntity baseEntity = Instance.warband[i];
             if (baseEntity != null) {

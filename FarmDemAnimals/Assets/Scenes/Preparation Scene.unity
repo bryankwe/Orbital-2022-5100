@@ -4335,6 +4335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWarband: []
+  entitiesDatabase: {fileID: 11400000, guid: e5f06d556bbbcdf43a269edff119e658, type: 2}
   warbandData: {fileID: 11400000, guid: 47d04cf5b6e7dcc429e0be505b6ec5cc, type: 2}
 --- !u!4 &921019460
 Transform:
@@ -6124,7 +6125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493f89653ecdb0e458e456e39ec5ce9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entitiesDatabase: {fileID: 11400000, guid: e5f06d556bbbcdf43a269edff119e658, type: 2}
   allCards:
   - {fileID: 1365666533}
   - {fileID: 1468264412}
