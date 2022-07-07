@@ -4334,9 +4334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155d00d0724d06f40bd321067b7aae5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWarband: []
   entitiesDatabase: {fileID: 11400000, guid: e5f06d556bbbcdf43a269edff119e658, type: 2}
   warbandData: {fileID: 11400000, guid: 47d04cf5b6e7dcc429e0be505b6ec5cc, type: 2}
+  enemyDatabase: {fileID: 11400000, guid: fabc61d5151a7fc4599af42e16391d7e, type: 2}
 --- !u!4 &921019460
 Transform:
   m_ObjectHideFlags: 0

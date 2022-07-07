@@ -40,9 +40,9 @@ public class BattleManager : Manager<BattleManager> {
         }
     }
     
-    private void InstantiateOpponentWarband() {
+    private void InstantiateEnemyWarband() {
         // Logic
-
+        
         // Change State from 'Before Battle' to 'Battle'
         //ChangeState(CurrentState.BATTLE);
     }
@@ -58,7 +58,7 @@ public class BattleManager : Manager<BattleManager> {
             case CurrentState.BEFOREBATTLE:
                 // Add Functions Here
                 InstantiatePlayerWarband();
-                InstantiateOpponentWarband();
+                InstantiateEnemyWarband();
                 break;
             case CurrentState.BATTLE:
                 // Add Functions Here

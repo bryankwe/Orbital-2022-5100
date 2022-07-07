@@ -9,16 +9,16 @@ public class WarbandDataSO : ScriptableObject {
     [System.Serializable]
     public struct EntityData {
         public int animalID;
-        public Sprite animalSprite;
+        //public Sprite animalSprite;
         public int attack;
         public int health;
         public int position;
         public int totalEntityCount;
         public UIShop shopRef;
 
-        public EntityData(int animalID, Sprite animalSprite, int attack, int health, int position, int totalEntityCount, UIShop shopRef) {
+        public EntityData(int animalID, int attack, int health, int position, int totalEntityCount, UIShop shopRef) {
             this.animalID = animalID; // For reference to EntitiesDatabaseSO
-            this.animalSprite = animalSprite; // May Not Need
+            //this.animalSprite = animalSprite; // May Not Need
             this.attack = attack; // To set attack
             this.health = health; // To set health
             this.position = position; // For correct positioning
