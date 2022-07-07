@@ -13,13 +13,16 @@ public class WarbandDataSO : ScriptableObject {
         public int attack;
         public int health;
         public int position;
+        public int totalEntityCount;
 
-        public EntityData(int animalID, Sprite animalSprite, int attack, int health, int position) {
-            this.animalID = animalID;
-            this.animalSprite = animalSprite;
-            this.attack = attack;
-            this.health = health;
-            this.position = position;
+        public EntityData(int animalID, Sprite animalSprite, int attack, int health, int position, int totalEntityCount) {
+            this.animalID = animalID; // For reference to EntitiesDatabaseSO
+            this.animalSprite = animalSprite; // May Not Need
+            this.attack = attack; // To set
+            this.health = health; // To set
+            this.position = position; // For correct positioning
+            this.totalEntityCount = totalEntityCount; // Only for back to Preparation Phase
+            
         }
     }
 

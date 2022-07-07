@@ -101,10 +101,11 @@ public class PreparationManager : Manager<PreparationManager> {
             if (baseEntity != null) {
                 int animalID = baseEntity.GetAnimalID();
                 Sprite animalSprite = baseEntity.transform.Find("Animal").gameObject.GetComponent<Image>().sprite;
-                int attack = baseEntity.GetAttack();
-                int health = baseEntity.GetHealth();
+                int attack = baseEntity.GetAttackMax();
+                int health = baseEntity.GetHealthMax();
                 int position = i;
-                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, animalSprite, attack, health, position);
+                int totalEntityCount = baseEntity.totalEntityCount;
+                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, animalSprite, attack, health, position, totalEntityCount);
                 Debug.Log("Created Animal ID: " + currentAnimal.animalID);
                 warbandData.warbandEntities.Add(currentAnimal);
             }

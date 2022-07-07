@@ -38,12 +38,20 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         //Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 
-    public int GetHealth() {
-        return statsTracker.GetHealth();
+    /// <summary>
+    /// PREPARATION PHASE
+    /// Get current Health Max
+    /// </summary>
+    public int GetHealthMax() {
+        return statsTracker.GetHealthMax();
     }
 
-    public int GetAttack() {
-        return statsTracker.GetAttack();
+    /// <summary>
+    /// PREPARATION PHASE
+    /// Get current Attack
+    /// </summary>
+    public int GetAttackMax() {
+        return statsTracker.GetAttackMax();
     }
 
     /// <summary>
@@ -59,21 +67,68 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     }
 
     /// <summary>
-    /// BATTLE PHASE
-    /// Animal takes input amount of damage (decrease health)
-    /// Override if special ability upon Damage
+    /// MIGHT NOT USE (see SetStats())
+    /// BEFORE PREPARATION PHASE, AFTER BATTLE PHASE
+    /// Resets to maximum health and attack amount
     /// </summary>
-    public virtual void Damage(int amount) {
-        statsTracker.Damage(amount);
+    public virtual void ResetStats() {
+        statsTracker.ResetHealth();
+        statsTracker.ResetAttack();
+    }
+
+    /// <summary>
+    /// USE IN PLACE OF ResetStats()
+    /// Before PREPARATION PHASE
+    /// Before BATTLE PHASE
+    /// Resets to maximum health and attack amount
+    /// </summary>
+    /// <param name="healthAmount">The health amount to reset to</param>
+    /// <param name="damageAmount">The damage amount to reset to</param>
+    public virtual void SetStats(int damageAmount, int healthAmount) {
+        statsTracker.SetAttackMax(damageAmount,true);
+        statsTracker.SetHealthMax(healthAmount,true);
     }
 
     /// <summary>
     /// BATTLE PHASE
-    /// Animal heals by input amount (increase health)
-    /// Override if special ability upon Heal
+    /// Get current Health
     /// </summary>
-    public virtual void Heal(int amount) {
-        statsTracker.Heal(amount);
+    public int GetHealth() {
+        return statsTracker.GetHealth();
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Get current Health
+    /// </summary>
+    public int GetAttack() {
+        return statsTracker.GetAttack();
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Called on OWN team's Warband
+    /// Animal increase health and damage by input amounts
+    /// Override if special ability in Battle Phase
+    /// </summary>
+    /// <param name="healthAmount">The health amount to increase by</param>
+    /// <param name="damageAmount">The damage amount to increase by</param>
+    public virtual void IncreaseBattleStats(int damageAmount, int healthAmount) {
+        statsTracker.Buff(damageAmount);
+        statsTracker.Heal(healthAmount);
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Called on OPPONENT team's Warband
+    /// Animal decrease health and damage by input amounts
+    /// Override if special ability in Battle Phase (ENRAGE)
+    /// </summary>
+    /// <param name="healthAmount">The health amount to decrease by</param>
+    /// <param name="damageAmount">The damage amount to decrease by</param>
+    public virtual void DecreaseBattleStats(int damageAmount, int healthAmount) {
+        statsTracker.Nerf(damageAmount);
+        statsTracker.Damage(healthAmount);
     }
     
     public StatsTracker GetStatsTracker() {

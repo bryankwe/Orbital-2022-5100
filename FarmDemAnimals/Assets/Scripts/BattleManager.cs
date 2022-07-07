@@ -6,8 +6,12 @@ public class BattleManager : Manager<BattleManager> {
 
     private EntitiesDatabaseSO entitiesDatabase;
     private WarbandDataSO warbandData;
-    public Transform[] playerTrans;
-    public Transform[] enemyTrans;
+    public Transform[] playerTrans; // Contains positions to instantiate the player animals
+    public Transform[] enemyTrans; // Contains positions to instantiate the enemy animals
+
+    private List<BaseEntity> playerTeam = new List<BaseEntity>();
+    private List<BaseEntity> enemyTeam = new List<BaseEntity>();
+
     public Transform canvas;
     public CurrentState currentState;
     
@@ -20,13 +24,27 @@ public class BattleManager : Manager<BattleManager> {
     private void InstantiatePlayerWarband() {
         foreach (WarbandDataSO.EntityData animalInfo in warbandData.warbandEntities) {
 
+            // Grab the base Prefab based on animalID from entitiesDatabaseSO
             BaseEntity actualPrefab = entitiesDatabase.allEntities[animalInfo.animalID - 1].prefab;
+            // Instantiate at respective position
             BaseEntity newCard = Instantiate(actualPrefab, 
                                             new Vector2(playerTrans[animalInfo.position].position.x, playerTrans[animalInfo.position].position.y), 
                                             Quaternion.identity);
             newCard.transform.SetParent(canvas);
-            newCard.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+            // Edit instantiated animal to suit Battle Scene
+            newCard.transform.localScale = new Vector3(0.85f, 0.95f, 0.85f); // Change Scale
+            Destroy(newCard.GetComponent<TooltipTrigger>()); // Remove tooltips
+            Destroy(newCard.GetComponent<DragHandler>()); // Remove DragHandler
+            newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
+            newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
         }
+    }
+    
+    private void InstantiateOpponentWarband() {
+        // Logic
+
+        // Change State from 'Before Battle' to 'Battle'
+        //ChangeState(CurrentState.BATTLE);
     }
 
     public void onGoBackClick() {
@@ -39,6 +57,7 @@ public class BattleManager : Manager<BattleManager> {
             case CurrentState.BEFOREBATTLE:
                 // Add Functions Here
                 InstantiatePlayerWarband();
+                InstantiateOpponentWarband();
                 break;
             case CurrentState.BATTLE:
                 // Add Functions Here
