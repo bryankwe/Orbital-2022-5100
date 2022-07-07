@@ -9,6 +9,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public UIShop shopRef = null;
     public bool isFrozen = false;
     public int totalEntityCount = 1; // Number of times the entity has been combined
+    public BaseEntity target = null; // BATTLE PHASE -> Set to opponent
 
     private protected StatsTracker statsTracker;
     [SerializeField] private protected int initialHealth;

@@ -8,6 +8,8 @@ public class PreparationManager : Manager<PreparationManager> {
     private EntitiesDatabaseSO entitiesDatabase;
     private WarbandDataSO warbandData;
     private EnemyDatabaseSO enemyDatabase;
+    public UIShop shopRef;
+    public bool isTesting = false; // Remember to toggle this if debugging / testing
     public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // Actual List of Animals in Warband (Updated with every Change)
@@ -57,6 +59,7 @@ public class PreparationManager : Manager<PreparationManager> {
         if (PlayerData.Instance.TurnNumber == 1) {
             return;
         }
+
         foreach (WarbandDataSO.EntityData animalInfo in warbandData.warbandEntities) {
 
             // Grab the base Prefab based on animalID from entitiesDatabaseSO
@@ -68,7 +71,7 @@ public class PreparationManager : Manager<PreparationManager> {
             newCard.transform.SetParent(warbandSlots[animalInfo.position].transform);
             // Edit instantiated animal to suit Preparation Scene
             newCard.gameObject.GetComponent<DragHandler>().typeOfItem = DragHandler.Origin.WARBAND; // Set the Origin to WARBAND
-            newCard.shopRef = animalInfo.shopRef; // Set the shopRef to the current shop
+            newCard.shopRef = shopRef; // Set the shopRef to the current shop
             newCard.totalEntityCount = animalInfo.totalEntityCount; // Set the correct totalEntityCount
             newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f); // Change Scale
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
@@ -136,22 +139,23 @@ public class PreparationManager : Manager<PreparationManager> {
                 int health = baseEntity.GetHealthMax();
                 int position = i;
                 int totalEntityCount = baseEntity.totalEntityCount;
-                UIShop shopRef = baseEntity.shopRef;
                 // Create new instance of WarbandDataSO EntityData using the current animal in warband
-                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, attack, health, position, totalEntityCount, shopRef);
+                WarbandDataSO.EntityData currentAnimal = new WarbandDataSO.EntityData(animalID, attack, health, position, totalEntityCount);
                 // Add this instance into the WarbandDataSO warbandEntities
                 warbandData.warbandEntities.Add(currentAnimal);
             }
         }
         
-        int currentTurn = PlayerData.Instance.TurnNumber;
-        // Create new instance of EnemyDatabaseSO TeamData using the current warband's data
-        EnemyDatabaseSO.TeamData currentTeam = new EnemyDatabaseSO.TeamData(warbandData.warbandEntities, currentTurn);
-        // Add this instance into the EnemyDatabaseSO pastTeams
-        enemyDatabase.pastTeams.Add(currentTeam);
+        if (!isTesting) {
+            int currentTurn = PlayerData.Instance.TurnNumber;
+            // Create new instance of EnemyDatabaseSO TeamData using the current warband's data
+            EnemyDatabaseSO.TeamData currentTeam = new EnemyDatabaseSO.TeamData(warbandData.warbandEntities, currentTurn);
+            // Add this instance into the EnemyDatabaseSO pastTeams
+            enemyDatabase.pastTeams.Add(currentTeam);
 
-        // Other Way --> Using the Dictionary in EnemyDatabaseSO
-        //enemyDatabase.teamDatabase[currentTurn].Add(warbandData.warbandEntities);
+            // Other Way --> Using the Dictionary in EnemyDatabaseSO
+            //enemyDatabase.teamDatabase[currentTurn].Add(warbandData.warbandEntities);
+        }
     }
 
     /// <summary>

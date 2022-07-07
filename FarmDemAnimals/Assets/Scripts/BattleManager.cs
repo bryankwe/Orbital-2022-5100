@@ -6,6 +6,7 @@ public class BattleManager : Manager<BattleManager> {
 
     private EntitiesDatabaseSO entitiesDatabase;
     private WarbandDataSO warbandData;
+    private EnemyDatabaseSO enemyDatabase;
     public Transform[] playerTrans; // Contains positions to instantiate the player animals
     public Transform[] enemyTrans; // Contains positions to instantiate the enemy animals
 
@@ -18,6 +19,7 @@ public class BattleManager : Manager<BattleManager> {
     private void Start() {
         warbandData = GameManager.Instance.warbandData;
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
+        enemyDatabase = GameManager.Instance.enemyDatabase;
         ChangeState(CurrentState.BEFOREBATTLE);
     }
     
@@ -37,12 +39,18 @@ public class BattleManager : Manager<BattleManager> {
             Destroy(newCard.GetComponent<DragHandler>()); // Remove DragHandler
             newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
+            
+            // Add the animal to playerTeam
+            playerTeam.Add(newCard);
         }
     }
     
     private void InstantiateEnemyWarband() {
         // Logic
-        
+        /*EnemyDatabaseSO.TeamData randomTeam = enemyDatabase.pastTeams[Random.Range(0, enemyDatabase.pastTeams.Count)];
+        foreach (EnemyDatabaseSO.TeamData teamInfo in enemyDatabase.pastTeams) {
+            
+        }*/
         // Change State from 'Before Battle' to 'Battle'
         //ChangeState(CurrentState.BATTLE);
     }

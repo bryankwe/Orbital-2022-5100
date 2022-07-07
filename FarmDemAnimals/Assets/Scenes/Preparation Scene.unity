@@ -6125,6 +6125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493f89653ecdb0e458e456e39ec5ce9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopRef: {fileID: 980608356}
   allCards:
   - {fileID: 1365666533}
   - {fileID: 1468264412}

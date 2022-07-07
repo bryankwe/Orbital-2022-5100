@@ -14,16 +14,14 @@ public class WarbandDataSO : ScriptableObject {
         public int health;
         public int position;
         public int totalEntityCount;
-        public UIShop shopRef;
 
-        public EntityData(int animalID, int attack, int health, int position, int totalEntityCount, UIShop shopRef) {
+        public EntityData(int animalID, int attack, int health, int position, int totalEntityCount) {
             this.animalID = animalID; // For reference to EntitiesDatabaseSO
             //this.animalSprite = animalSprite; // May Not Need
             this.attack = attack; // To set attack
             this.health = health; // To set health
             this.position = position; // For correct positioning
             this.totalEntityCount = totalEntityCount; // Only for back to Preparation Phase
-            this.shopRef = shopRef; // Only for back to Preparation Phase
         }
     }
 
