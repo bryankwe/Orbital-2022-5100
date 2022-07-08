@@ -10,6 +10,8 @@ public class PlayerData : SingletonManager<PlayerData> {
 
     private int NumberOfLivesToLose = 0;
     private int NumberOfTrophiesToWin = 5;
+    public int maxLives = 2;
+    public int maxTrophies = 5;
 
     public System.Action OnUpdateMoney;
     public System.Action OnUpdateLives;
