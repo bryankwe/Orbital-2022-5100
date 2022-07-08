@@ -21,5 +21,5 @@ public class EnemyDatabaseSO : ScriptableObject {
     // Another Way --> Using Dictionary
     // Key: Turn Number (Search using this)
     // Value: List of warband teams (randomise and output one warband team) 
-    //public Dictionary<int, List<List<WarbandDataSO.EntityData>>> teamDatabase;
+    //public Dictionary<int, List<List<WarbandDataSO.EntityData>>> teamDatabase; //= new Dictionary<int, List<List<WarbandDataSO.EntityData>>>();
 }

@@ -9,7 +9,6 @@ public class WarbandDataSO : ScriptableObject {
     [System.Serializable]
     public struct EntityData {
         public int animalID;
-        //public Sprite animalSprite;
         public int attack;
         public int health;
         public int position;
@@ -17,10 +16,9 @@ public class WarbandDataSO : ScriptableObject {
 
         public EntityData(int animalID, int attack, int health, int position, int totalEntityCount) {
             this.animalID = animalID; // For reference to EntitiesDatabaseSO
-            //this.animalSprite = animalSprite; // May Not Need
             this.attack = attack; // To set attack
             this.health = health; // To set health
-            this.position = position; // For correct positioning
+            this.position = position; // For correct positioning in warband
             this.totalEntityCount = totalEntityCount; // Only for back to Preparation Phase
         }
     }

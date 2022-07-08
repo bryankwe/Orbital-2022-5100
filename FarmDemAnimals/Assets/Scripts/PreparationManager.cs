@@ -129,7 +129,7 @@ public class PreparationManager : Manager<PreparationManager> {
         }*/
         
         // FOURTH WAY (In Battle Phase: Initialize from EntitiesDatabase based on animalID and change stats)
-        warbandData.warbandEntities.Clear();
+        warbandData.warbandEntities = new List<WarbandDataSO.EntityData>();
         for (int i = 0; i < 5; i++) {
             BaseEntity baseEntity = Instance.warband[i];
             if (baseEntity != null) {
@@ -148,6 +148,7 @@ public class PreparationManager : Manager<PreparationManager> {
         
         if (!isTesting) {
             int currentTurn = PlayerData.Instance.TurnNumber;
+
             // Create new instance of EnemyDatabaseSO TeamData using the current warband's data
             EnemyDatabaseSO.TeamData currentTeam = new EnemyDatabaseSO.TeamData(warbandData.warbandEntities, currentTurn);
             // Add this instance into the EnemyDatabaseSO pastTeams

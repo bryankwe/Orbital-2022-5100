@@ -75,7 +75,7 @@ public class Slot : MonoBehaviour, IDropHandler {
             }
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID() && a.shopRef.OnDragToWarband()) { 
             // If enough money to buy animal & Same Unit in Slot (Combine)
-            CombineAnimals(a);
+            CombineAnimals(a, true);
         }
     }
 
@@ -86,7 +86,7 @@ public class Slot : MonoBehaviour, IDropHandler {
         } else if (item == a.gameObject) { // If unit is dragged onto same slot
             return;
         } else if (item.transform.GetComponent<BaseEntity>().GetAnimalID() == a.GetAnimalID()) { // If Same unit in Slot (Combine)
-            CombineAnimals(a);
+            CombineAnimals(a, false);
         } else { // If different unit in Slot (Swap)
             item.transform.SetParent(DragHandler.itemBeingDragged.transform.parent.transform);
             DragHandler.itemBeingDragged.transform.SetParent(transform);
@@ -111,16 +111,16 @@ public class Slot : MonoBehaviour, IDropHandler {
         PreparationManager.Instance.OnUpdateWarband?.Invoke();
     }
 
-    void CombineAnimals(BaseEntity a) {
+    void CombineAnimals(BaseEntity a, bool fromShop) {
         BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
         itemBE.IncreasePreparationStats(a.GetAttackMax(), a.GetHealthMax());
         itemBE.totalEntityCount += 1;
         Destroy(a.gameObject); // Destroy dragged (duplicate) animal
         PreparationManager.Instance.OnUpdateWarband?.Invoke();
-        if(itemBE.ability == BaseEntity.Ability.BUY) { //if(a.ability == "BUY") {
+        if(itemBE.ability == BaseEntity.Ability.BUY && fromShop) { // If Combined from Shop
             itemBE.activateAbility();
             //PreparationManager.Instance.OnBuy?.Invoke();
-        } else if (itemBE.ability == BaseEntity.Ability.COMBINE) {
+        } else if (itemBE.ability == BaseEntity.Ability.COMBINE && !fromShop) { // If Combined from Warband
             itemBE.activateAbility();
         }
     }

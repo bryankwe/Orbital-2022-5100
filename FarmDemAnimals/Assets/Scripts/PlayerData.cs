@@ -17,7 +17,7 @@ public class PlayerData : SingletonManager<PlayerData> {
     public System.Action OnUpdateTurnNumber;
 
     private void Start() {
-        Debug.Log("Enter PlayerData Start()");
+        //Debug.Log("Enter PlayerData Start()");
         Money = 10;
         Lives = 2;
         Trophies = 0;
