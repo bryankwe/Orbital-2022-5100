@@ -94,7 +94,7 @@ public class UIShop : MonoBehaviour {
         return PlayerData.Instance.CanAfford(entitiyCost);
     }
 
-    void Refresh() {
+    public void Refresh() {
         money.text = PlayerData.Instance.Money.ToString();
     }
 }

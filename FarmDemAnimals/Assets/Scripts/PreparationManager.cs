@@ -25,7 +25,7 @@ public class PreparationManager : Manager<PreparationManager> {
 
     
     private void Start() {
-        Debug.Log("Enter PrepManager Start()");
+        //Debug.Log("Enter PrepManager Start()");
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
         OnUpdateWarband += UpdateWarband;
         UpdateWarband();
@@ -76,6 +76,7 @@ public class PreparationManager : Manager<PreparationManager> {
             newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f); // Change Scale
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
         }
+        OnUpdateWarband?.Invoke();
     }
     
     /// <summary>
@@ -85,6 +86,7 @@ public class PreparationManager : Manager<PreparationManager> {
         // Debug.Log("Enter PrepManager StartTurn()");
         foreach (BaseEntity baseEntity in warband) {
             if (baseEntity != null) {
+                Debug.Log("Checked: " + baseEntity.name);
                 if (baseEntity.ability == BaseEntity.Ability.TURNSTART) {
                     baseEntity.activateAbility();
                 }

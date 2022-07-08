@@ -6,6 +6,8 @@ public class Bunny : BaseEntity {
     public override Ability ability { get { return Ability.TURNSTART; } }
 
     public override void activateAbility() {
+        Debug.Log("Bunny Ability Activated");
         PlayerData.Instance.AddMoney(1);
+        //this.shopRef.Refresh();
     }
 }
