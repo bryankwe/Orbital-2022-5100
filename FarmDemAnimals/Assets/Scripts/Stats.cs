@@ -27,4 +27,8 @@ public class Stats : Manager<Stats> {
     void RefreshTurnNumber() {
         turnNumber.text = "Turn: " + PlayerData.Instance.TurnNumber.ToString();
     }
+
+    public void OnPauseClick() {
+        PauseMenu.Instance.PauseGame();
+    }
 }
