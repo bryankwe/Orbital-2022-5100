@@ -16,7 +16,7 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
     private Color filledTrophyColor = new Color(1.0f, 1.0f, 1.0f); // Original color (Yellow?)
     private Color emptyTrophyColor = new Color(0f, 0f, 0f); // Color.black;
     private Color filledHeartColor = new Color(1.0f, 0f, 0f); // Color.red;
-    private Color emptyHeartColor = new Color(233.0f/255.0f, 233.0f/255.0f, 233.0f/255.0f); // Color.grey;
+    private Color emptyHeartColor = new Color(0f, 0f, 0f);//new Color(233.0f/255.0f, 233.0f/255.0f, 233.0f/255.0f); // Color.grey;
 
     public TextMeshProUGUI outcomeText;
     public TextMeshProUGUI continueText;
@@ -81,6 +81,7 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
 
     public void OnContinueClick() {
         PlayerData.Instance.IncreaseTurnNumber();
+        PlayerData.Instance.ResetMoney();
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");
     }
 }

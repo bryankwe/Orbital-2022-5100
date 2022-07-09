@@ -16,7 +16,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     private Color filledTrophyColor = new Color(1.0f, 1.0f, 1.0f); // Original color (Yellow?)
     private Color emptyTrophyColor = new Color(0f, 0f, 0f); // Color.black;
     private Color filledHeartColor = new Color(1.0f, 0f, 0f); // Color.red;
-    private Color emptyHeartColor = new Color(233.0f/255.0f, 233.0f/255.0f, 233.0f/255.0f); // Color.grey;
+    private Color emptyHeartColor = new Color(0f, 0f, 0f);//new Color(233.0f/255.0f, 233.0f/255.0f, 233.0f/255.0f); // Color.grey;
 
     public Transform[] warbandTrans; // Position of warband
     public TextMeshProUGUI outcomeText;
@@ -100,14 +100,17 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnMainMenuClick() {
+        // Reset all the stats in PlayerData
         PlayerData.Instance.ResetAllStats();
+        // Load Main Menu Scene
         SceneController.Instance.LoadScene("Scenes/Main Menu");
     }
 
     public void OnQuitGameClick() {
+        // Reset all the stats in PlayerData
         PlayerData.Instance.ResetAllStats();
-        Application.Quit(); // Won't work in Unity. Need to build the application properly
+        // Quit application, but won't work in Unity Play Mode (need to build externally)
+        Application.Quit();
         Debug.Log("Exited Game");
-        SceneController.Instance.LoadScene("Scenes/Preparation Scene");
     }
 }

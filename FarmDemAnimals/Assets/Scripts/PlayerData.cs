@@ -80,7 +80,7 @@ public class PlayerData : SingletonManager<PlayerData> {
         OnUpdateMoney?.Invoke();
     }
 
-    public bool IsGameOver() {
+    public bool HasLostGame() {
         return Lives <= NumberOfLivesToLose;
     }
 
@@ -89,7 +89,7 @@ public class PlayerData : SingletonManager<PlayerData> {
         OnUpdateLives?.Invoke();
     }
 
-    public bool HasWon() {
+    public bool HasWonGame() {
         return Trophies >= NumberOfTrophiesToWin;
     }
 

@@ -18,7 +18,8 @@ public class BattleManager : Manager<BattleManager> {
     
     public NormalBattleOutcomePanel normalBattleOutcomePanel; // Reference to NormalBattleOutcomePanel
     public GameOverBattleOutcomePanel gameOverBattleOutcomePanel; // Reference to GameOverBattleOutcomePanel
-    public BattleOutcome battleOutcome; // To change according to battle outcome. Always instantiated as PLAYING (placeholder)
+    public BattleOutcomePanel battleOutcomePanel; // To change according to battle outcome. Always instantiated as PLAYING (placeholder)
+    public BattleOutcome battleOutcome; // Update after battle ends. Always instantiated as PLAYING (placeholder)
     
     private void Start() {
         // Reference relevant databases from GameManager Instance
@@ -28,6 +29,7 @@ public class BattleManager : Manager<BattleManager> {
         // Deactivate Battle Outcome Panels
         normalBattleOutcomePanel.gameObject.SetActive(false);
         gameOverBattleOutcomePanel.gameObject.SetActive(false);
+        battleOutcomePanel = BattleOutcomePanel.PLAYING;
         battleOutcome = BattleOutcome.PLAYING;
         // Set current state to "before battle"
         ChangeState(CurrentState.BEFOREBATTLE);
@@ -70,45 +72,96 @@ public class BattleManager : Manager<BattleManager> {
     }
 
     /// <summary>
+    /// Handles battle between player and enemy warbands
+    /// Set the battleOutcome variable correctly, based on playerTeam.count
+    /// This function is called before DecideCorrectPanelToDisplay()
+    /// </summary>
+    private void Battle() {
+        /*
+        // Make both teams battle
+        while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
+            // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
+        }
+        
+        // At this point, at least one of the teams should be empty
+        if (playerTeam.Count > 0) {
+            // battle outcome is win
+            battleOutcome = BattleOutcome.WIN;
+        } else if (enemyTeam.Count > 0) {
+            // battle outcome is lose
+            battleOutcome = BattleOutcome.LOSE;
+        } else {
+            // battle outcome is draw
+            battleOutcome = BattleOutcome.DRAW;
+        }
+        */
+    }
+
+    /// <summary>
+    /// Set the battleOutcomePanel variable correctly, based on battleOutcome
+    /// Also handles changes to wins / lives accordingly
+    /// This function is called before DisplayBattleOutcomePanel()
+    /// </summary>
+    private void DecideCorrectPanelToDisplay() {
+
+        if (battleOutcome == BattleOutcome.WIN) {
+            // Win => Increase trophy by 1
+            PlayerData.Instance.IncreaseTrophies();
+            // Check whether the player has won the game
+            if (PlayerData.Instance.HasWonGame()) {
+                // Won the game (Trophy == 5 after +1) => To Display Game Over (Win) screen
+                battleOutcomePanel = BattleOutcomePanel.GAMEOVERWIN;
+            } else {
+                // Have not won the game (Trophy < 5 after + 1) => To Display Normal (Win) screen
+                battleOutcomePanel = BattleOutcomePanel.NORMALWIN;
+            }
+        } else if (battleOutcome == BattleOutcome.LOSE) {
+            // Lose => Decrease Life by 1
+            PlayerData.Instance.LoseLife();
+            // Check whether the player has lost the game
+            if (PlayerData.Instance.HasLostGame()) {
+                // Lost the game (Lives == 0 after -1) => To Display Game Over (Lose) screen
+                battleOutcomePanel = BattleOutcomePanel.GAMEOVERLOSE;
+            } else {
+                // Have not lost the game (Lives > 0 after - 1) => To Display Normal (Lose) screen
+                battleOutcomePanel = BattleOutcomePanel.NORMALLOSE;
+            }
+        } else if (battleOutcome == BattleOutcome.DRAW) {
+            // Draw => Do Nothing => To Display Normal (Draw) screen
+            battleOutcomePanel = BattleOutcomePanel.NORMALDRAW;
+        }
+    }
+
+    /// <summary>
     /// Displays the correct outcome panel with correct information.
-    /// battleOutcome variable should have been set before calling this function
+    /// battleOutcomePanel variable should have been set before calling this function
     /// Panel is transition between Battle and Preparation Phase / Main Menu (if Game Over)
     /// </summary>
     public void DisplayBattleOutcomePanel() {
-        if (battleOutcome == BattleOutcome.NORMALWIN) {
-            // Increment win by 1 (and reset money)
-            PlayerData.Instance.Victory();
+        if (battleOutcomePanel == BattleOutcomePanel.NORMALWIN) {
             // Set relevant text
             normalBattleOutcomePanel.SetOutcomeText("won", "!");
             normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
             // Set active panel
             normalBattleOutcomePanel.gameObject.SetActive(true);
-        } else if (battleOutcome == BattleOutcome.NORMALDRAW) {
-            // Do nothing (and reset money)
-            PlayerData.Instance.Draw();
+        } else if (battleOutcomePanel == BattleOutcomePanel.NORMALDRAW) {
             // Set relevant text
             normalBattleOutcomePanel.SetOutcomeText("drew", ".");
             normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
             // Set active panel
             normalBattleOutcomePanel.gameObject.SetActive(true);
-        } else if (battleOutcome == BattleOutcome.NORMALLOSE) {
-            // Decrement life by 1 (and reset money)
-            PlayerData.Instance.Lose();
+        } else if (battleOutcomePanel == BattleOutcomePanel.NORMALLOSE) {
             // Set relevant text
             normalBattleOutcomePanel.SetOutcomeText("lost", "...");
             normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
             // Set active panel
             normalBattleOutcomePanel.gameObject.SetActive(true);
-        } else if (battleOutcome == BattleOutcome.GAMEOVERWIN) {
-            // Increment win by 1 (and reset money, although not needed)
-            PlayerData.Instance.Victory();
+        } else if (battleOutcomePanel == BattleOutcomePanel.GAMEOVERWIN) {
             // Set relevant text
             gameOverBattleOutcomePanel.SetOutcomeText("won", "in", PlayerData.Instance.TurnNumber, "!");
             // Set active panel
             gameOverBattleOutcomePanel.gameObject.SetActive(true);
-        } else if (battleOutcome == BattleOutcome.GAMEOVERLOSE) {
-            // Decrement life by 1 (and reset money, although not needed)
-            PlayerData.Instance.Lose();
+        } else if (battleOutcomePanel == BattleOutcomePanel.GAMEOVERLOSE) {
             // Set relevant text
             gameOverBattleOutcomePanel.SetOutcomeText("lost", "after", PlayerData.Instance.TurnNumber, "...");
             // Set active panel
@@ -126,9 +179,12 @@ public class BattleManager : Manager<BattleManager> {
                 break;
             case CurrentState.BATTLE:
                 // Add Functions Here
+                //Battle();
                 break;
             case CurrentState.AFTERBATTLE:
                 // Add Functions Here
+                //DecideCorrectPanelToDisplay();
+                //DisplayBattleOutcomePanel();
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -146,7 +202,7 @@ public class BattleManager : Manager<BattleManager> {
         OPPONENT
     }
 
-    public enum BattleOutcome {
+    public enum BattleOutcomePanel {
         PLAYING, // Placeholder
         NORMALWIN,
         NORMALDRAW,
@@ -155,36 +211,61 @@ public class BattleManager : Manager<BattleManager> {
         GAMEOVERLOSE
     }
 
+    public enum BattleOutcome {
+        PLAYING, // Placeholder
+        WIN,
+        LOSE,
+        DRAW
+    }
+
     // ------------------------ DEBUGGING FUNCTIONS ----------------------------
     
-    public void OnNormalWin() {
-        battleOutcome = BattleOutcome.NORMALWIN;
+    /*public void OnNormalWin() {
+        battleOutcomePanel = BattleOutcomePanel.NORMALWIN;
         DisplayBattleOutcomePanel();
     }
 
     public void OnNormalDraw() {
-        battleOutcome = BattleOutcome.NORMALDRAW;
+        battleOutcomePanel = BattleOutcomePanel.NORMALDRAW;
         DisplayBattleOutcomePanel();
     }
 
     public void OnNormalLose() {
-        battleOutcome = BattleOutcome.NORMALLOSE;
+        battleOutcomePanel = BattleOutcomePanel.NORMALLOSE;
         DisplayBattleOutcomePanel();
     }
 
     public void OnGameOverWin() {
-        battleOutcome = BattleOutcome.GAMEOVERWIN;
+        battleOutcomePanel = BattleOutcomePanel.GAMEOVERWIN;
         DisplayBattleOutcomePanel();
     }
 
     public void OnGameOverLose() {
-        battleOutcome = BattleOutcome.GAMEOVERLOSE;
+        battleOutcomePanel = BattleOutcomePanel.GAMEOVERLOSE;
+        DisplayBattleOutcomePanel();
+    }*/
+    
+    public void OnWinBattle() {
+        battleOutcome = BattleOutcome.WIN;
+        DecideCorrectPanelToDisplay();
         DisplayBattleOutcomePanel();
     }
 
-    public void onGoBackClick() {
+    public void OnDrawBattle() {
+        battleOutcome = BattleOutcome.DRAW;
+        DecideCorrectPanelToDisplay();
+        DisplayBattleOutcomePanel();
+    }
+
+    public void OnLoseBattle() {
+        battleOutcome = BattleOutcome.LOSE;
+        DecideCorrectPanelToDisplay();
+        DisplayBattleOutcomePanel();
+    }
+
+    /*public void onGoBackClick() {
         PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
         PlayerData.Instance.IncreaseTurnNumber(); // For DEBUG purpose ONLY
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");
-    }
+    }*/
 }
