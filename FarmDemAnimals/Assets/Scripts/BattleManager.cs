@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BattleManager : Manager<BattleManager> {
 
@@ -96,11 +97,24 @@ public class BattleManager : Manager<BattleManager> {
     /// This function is called before DecideCorrectPanelToDisplay()
     /// </summary>
     private void Battle() {
-        /*
         // Make both teams battle
         while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
             // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
+            BaseEntity player1 = playerTeam[0];
+            BaseEntity enemy1 = enemyTeam[0];
+            player1.transform.DOMove(new Vector3(1,0,0), 2);
+            enemy1.transform.DOMove(new Vector3(0,0,1), 2);
+            player1.SetStats(player1.GetAttack(), player1.GetHealth() - enemy1.GetAttack());
+            enemy1.SetStats(enemy1.GetAttack(), enemy1.GetHealth() - player1.GetAttack());
+            if (player1.GetHealth() < 0) {
+                
+                playerTeam.RemoveAt(0);
+            }
+            if (enemy1.GetHealth() < 0) {
+                enemyTeam.RemoveAt(0);
+            }  
         }
+        
         
         // At this point, at least one of the teams should be empty
         if (playerTeam.Count > 0) {
@@ -113,7 +127,8 @@ public class BattleManager : Manager<BattleManager> {
             // battle outcome is draw
             battleOutcome = BattleOutcome.DRAW;
         }
-        */
+        ChangeState(CurrentState.AFTERBATTLE);
+        
     }
 
     /// <summary>
@@ -198,7 +213,7 @@ public class BattleManager : Manager<BattleManager> {
                 break;
             case CurrentState.BATTLE:
                 // Add Functions Here
-                //Battle();
+                Battle();
                 break;
             case CurrentState.AFTERBATTLE:
                 // Add Functions Here
