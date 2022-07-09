@@ -10,19 +10,33 @@ public class BattleManager : Manager<BattleManager> {
     public Transform[] playerTrans; // Contains positions to instantiate the player animals
     public Transform[] enemyTrans; // Contains positions to instantiate the enemy animals
 
-    private List<BaseEntity> playerTeam = new List<BaseEntity>();
-    private List<BaseEntity> enemyTeam = new List<BaseEntity>();
+    private List<BaseEntity> playerTeam = new List<BaseEntity>(); // Contains animals in player team
+    private List<BaseEntity> enemyTeam = new List<BaseEntity>(); // Contains animals in enemy team
 
     public Transform canvas;
-    public CurrentState currentState;
+    public CurrentState currentState; // To change according to game flow
+    
+    public NormalBattleOutcomePanel normalBattleOutcomePanel; // Reference to NormalBattleOutcomePanel
+    public GameOverBattleOutcomePanel gameOverBattleOutcomePanel; // Reference to GameOverBattleOutcomePanel
+    public BattleOutcome battleOutcome; // To change according to battle outcome. Always instantiated as PLAYING (placeholder)
     
     private void Start() {
+        // Reference relevant databases from GameManager Instance
         warbandData = GameManager.Instance.warbandData;
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
         enemyDatabase = GameManager.Instance.enemyDatabase;
+        // Deactivate Battle Outcome Panels
+        normalBattleOutcomePanel.gameObject.SetActive(false);
+        gameOverBattleOutcomePanel.gameObject.SetActive(false);
+        battleOutcome = BattleOutcome.PLAYING;
+        // Set current state to "before battle"
         ChangeState(CurrentState.BEFOREBATTLE);
     }
     
+    /// <summary>
+    /// Instantiates the player's warband taken from the Preparation Phase
+    /// Adds each animal into the playerTeam List in correct position
+    /// </summary>
     private void InstantiatePlayerWarband() {
         foreach (WarbandDataSO.EntityData animalInfo in warbandData.warbandEntities) {
 
@@ -55,9 +69,51 @@ public class BattleManager : Manager<BattleManager> {
         //ChangeState(CurrentState.BATTLE);
     }
 
-    public void onGoBackClick() {
-        PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
-        SceneController.Instance.LoadScene("Scenes/Preparation Scene");
+    /// <summary>
+    /// Displays the correct outcome panel with correct information.
+    /// battleOutcome variable should have been set before calling this function
+    /// Panel is transition between Battle and Preparation Phase / Main Menu (if Game Over)
+    /// </summary>
+    public void DisplayBattleOutcomePanel() {
+        if (battleOutcome == BattleOutcome.NORMALWIN) {
+            // Increment win by 1 (and reset money)
+            PlayerData.Instance.Victory();
+            // Set relevant text
+            normalBattleOutcomePanel.SetOutcomeText("won", "!");
+            normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
+            // Set active panel
+            normalBattleOutcomePanel.gameObject.SetActive(true);
+        } else if (battleOutcome == BattleOutcome.NORMALDRAW) {
+            // Do nothing (and reset money)
+            PlayerData.Instance.Draw();
+            // Set relevant text
+            normalBattleOutcomePanel.SetOutcomeText("drew", ".");
+            normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
+            // Set active panel
+            normalBattleOutcomePanel.gameObject.SetActive(true);
+        } else if (battleOutcome == BattleOutcome.NORMALLOSE) {
+            // Decrement life by 1 (and reset money)
+            PlayerData.Instance.Lose();
+            // Set relevant text
+            normalBattleOutcomePanel.SetOutcomeText("lost", "...");
+            normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
+            // Set active panel
+            normalBattleOutcomePanel.gameObject.SetActive(true);
+        } else if (battleOutcome == BattleOutcome.GAMEOVERWIN) {
+            // Increment win by 1 (and reset money, although not needed)
+            PlayerData.Instance.Victory();
+            // Set relevant text
+            gameOverBattleOutcomePanel.SetOutcomeText("won", "in", PlayerData.Instance.TurnNumber, "!");
+            // Set active panel
+            gameOverBattleOutcomePanel.gameObject.SetActive(true);
+        } else if (battleOutcome == BattleOutcome.GAMEOVERLOSE) {
+            // Decrement life by 1 (and reset money, although not needed)
+            PlayerData.Instance.Lose();
+            // Set relevant text
+            gameOverBattleOutcomePanel.SetOutcomeText("lost", "after", PlayerData.Instance.TurnNumber, "...");
+            // Set active panel
+            gameOverBattleOutcomePanel.gameObject.SetActive(true);
+        }
     }
 
     public void ChangeState(CurrentState newState) {
@@ -88,5 +144,47 @@ public class BattleManager : Manager<BattleManager> {
     public enum Team {
         PLAYER,
         OPPONENT
+    }
+
+    public enum BattleOutcome {
+        PLAYING, // Placeholder
+        NORMALWIN,
+        NORMALDRAW,
+        NORMALLOSE,
+        GAMEOVERWIN,
+        GAMEOVERLOSE
+    }
+
+    // ------------------------ DEBUGGING FUNCTIONS ----------------------------
+    
+    public void OnNormalWin() {
+        battleOutcome = BattleOutcome.NORMALWIN;
+        DisplayBattleOutcomePanel();
+    }
+
+    public void OnNormalDraw() {
+        battleOutcome = BattleOutcome.NORMALDRAW;
+        DisplayBattleOutcomePanel();
+    }
+
+    public void OnNormalLose() {
+        battleOutcome = BattleOutcome.NORMALLOSE;
+        DisplayBattleOutcomePanel();
+    }
+
+    public void OnGameOverWin() {
+        battleOutcome = BattleOutcome.GAMEOVERWIN;
+        DisplayBattleOutcomePanel();
+    }
+
+    public void OnGameOverLose() {
+        battleOutcome = BattleOutcome.GAMEOVERLOSE;
+        DisplayBattleOutcomePanel();
+    }
+
+    public void onGoBackClick() {
+        PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
+        PlayerData.Instance.IncreaseTurnNumber(); // For DEBUG purpose ONLY
+        SceneController.Instance.LoadScene("Scenes/Preparation Scene");
     }
 }

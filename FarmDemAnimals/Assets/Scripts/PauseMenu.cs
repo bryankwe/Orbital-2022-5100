@@ -36,7 +36,7 @@ public class PauseMenu : Manager<PauseMenu> {
     }
 
     public void QuitGame() {
-        Application.Quit();
+        Application.Quit(); // Won't work in Unity. Need to build the application properly
         Debug.Log("Exited Game");
     }
 }

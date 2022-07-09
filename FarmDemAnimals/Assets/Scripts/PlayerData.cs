@@ -32,7 +32,6 @@ public class PlayerData : SingletonManager<PlayerData> {
     public void Victory() {
         Instance.ResetMoney();
         Instance.IncreaseTrophies();
-        Instance.IncreaseTurnNumber();
     }
 
     /// <summary>
@@ -40,7 +39,6 @@ public class PlayerData : SingletonManager<PlayerData> {
     /// </summary>
     public void Draw() {
         Instance.ResetMoney();
-        Instance.IncreaseTurnNumber();
     }
 
     /// <summary>
@@ -49,7 +47,16 @@ public class PlayerData : SingletonManager<PlayerData> {
     public void Lose() {
         Instance.ResetMoney();
         Instance.LoseLife();
-        Instance.IncreaseTurnNumber();
+    }
+
+    /// <summary>
+    /// Call this function when the game has ended
+    /// </summary>
+    public void ResetAllStats() {
+        Instance.Money = 10;
+        Instance.Lives = 2;
+        Instance.Trophies = 0;
+        Instance.TurnNumber = 1;
     }
     
     public bool CanAfford(int amount)
