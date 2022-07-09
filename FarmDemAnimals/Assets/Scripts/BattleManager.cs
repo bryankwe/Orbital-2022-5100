@@ -63,12 +63,31 @@ public class BattleManager : Manager<BattleManager> {
     
     private void InstantiateEnemyWarband() {
         // Logic
-        /*EnemyDatabaseSO.TeamData randomTeam = enemyDatabase.pastTeams[Random.Range(0, enemyDatabase.pastTeams.Count)];
-        foreach (EnemyDatabaseSO.TeamData teamInfo in enemyDatabase.pastTeams) {
-            
-        }*/
+        List<EnemyDatabaseSO.TeamData> enemyTeams = new List<EnemyDatabaseSO.TeamData>();
+        foreach (EnemyDatabaseSO.TeamData rTeam in enemyDatabase.pastTeams) {
+            if (rTeam.turnNumber == PlayerData.Instance.TurnNumber) {
+                enemyTeams.Add(rTeam);
+            }
+        }
+        EnemyDatabaseSO.TeamData randomTeam = enemyTeams[Random.Range(0, enemyTeams.Count)];
+        foreach (WarbandDataSO.EntityData animalInfo in randomTeam.warbandTeam) {
+            BaseEntity actualPrefab = entitiesDatabase.allEntities[animalInfo.animalID - 1].prefab;
+
+            BaseEntity newCard = Instantiate(actualPrefab,
+                                            new Vector2(enemyTrans[animalInfo.position].position.x, enemyTrans[animalInfo.position].position.y),
+                                            Quaternion.identity);
+            newCard.transform.SetParent(canvas);
+            // Edit instantiated animal to suit Battle Scene
+            newCard.transform.localScale = new Vector3(0.85f, 0.95f, 0.85f); // Change Scale
+            Destroy(newCard.GetComponent<TooltipTrigger>()); // Remove tooltips
+            Destroy(newCard.GetComponent<DragHandler>()); // Remove DragHandler
+            newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
+            newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
+
+            enemyTeam.Add(newCard);
+        }
         // Change State from 'Before Battle' to 'Battle'
-        //ChangeState(CurrentState.BATTLE);
+        ChangeState(CurrentState.BATTLE);
     }
 
     /// <summary>
