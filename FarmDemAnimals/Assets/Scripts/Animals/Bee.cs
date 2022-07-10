@@ -20,6 +20,7 @@ public class Bee : BaseEntity {
         if (currentTeam.Count > 1) { // If there are other animals other than this Bee
             BaseEntity animalBehind = currentTeam[1];
             animalBehind.IncreaseBattleStats(1,1);
+            Debug.Log("Bee increased stats for " + animalBehind.name);
         }
     }*/
 }

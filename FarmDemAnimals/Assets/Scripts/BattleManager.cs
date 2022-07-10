@@ -111,7 +111,7 @@ public class BattleManager : Manager<BattleManager> {
         while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
             Debug.Log("Fight Number: " + counter);
             // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
-            BaseEntity player1 = playerTeam[0];
+            /*BaseEntity player1 = playerTeam[0];
             BaseEntity enemy1 = enemyTeam[0];
             player1.transform.DOMove(new Vector3(1,0,0), 2);
             enemy1.transform.DOMove(new Vector3(0,0,1), 2);
@@ -123,12 +123,12 @@ public class BattleManager : Manager<BattleManager> {
             }
             if (enemy1.GetHealth() < 0) {
                 enemyTeam.RemoveAt(0);
-            }
+            }*/
 
             // ------------------ PLEASE SEE!!~~ -------------------
             // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
             //                          Make use of target reference and DecreaseBattleStats()
-            /*BaseEntity player1 = playerTeam[0];
+            BaseEntity player1 = playerTeam[0];
             BaseEntity enemy1 = enemyTeam[0];
 
             // Set target reference
@@ -146,13 +146,13 @@ public class BattleManager : Manager<BattleManager> {
             
             // Fought one round already -> Check whether any of them died 
             if (player1.IsDead()) {
-                playerTeam.RemoveAt(0);
                 player1.Die();
+                playerTeam.RemoveAt(0);
             }
             if (enemy1.IsDead()) {
-                enemyTeam.RemoveAt(0);
                 enemy1.Die();
-            }*/
+                enemyTeam.RemoveAt(0);
+            }
 
             counter++;
         }
