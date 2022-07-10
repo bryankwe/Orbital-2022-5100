@@ -10,16 +10,16 @@ public class StatsTracker {
     /// Use HealthSystemComponent if you want to add a HealthSystem directly to a Game Object instead of using the C# constructor
     /// </summary>
 
-    public event EventHandler OnHealthChanged;
-    public event EventHandler OnHealthMaxChanged;
+    public event EventHandler OnHealthChanged; // BATTLE
+    public event EventHandler OnHealthMaxChanged; // PREPARATION
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
-    public event EventHandler OnDead;
-    public event EventHandler OnAttackChanged;
-    public event EventHandler OnAttackMaxChanged;
+    public event EventHandler OnDead; // BATTLE
+    public event EventHandler OnAttackChanged; // BATTLE
+    public event EventHandler OnAttackMaxChanged; // PREPARATION
     public event EventHandler OnNerfed;
     public event EventHandler OnBuffed;
-    public event EventHandler OnReset;
+    //public event EventHandler OnReset;
 
     private int healthMax; // Max health of animal (Change this during the preparation phase & reset health to this after battle phase)
     private int health; // Current health of animal (Change this during the battle phase)
@@ -36,6 +36,8 @@ public class StatsTracker {
         attack = attackMax;
     }
 
+    // -------------------------- GETTER FUNCTIONS -------------------------------
+    
     /// <summary>
     /// Get the current health
     /// </summary>
@@ -64,6 +66,8 @@ public class StatsTracker {
         return attackMax;
     }
 
+    // -------------------------- HEALTH FUNCTIONS -------------------------------
+    
     /// <summary>
     /// Deal damage to this StatsTracker's Health
     /// Called in the Battle Phase
@@ -90,12 +94,12 @@ public class StatsTracker {
         OnDead?.Invoke(this, EventArgs.Empty);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Test if this StatsTracker is dead
     /// </summary>
     public bool IsDead() {
         return health <= 0;
-    }
+    }*/
 
     /// <summary>
     /// Heal this StatsTracker's Health (Allows to go over HealthMax)
@@ -111,7 +115,7 @@ public class StatsTracker {
         OnHealed?.Invoke(this, EventArgs.Empty);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Reset this StatsTracker to the maximum health amount
     /// Called at the start of Preparation Phase (After Battle Phase ends)
     /// </summary>
@@ -119,7 +123,7 @@ public class StatsTracker {
         health = healthMax;
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
         OnReset?.Invoke(this, EventArgs.Empty);
-    }
+    }*/
 
     /// <summary>
     /// Increases the Max Health Amount, and sets the Health Amount to the new Max
@@ -167,6 +171,8 @@ public class StatsTracker {
         }
     }
 
+    // -------------------------- ATTACK FUNCTIONS -------------------------------
+
     /// <summary>
     /// Nerf this StatsTracker's Attack
     /// Called in the Battle Phase
@@ -195,7 +201,7 @@ public class StatsTracker {
         OnBuffed?.Invoke(this, EventArgs.Empty);
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Reset this StatsTracker to the maximum attack amount
     /// Called at the start of Preparation Phase (After Battle Phase ends)
     /// </summary>
@@ -203,7 +209,7 @@ public class StatsTracker {
         attack = attackMax;
         OnAttackChanged?.Invoke(this, EventArgs.Empty);
         OnReset?.Invoke(this, EventArgs.Empty);
-    }
+    }*/
 
     /// <summary>
     /// Increases the Max Attack Amount, and sets the Attack Amount to the new Max
@@ -247,7 +253,7 @@ public class StatsTracker {
         OnAttackChanged?.Invoke(this, EventArgs.Empty);
     }
 
-
+    // -------------------------- MISCELLANEOUS FUNCTIONS -------------------------------
 
     /// <summary>
     /// Tries to get a StatsTracker from the GameObject

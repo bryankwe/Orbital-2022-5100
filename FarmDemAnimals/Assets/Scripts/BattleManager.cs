@@ -11,8 +11,8 @@ public class BattleManager : Manager<BattleManager> {
     public Transform[] playerTrans; // Contains positions to instantiate the player animals
     public Transform[] enemyTrans; // Contains positions to instantiate the enemy animals
 
-    private List<BaseEntity> playerTeam = new List<BaseEntity>(); // Contains animals in player team
-    private List<BaseEntity> enemyTeam = new List<BaseEntity>(); // Contains animals in enemy team
+    public List<BaseEntity> playerTeam = new List<BaseEntity>(); // Contains animals in player team (no nulls)
+    public List<BaseEntity> enemyTeam = new List<BaseEntity>(); // Contains animals in enemy team (no nulls)
 
     public Transform canvas;
     public CurrentState currentState; // To change according to game flow
@@ -56,6 +56,7 @@ public class BattleManager : Manager<BattleManager> {
             Destroy(newCard.GetComponent<DragHandler>()); // Remove DragHandler
             newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
+            newCard.battleRef = Instance; // Set reference to BattleManager to current instance (this)
             
             // Add the animal to playerTeam
             playerTeam.Add(newCard);
@@ -84,6 +85,7 @@ public class BattleManager : Manager<BattleManager> {
             Destroy(newCard.GetComponent<DragHandler>()); // Remove DragHandler
             newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
+            newCard.battleRef = Instance; // Set reference to BattleManager to current instance (this)
 
             enemyTeam.Add(newCard);
         }

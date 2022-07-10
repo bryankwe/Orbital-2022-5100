@@ -4,9 +4,13 @@ using UnityEngine;
 
 public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
+    // Death ability: OnDead
+    // Enrage ability: OnDamaged && !isDead
+    // Kill: target OnDead && !isDead
     public enum Ability { BUY, SELL, TURNSTART, TURNEND, COMBINE, DEATH, ENRAGE, KILL };
     public abstract Ability ability { get; }// public abstract string ability { get; }
-    public UIShop shopRef = null;
+    public UIShop shopRef = null; // To be changed when instantiated in the shop
+    public BattleManager battleRef = null; // To be changed in the battle phase
     public bool isFrozen = false;
     public int totalEntityCount = 1; // Number of times the entity has been combined
     public BaseEntity target = null; // BATTLE PHASE -> Set to opponent
@@ -30,6 +34,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     }
 
     private void StatsTracker_OnDead(object sender, System.EventArgs e) {
+        ActivateAbilityBeforeDeath();
         Destroy(gameObject);
     }
 
@@ -39,6 +44,8 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         //Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 
+    // -------------------------- PREPARATION FUNCTIONS -------------------------------
+    
     /// <summary>
     /// PREPARATION PHASE
     /// Get current Health Max
@@ -67,7 +74,9 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         statsTracker.IncreaseHealthMax(healthAmount);
     }
 
-    /// <summary>
+    // -------------------------- TRANSITIONAL FUNCTIONS -------------------------------
+    
+    /*/// <summary>
     /// MIGHT NOT USE (see SetStats())
     /// BEFORE PREPARATION PHASE, AFTER BATTLE PHASE
     /// Resets to maximum health and attack amount
@@ -75,7 +84,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public virtual void ResetStats() {
         statsTracker.ResetHealth();
         statsTracker.ResetAttack();
-    }
+    }*/
 
     /// <summary>
     /// USE IN PLACE OF ResetStats()
@@ -89,6 +98,8 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         statsTracker.SetAttackMax(damageAmount,true);
         statsTracker.SetHealthMax(healthAmount,true);
     }
+
+    // -------------------------- BATTLE FUNCTIONS -------------------------------
 
     /// <summary>
     /// BATTLE PHASE
@@ -108,6 +119,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     /// <summary>
     /// BATTLE PHASE
+    /// Used ONLY by on OWN team: Bee (Death), BlueBird (Death), Duck (Enrage), Rhino (Kill), FatBird (Death)
     /// Called on OWN team's Warband
     /// Animal increase health and damage by input amounts
     /// Override if special ability in Battle Phase
@@ -121,9 +133,9 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     /// <summary>
     /// BATTLE PHASE
-    /// Called on OPPONENT team's Warband
+    /// Used by all animals on their target enemy
+    /// Called on OPPONENT team's Warband when fighting
     /// Animal decrease health and damage by input amounts
-    /// Override if special ability in Battle Phase (ENRAGE)
     /// </summary>
     /// <param name="healthAmount">The health amount to decrease by</param>
     /// <param name="damageAmount">The damage amount to decrease by</param>
@@ -131,6 +143,17 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         statsTracker.Nerf(damageAmount);
         statsTracker.Damage(healthAmount);
     }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Used ONLY (and Overriden) by: Bee, BlueBird, FatBird
+    /// This is a placeholder function meant to be overriden
+    /// </summary>
+    public virtual void ActivateAbilityBeforeDeath() {
+
+    }
+    
+    // -------------------------- MISCELLANEOUS FUNCTIONS -------------------------------
     
     public StatsTracker GetStatsTracker() {
         return statsTracker;
