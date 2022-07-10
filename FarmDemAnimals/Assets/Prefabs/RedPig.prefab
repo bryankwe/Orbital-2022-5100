@@ -134,6 +134,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+--- !u!198 &1322935265087458161 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 1077667937256127305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7157050271358431116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -152,10 +157,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
+  battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  target: {fileID: 0}
   initialHealth: 3
   initialAttack: 2
   animalID: 3
   animalName: Red Pig
   animalTier: 2
+  PowerUpParticleSystem: {fileID: 1322935265087458161}

@@ -132,10 +132,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
+  battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  target: {fileID: 0}
   initialHealth: 1
   initialAttack: 3
   animalID: 4
   animalName: Blue Bird
   animalTier: 2
+  PowerUpParticleSystem: {fileID: 5434747680740199839}
+--- !u!198 &5434747680740199839 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 6324388557980925351}
+  m_PrefabAsset: {fileID: 0}

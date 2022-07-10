@@ -132,10 +132,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
+  battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  target: {fileID: 0}
   initialHealth: 8
   initialAttack: 6
   animalID: 13
   animalName: Slime
   animalTier: 5
+  PowerUpParticleSystem: {fileID: 8810076613553740538}
+--- !u!198 &8810076613553740538 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 7416032046042213058}
+  m_PrefabAsset: {fileID: 0}

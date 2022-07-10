@@ -129,9 +129,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
+  battleRef: {fileID: 0}
   isFrozen: 0
+  totalEntityCount: 1
+  target: {fileID: 0}
   initialHealth: 2
   initialAttack: 1
   animalID: 2
   animalName: Bat
   animalTier: 1
+  PowerUpParticleSystem: {fileID: 6301304281694979927}
+--- !u!198 &6301304281694979927 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 5465712992019117935}
+  m_PrefabAsset: {fileID: 0}

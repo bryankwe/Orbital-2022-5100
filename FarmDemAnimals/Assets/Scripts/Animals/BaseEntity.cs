@@ -22,20 +22,28 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     [SerializeField] private protected string animalName;
     [SerializeField] private protected int animalTier;
 
+    public ParticleSystem PowerUpParticleSystem;
+
     public abstract void activateAbility();
 
     private void Awake() {
         statsTracker = new StatsTracker(initialHealth, initialAttack);
         statsTracker.OnDead += StatsTracker_OnDead;
+        statsTracker.OnHealthChanged += StatsTracker_OnHealthChanged;
     }
 
     private void OnDisable() {
         statsTracker.OnDead -= StatsTracker_OnDead;
+        statsTracker.OnHealthChanged += StatsTracker_OnHealthChanged;
     }
 
     private void StatsTracker_OnDead(object sender, System.EventArgs e) {
         ActivateAbilityBeforeDeath();
         Destroy(gameObject);
+    }
+
+    private void StatsTracker_OnHealthChanged(object sender, System.EventArgs e) {
+        PowerUpParticleSystem.Play();
     }
 
     public void FreezeToggle() {
