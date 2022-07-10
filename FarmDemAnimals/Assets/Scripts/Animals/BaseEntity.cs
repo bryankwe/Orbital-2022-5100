@@ -146,6 +146,23 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     /// <summary>
     /// BATTLE PHASE
+    /// Check whether animal is dead
+    /// </summary>
+    public virtual bool IsDead() {
+        return statsTracker.IsDead();
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Invoke the OnDead event (do any special ability before dying and kill)
+    /// </summary>
+    public virtual void Die() {
+        Debug.Log("To Die: " + gameObject.name);
+        statsTracker.Die();
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
     /// Used ONLY (and Overriden) by: Bee, BlueBird, FatBird
     /// This is a placeholder function meant to be overriden
     /// </summary>
@@ -166,5 +183,4 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public int GetAnimalTier() {
         return animalTier;
     }
-
 }

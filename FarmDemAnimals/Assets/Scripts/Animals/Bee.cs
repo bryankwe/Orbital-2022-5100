@@ -15,11 +15,11 @@ public class Bee : BaseEntity {
     /// Gives the animal behind +1/+1 upon death
     /// Note: If calling this ability, means this Bee is already at first position of BattleManager.playerTeam
     /// </summary>
-    public override void ActivateAbilityBeforeDeath() {
+    /*public override void ActivateAbilityBeforeDeath() {
         List<BaseEntity> currentTeam = battleRef.playerTeam;
         if (currentTeam.Count > 1) { // If there are other animals other than this Bee
             BaseEntity animalBehind = currentTeam[1];
             animalBehind.IncreaseBattleStats(1,1);
         }
-    }
+    }*/
 }

@@ -10,12 +10,12 @@ public class StatsTracker {
     /// Use HealthSystemComponent if you want to add a HealthSystem directly to a Game Object instead of using the C# constructor
     /// </summary>
 
-    public event EventHandler OnHealthChanged; // BATTLE
+    public event EventHandler OnHealthChanged; // BOTH (when HealthMax change, Health also change)
     public event EventHandler OnHealthMaxChanged; // PREPARATION
     public event EventHandler OnDamaged;
     public event EventHandler OnHealed;
     public event EventHandler OnDead; // BATTLE
-    public event EventHandler OnAttackChanged; // BATTLE
+    public event EventHandler OnAttackChanged; // BOTH (whenAttackMax change, Attack also change)
     public event EventHandler OnAttackMaxChanged; // PREPARATION
     public event EventHandler OnNerfed;
     public event EventHandler OnBuffed;
@@ -81,9 +81,9 @@ public class StatsTracker {
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
         OnDamaged?.Invoke(this, EventArgs.Empty);
 
-        if (health <= 0) {
+        /*if (health <= 0) {
             Die();
-        }
+        }*/
     }
 
     /// <summary>
@@ -94,12 +94,12 @@ public class StatsTracker {
         OnDead?.Invoke(this, EventArgs.Empty);
     }
 
-    /*/// <summary>
+    /// <summary>
     /// Test if this StatsTracker is dead
     /// </summary>
     public bool IsDead() {
         return health <= 0;
-    }*/
+    }
 
     /// <summary>
     /// Heal this StatsTracker's Health (Allows to go over HealthMax)

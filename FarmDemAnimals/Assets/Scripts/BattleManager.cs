@@ -14,6 +14,9 @@ public class BattleManager : Manager<BattleManager> {
     public List<BaseEntity> playerTeam = new List<BaseEntity>(); // Contains animals in player team (no nulls)
     public List<BaseEntity> enemyTeam = new List<BaseEntity>(); // Contains animals in enemy team (no nulls)
 
+    public Transform playerFightPos; // where the player's animal moves to fight
+    public Transform enemyFightPos; // where the enemy's animal moves to fight
+    
     public Transform canvas;
     public CurrentState currentState; // To change according to game flow
     
@@ -60,11 +63,12 @@ public class BattleManager : Manager<BattleManager> {
             
             // Add the animal to playerTeam
             playerTeam.Add(newCard);
+
+            Debug.Log("Player Warband Added: " + newCard.name);
         }
     }
     
     private void InstantiateEnemyWarband() {
-        // Logic
         List<EnemyDatabaseSO.TeamData> enemyTeams = new List<EnemyDatabaseSO.TeamData>();
         foreach (EnemyDatabaseSO.TeamData rTeam in enemyDatabase.pastTeams) {
             if (rTeam.turnNumber == PlayerData.Instance.TurnNumber) {
@@ -88,6 +92,8 @@ public class BattleManager : Manager<BattleManager> {
             newCard.battleRef = Instance; // Set reference to BattleManager to current instance (this)
 
             enemyTeam.Add(newCard);
+
+            Debug.Log("Enemy Warband Added: " + newCard.name);
         }
         // Change State from 'Before Battle' to 'Battle'
         ChangeState(CurrentState.BATTLE);
@@ -99,8 +105,11 @@ public class BattleManager : Manager<BattleManager> {
     /// This function is called before DecideCorrectPanelToDisplay()
     /// </summary>
     private void Battle() {
+        Debug.Log("Battling ...");
+        int counter = 1;
         // Make both teams battle
         while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
+            Debug.Log("Fight Number: " + counter);
             // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
             BaseEntity player1 = playerTeam[0];
             BaseEntity enemy1 = enemyTeam[0];
@@ -114,9 +123,40 @@ public class BattleManager : Manager<BattleManager> {
             }
             if (enemy1.GetHealth() < 0) {
                 enemyTeam.RemoveAt(0);
-            }  
+            }
+
+            // ------------------ PLEASE SEE!!~~ -------------------
+            // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
+            //                          Make use of target reference and DecreaseBattleStats()
+            /*BaseEntity player1 = playerTeam[0];
+            BaseEntity enemy1 = enemyTeam[0];
+
+            // Set target reference
+            player1.target = enemy1;
+            enemy1.target = player1;
+
+            // DoTween the movement (Causes error I think cuz I destroy the animals before they even move due to delay (?))
+            //player1.transform.DOMove(playerFightPos.position, 2);
+            //enemy1.transform.DOMove(enemyFightPos.position, 2);
+            
+            // Fight -> Use DecreaseBattleStats()
+            //          SetStats() changes the Max (which shouldn't be touched in Battle Phase)
+            player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
+            enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
+            
+            // Fought one round already -> Check whether any of them died 
+            if (player1.IsDead()) {
+                playerTeam.RemoveAt(0);
+                player1.Die();
+            }
+            if (enemy1.IsDead()) {
+                enemyTeam.RemoveAt(0);
+                enemy1.Die();
+            }*/
+
+            counter++;
         }
-        
+        Debug.Log("Exited while loop for battling");
         
         // At this point, at least one of the teams should be empty
         if (playerTeam.Count > 0) {

@@ -78,10 +78,12 @@ public class StatsTrackerUI : MonoBehaviour {
     /// <summary>
     /// Clean up events when this Game Object is destroyed
     /// </summary>
-    private void OnDestroy() {
+    /*private void OnDisable() {
+        
         statsTracker.OnHealthChanged -= StatsTracker_OnHealthChanged;
-        statsTracker.OnHealthChanged -= StatsTracker_OnAttackChanged;
-    }
+        statsTracker.OnAttackChanged -= StatsTracker_OnAttackChanged;
+        Debug.Log("StatsTrackerUI destroyed: " + transform.parent.name);
+    }*/
 
 }
 
