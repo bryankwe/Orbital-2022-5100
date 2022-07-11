@@ -43,7 +43,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     }
 
     private void StatsTracker_OnHealthChanged(object sender, System.EventArgs e) {
-        PowerUpParticleSystem.Play();
+        PowerUpParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
     }
 
     public void FreezeToggle() {

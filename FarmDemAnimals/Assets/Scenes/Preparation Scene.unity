@@ -13964,10 +13964,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227645730}
     m_Modifications:
-    - target: {fileID: 4177310788656102380, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
-      propertyPath: m_Name
-      value: PowerUpParticleSystem
-      objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: BaseCard
@@ -14056,17 +14052,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
-      propertyPath: PowerUpParticleSystem
-      value: 
-      objectReference: {fileID: 7901097197751429401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
---- !u!198 &7901097197751429401 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
-  m_PrefabInstance: {fileID: 7901097197751429400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8131673537561517337
 GameObject:
   m_ObjectHideFlags: 0

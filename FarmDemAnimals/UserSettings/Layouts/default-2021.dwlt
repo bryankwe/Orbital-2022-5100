@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1426
     height: 815
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 27
+  controlID: 90
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 28
+  controlID: 91
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 79
+  controlID: 92
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -424,10 +424,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 50.5}
-      m_SelectedIDs: 
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 2c660000
       m_LastClickedID: 0
-      m_ExpandedIDs: 2efbffffb26300003a650000
+      m_ExpandedIDs: 2efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -698,9 +698,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 819.0795, y: 653.8275, z: -2.5064669}
+    m_Target: {x: 948.071, y: 711.03125, z: 15.498863}
     speed: 2
-    m_Value: {x: 819.0795, y: 653.8275, z: -2.5064669}
+    m_Value: {x: 948.071, y: 711.03125, z: 15.498863}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -751,9 +751,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1222.459
+    m_Target: 991.2223
     speed: 2
-    m_Value: 1222.459
+    m_Value: 991.2223
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -819,22 +819,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\weien\Documents\GitHub\Orbital-2022-5100\FarmDemAnimals
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 546e0000
-    m_LastClickedID: 28244
-    m_ExpandedIDs: 00000000406e0000426e0000446e0000466e0000486e00004a6e00004c6e00004e6e0000506e0000526e0000546e0000566e0000586e00005a6e000000ca9a3b
+    m_SelectedIDs: 0e6f0000
+    m_LastClickedID: 28430
+    m_ExpandedIDs: 00000000d06e0000d26e0000d46e0000d66e0000d86e0000da6e0000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e0000e86e0000ea6e0000ec6e0000ee6e0000f06e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -862,7 +862,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000406e0000426e0000446e0000466e0000486e00004a6e00004c6e00004e6e0000506e0000526e0000546e0000566e0000586e00005a6e0000
+    m_ExpandedIDs: 00000000d06e0000d26e0000d46e0000d66e0000d86e0000da6e0000dc6e0000de6e0000e06e0000e26e0000e46e0000e66e0000e86e0000ea6e0000ec6e0000ee6e0000f06e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -890,7 +890,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000e2b6000056670000366800003a6800004c680000026800008e680000bc680000a8680000d86800002a69000064690000b0690000f4690000306a0000ce6b0000aa6c0000f8640000acb20000f65d0100fe5d0100a29a0000e46a000072690000c2690000346a0000406a0000446a00003c6a0000b6bb01008066000070770000c2730000e66f00006c790000d46d0000fa64000066700000746b00001a650000b46d00006862000044650000b26e0000367e0000627a000000000000067b00000e6600003a660000
+    m_ExpandedInstanceIDs: c6230000e2b6000056670000366800003a6800004c680000026800008e680000bc680000a8680000d86800002a69000064690000b0690000f4690000306a0000ce6b0000aa6c0000f8640000acb20000f65d0100fe5d0100a29a0000e46a000072690000c2690000346a0000406a0000446a00003c6a0000b6bb01008066000070770000c2730000e66f00006c790000d46d0000fa64000066700000746b00001a650000b46d00006862000044650000b26e0000367e0000627a0000067b00000e6600003a660000800a020000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

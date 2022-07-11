@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: content
       value: 'End of Turn: Give the animal in front +1/+1'
       objectReference: {fileID: 0}
+    - target: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823531968787369324, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Snail
@@ -114,6 +122,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+--- !u!198 &1643532785534367286 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 749752058623641102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7476522441317372619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -132,10 +145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopRef: {fileID: 0}
+  battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  target: {fileID: 0}
   initialHealth: 5
   initialAttack: 2
   animalID: 7
   animalName: Snail
   animalTier: 3
+  PowerUpParticleSystem: {fileID: 1643532785534367286}
