@@ -21,6 +21,8 @@ public class StatsTracker {
     public event EventHandler OnBuffed;
     //public event EventHandler OnReset;
 
+    public event EventHandler OnStatsIncreased; // BOTH (when any stats increases)
+
     private int healthMax; // Max health of animal (Change this during the preparation phase & reset health to this after battle phase)
     private int health; // Current health of animal (Change this during the battle phase)
     private int attackMax; // Max attack of animal (Change this during the preparation phase & reset attack to this after battle phase)
@@ -113,6 +115,7 @@ public class StatsTracker {
         }
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
         OnHealed?.Invoke(this, EventArgs.Empty);
+        OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
 
     /*/// <summary>
@@ -138,6 +141,7 @@ public class StatsTracker {
         health = healthMax;
         OnHealthMaxChanged?.Invoke(this, EventArgs.Empty);
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -199,6 +203,7 @@ public class StatsTracker {
         }
         OnAttackChanged?.Invoke(this, EventArgs.Empty);
         OnBuffed?.Invoke(this, EventArgs.Empty);
+        OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
 
     /*/// <summary>
@@ -224,6 +229,7 @@ public class StatsTracker {
         attack = attackMax;
         OnAttackMaxChanged?.Invoke(this, EventArgs.Empty);
         OnAttackChanged?.Invoke(this, EventArgs.Empty);
+        OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>

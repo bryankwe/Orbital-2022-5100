@@ -29,12 +29,12 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     private void Awake() {
         statsTracker = new StatsTracker(initialHealth, initialAttack);
         statsTracker.OnDead += StatsTracker_OnDead;
-        statsTracker.OnHealthChanged += StatsTracker_OnHealthChanged;
+        statsTracker.OnStatsIncreased += StatsTracker_OnStatsIncreased;
     }
 
     private void OnDisable() {
         statsTracker.OnDead -= StatsTracker_OnDead;
-        statsTracker.OnHealthChanged += StatsTracker_OnHealthChanged;
+        statsTracker.OnHealthChanged += StatsTracker_OnStatsIncreased;
     }
 
     private void StatsTracker_OnDead(object sender, System.EventArgs e) {
@@ -42,7 +42,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         Destroy(gameObject);
     }
 
-    private void StatsTracker_OnHealthChanged(object sender, System.EventArgs e) {
+    private void StatsTracker_OnStatsIncreased(object sender, System.EventArgs e) {
         PowerUpParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
     }
 
