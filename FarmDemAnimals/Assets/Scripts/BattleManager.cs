@@ -188,6 +188,9 @@ public class BattleManager : Manager<BattleManager> {
     private IEnumerator AnimateBattle() {
         // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
         //                          Make use of target reference and DecreaseBattleStats()
+        // Changes made (12/07): Made every Tween distinct to see animation time (can always change back for some tweens to all happen at once)
+        //                       Moved Animals up the line when animals in front die (not all yet, but can easily be done)
+        //                                                 
         BaseEntity player1 = playerTeam[0];
         BaseEntity enemy1 = enemyTeam[0];
 
@@ -228,7 +231,7 @@ public class BattleManager : Manager<BattleManager> {
             player1.Die();
             playerTeam.RemoveAt(0);
             if (playerTeam.Count > 0) {
-                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f);
+                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f); //Move animal up the line
             }
             
         }
@@ -238,7 +241,7 @@ public class BattleManager : Manager<BattleManager> {
             enemy1.Die();
             enemyTeam.RemoveAt(0);
             if (enemyTeam.Count > 0) {
-                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f);
+                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f); //Move animal up the line
             }
         }
 
