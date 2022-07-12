@@ -107,13 +107,16 @@ public class BattleManager : Manager<BattleManager> {
     /// </summary>
     private void Battle() {
         Debug.Log("Battling ...");
+        /*
         int counter = 1;
+        
         // Make both teams battle
-
+        
         while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
             Debug.Log("Fight Number: " + counter);
             // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
-            /*BaseEntity player1 = playerTeam[0];
+            /*
+            BaseEntity player1 = playerTeam[0];
             BaseEntity enemy1 = enemyTeam[0];
             player1.transform.DOMove(new Vector3(1,0,0), 2);
             enemy1.transform.DOMove(new Vector3(0,0,1), 2);
@@ -125,7 +128,7 @@ public class BattleManager : Manager<BattleManager> {
             }
             if (enemy1.GetHealth() < 0) {
                 enemyTeam.RemoveAt(0);
-            }*/
+            }
 
             // ------------------ PLEASE SEE!!~~ -------------------
             // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
@@ -159,7 +162,14 @@ public class BattleManager : Manager<BattleManager> {
             counter++;
         }
         Debug.Log("Exited while loop for battling");
+        */
         
+        if (playerTeam.Count > 0 && enemyTeam.Count > 0) {
+            StartCoroutine(AnimateBattle());
+        } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) {
+            StopCoroutine(AnimateBattle());
+        } 
+
         // At this point, at least one of the teams should be empty
         if (playerTeam.Count > 0) {
             // battle outcome is win
@@ -190,22 +200,26 @@ public class BattleManager : Manager<BattleManager> {
         
         // Move
         currentTween = player1.transform.DOMove(playerFightPos.position, 0.5f);
-        enemy1.transform.DOMove(enemyFightPos.position, 0.5f);
+        yield return currentTween.WaitForCompletion();
+        currentTween = enemy1.transform.DOMove(enemyFightPos.position, 0.5f);
         yield return currentTween.WaitForCompletion();
 
         // Fight -> Use DecreaseBattleStats()
         //          SetStats() changes the Max (which shouldn't be touched in Battle Phase)
         // Fight (Punch -> Shake -> DecreaseBattleStats())
-        player1.transform.DOPunchPosition(Vector3.right * 1.5f, 0.3f, 0, 0);
-        enemy1.transform.DOPunchPosition(Vector3.left * 1.5f, 0.3f, 0, 0);
+        currentTween = player1.transform.DOPunchPosition(Vector3.right * 1.5f, 0.3f, 0, 0);
+        yield return currentTween.WaitForCompletion();
+        currentTween = enemy1.transform.DOPunchPosition(Vector3.left * 1.5f, 0.3f, 0, 0);
+        yield return currentTween.WaitForCompletion();
         currentTween = player1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
-        enemy1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
+        yield return currentTween.WaitForCompletion();
+        currentTween = enemy1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
         yield return currentTween.WaitForCompletion();
         player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
         enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
 
         // Pause before destroying (if dead)
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSeconds(1f);
         
         // Fought one round already -> Check whether any of them died (Animate Death)
         if (player1.IsDead()) {
@@ -213,16 +227,24 @@ public class BattleManager : Manager<BattleManager> {
             yield return currentTween.WaitForCompletion();
             player1.Die();
             playerTeam.RemoveAt(0);
+            if (playerTeam.Count > 0) {
+                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f);
+            }
+            
         }
         if (enemy1.IsDead()) {
             currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             enemy1.Die();
             enemyTeam.RemoveAt(0);
+            if (enemyTeam.Count > 0) {
+                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f);
+            }
         }
 
         // Pause before next battle
         yield return new WaitForSecondsRealtime(1f);
+        Battle();
     }
 
     /// <summary>
