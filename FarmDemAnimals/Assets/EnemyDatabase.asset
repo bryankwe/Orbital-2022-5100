@@ -47,3 +47,76 @@ MonoBehaviour:
       position: 3
       totalEntityCount: 2
     turnNumber: 2
+  - warbandTeam:
+    - animalID: 1
+      attack: 4
+      health: 3
+      position: 0
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 2
+      health: 4
+      position: 1
+      totalEntityCount: 2
+    turnNumber: 1
+  - warbandTeam:
+    - animalID: 1
+      attack: 6
+      health: 5
+      position: 0
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 4
+      health: 8
+      position: 1
+      totalEntityCount: 4
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 2
+  - warbandTeam:
+    - animalID: 1
+      attack: 4
+      health: 3
+      position: 0
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 1
+  - warbandTeam:
+    - animalID: 1
+      attack: 4
+      health: 3
+      position: 0
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    - animalID: 5
+      attack: 2
+      health: 6
+      position: 3
+      totalEntityCount: 2
+    - animalID: 5
+      attack: 1
+      health: 3
+      position: 4
+      totalEntityCount: 1
+    turnNumber: 2

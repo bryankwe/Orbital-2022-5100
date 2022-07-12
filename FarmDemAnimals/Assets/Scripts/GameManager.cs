@@ -18,6 +18,8 @@ public class GameManager : SingletonManager<GameManager> {
 
     private void Start() {
         warbandData.warbandEntities = new List<WarbandDataSO.EntityData>();
+        // This ensures any changes to the List<TeamData> pastTeams in enemyDatabase is saved even after we relaunch Unity Editor
+        UnityEditor.EditorUtility.SetDirty(enemyDatabase);
     }
 
 }
