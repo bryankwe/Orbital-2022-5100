@@ -114,6 +114,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+--- !u!198 &3227400242137168951 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 6562015408564649974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3942514673575177011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -142,6 +147,7 @@ MonoBehaviour:
   animalName: Turtle
   animalTier: 3
   PowerUpParticleSystem: {fileID: 5167970616660725710}
+  DamagedParticleSystem: {fileID: 3227400242137168951}
 --- !u!198 &5167970616660725710 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}

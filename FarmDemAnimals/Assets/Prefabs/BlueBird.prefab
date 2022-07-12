@@ -114,6 +114,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+--- !u!198 &2314371603640991334 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 6324388557980925351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4207184385829202274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -142,6 +147,7 @@ MonoBehaviour:
   animalName: Blue Bird
   animalTier: 2
   PowerUpParticleSystem: {fileID: 5434747680740199839}
+  DamagedParticleSystem: {fileID: 2314371603640991334}
 --- !u!198 &5434747680740199839 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}

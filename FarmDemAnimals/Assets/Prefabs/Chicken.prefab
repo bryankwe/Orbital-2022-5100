@@ -119,6 +119,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_PrefabInstance: {fileID: 2161924902925865850}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &7627481942598701243 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 2161924902925865850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8333600174209468351 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -147,3 +152,4 @@ MonoBehaviour:
   animalName: Chicken
   animalTier: 4
   PowerUpParticleSystem: {fileID: 191425956272743234}
+  DamagedParticleSystem: {fileID: 7627481942598701243}

@@ -142,6 +142,12 @@ MonoBehaviour:
   animalName: Slime
   animalTier: 5
   PowerUpParticleSystem: {fileID: 8810076613553740538}
+  DamagedParticleSystem: {fileID: 1239044661976803587}
+--- !u!198 &1239044661976803587 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 7416032046042213058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &8810076613553740538 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}

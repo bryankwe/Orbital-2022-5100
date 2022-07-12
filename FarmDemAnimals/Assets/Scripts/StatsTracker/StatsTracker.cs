@@ -12,12 +12,12 @@ public class StatsTracker {
 
     public event EventHandler OnHealthChanged; // BOTH (when HealthMax change, Health also change)
     public event EventHandler OnHealthMaxChanged; // PREPARATION
-    public event EventHandler OnDamaged;
+    public event EventHandler OnDamaged; // BATTLE 
     public event EventHandler OnHealed;
     public event EventHandler OnDead; // BATTLE
     public event EventHandler OnAttackChanged; // BOTH (whenAttackMax change, Attack also change)
     public event EventHandler OnAttackMaxChanged; // PREPARATION
-    public event EventHandler OnNerfed;
+    public event EventHandler OnNerfed; // <- Never happens (Battle Phase attack never lowers)
     public event EventHandler OnBuffed;
     //public event EventHandler OnReset;
 

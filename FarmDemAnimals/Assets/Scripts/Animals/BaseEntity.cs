@@ -23,6 +23,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     [SerializeField] private protected int animalTier;
 
     public ParticleSystem PowerUpParticleSystem;
+    public ParticleSystem DamagedParticleSystem;
 
     public abstract void activateAbility();
 
@@ -30,11 +31,13 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         statsTracker = new StatsTracker(initialHealth, initialAttack);
         statsTracker.OnDead += StatsTracker_OnDead;
         statsTracker.OnStatsIncreased += StatsTracker_OnStatsIncreased;
+        statsTracker.OnDamaged += StatsTracker_OnDamaged;
     }
 
     private void OnDisable() {
         statsTracker.OnDead -= StatsTracker_OnDead;
         statsTracker.OnHealthChanged += StatsTracker_OnStatsIncreased;
+        statsTracker.OnDamaged -= StatsTracker_OnDamaged;
     }
 
     private void StatsTracker_OnDead(object sender, System.EventArgs e) {
@@ -44,6 +47,10 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     private void StatsTracker_OnStatsIncreased(object sender, System.EventArgs e) {
         PowerUpParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
+    }
+
+    private void StatsTracker_OnDamaged(object sender, System.EventArgs e) {
+        DamagedParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
     }
 
     public void FreezeToggle() {

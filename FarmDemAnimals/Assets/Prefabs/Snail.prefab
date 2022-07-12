@@ -155,3 +155,9 @@ MonoBehaviour:
   animalName: Snail
   animalTier: 3
   PowerUpParticleSystem: {fileID: 1643532785534367286}
+  DamagedParticleSystem: {fileID: 9060493489197516239}
+--- !u!198 &9060493489197516239 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 749752058623641102}
+  m_PrefabAsset: {fileID: 0}

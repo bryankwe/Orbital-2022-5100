@@ -10189,6 +10189,7 @@ MonoBehaviour:
   animalName: Rhino
   animalTier: 1
   PowerUpParticleSystem: {fileID: 2065084984726302776}
+  DamagedParticleSystem: {fileID: 8636480580843389889}
 --- !u!114 &7326473458265368463
 MonoBehaviour:
   m_ObjectHideFlags: 0

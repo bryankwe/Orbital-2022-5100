@@ -144,3 +144,9 @@ MonoBehaviour:
   animalName: Bee
   animalTier: 1
   PowerUpParticleSystem: {fileID: 1172480453433814496}
+  DamagedParticleSystem: {fileID: 8878611696795688473}
+--- !u!198 &8878611696795688473 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 931641596554272216}
+  m_PrefabAsset: {fileID: 0}

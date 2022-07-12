@@ -119,6 +119,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_PrefabInstance: {fileID: 1410458595653375272}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &7226031967910369001 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 1410458595653375272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9094072306292277741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -147,3 +152,4 @@ MonoBehaviour:
   animalName: Fat Bird
   animalTier: 5
   PowerUpParticleSystem: {fileID: 1097281013388305680}
+  DamagedParticleSystem: {fileID: 7226031967910369001}

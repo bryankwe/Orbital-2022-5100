@@ -139,6 +139,12 @@ MonoBehaviour:
   animalName: Bat
   animalTier: 1
   PowerUpParticleSystem: {fileID: 6301304281694979927}
+  DamagedParticleSystem: {fileID: 4323715494226146478}
+--- !u!198 &4323715494226146478 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 5465712992019117935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &6301304281694979927 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}

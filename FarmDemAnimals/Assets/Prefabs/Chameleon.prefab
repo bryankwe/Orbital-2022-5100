@@ -151,3 +151,9 @@ MonoBehaviour:
   animalName: Chameleon
   animalTier: 4
   PowerUpParticleSystem: {fileID: 1667977076474535809}
+  DamagedParticleSystem: {fileID: 8959787071768243320}
+--- !u!198 &8959787071768243320 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 832461738448842681}
+  m_PrefabAsset: {fileID: 0}

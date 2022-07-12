@@ -31,6 +31,7 @@ public class BattleManager : Manager<BattleManager> {
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
         enemyDatabase = GameManager.Instance.enemyDatabase;
         // Deactivate Battle Outcome Panels
+        normalBattleOutcomePanel.gameObject.SetActive(true);
         normalBattleOutcomePanel.gameObject.SetActive(false);
         gameOverBattleOutcomePanel.gameObject.SetActive(false);
         battleOutcomePanel = BattleOutcomePanel.PLAYING;

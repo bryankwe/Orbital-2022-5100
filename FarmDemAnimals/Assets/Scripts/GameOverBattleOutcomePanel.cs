@@ -23,7 +23,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     public Transform currentPanel; // Reference to current canvas
     public bool outcomeIsWin = false; // Possibly for future animation for win / lose
     public ParticleSystem confettiParticleSystem;
-    //bool hasPlayedConfetti = false;
+    bool hasPlayedConfetti = false;
 
     void Start() {
         
@@ -40,18 +40,26 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     }
 
     void OnEnable() {
-        //Debug.Log("Current wins: " + currentWins.ToString());
-        //Debug.Log("Current lives: " + currentLives.ToString());
-        InstantiatePlayerWarband();
 
-        if (outcomeIsWin) {
-            PlayConfetti();
-        }
+        // Reference Wins to Trophies in PlayerData
+        currentWins = PlayerData.Instance.Trophies;
+        totalWinsNeeded = PlayerData.Instance.maxTrophies;
+        
+        // Reference Lives to Lives in Player Data
+        currentLives = PlayerData.Instance.Lives;
+        totalLives = PlayerData.Instance.maxLives;
+        
+        InstantiatePlayerWarband();
     }
 
+    /// <summary> 
+    /// Not sure why I cannot call this from BattleManager / OnEnable(). Only works when I call in Update()
+    /// </summary>
     public void PlayConfetti() {
-        Debug.Log("Playing Confetti");
-        confettiParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
+        if (outcomeIsWin == true && !hasPlayedConfetti) {
+            confettiParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
+            hasPlayedConfetti = true;
+        }
     }
     
     void Update() {
@@ -90,6 +98,8 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
                 lives[i].enabled = false;
             }*/
         }
+
+        PlayConfetti();
     }
 
     /// <summary>

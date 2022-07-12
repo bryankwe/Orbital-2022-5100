@@ -142,6 +142,12 @@ MonoBehaviour:
   animalName: Bunny
   animalTier: 2
   PowerUpParticleSystem: {fileID: 8346573584795663765}
+  DamagedParticleSystem: {fileID: 1776295096820895340}
+--- !u!198 &1776295096820895340 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 8033396639227825581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &8346573584795663765 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2065084984726302776, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}

@@ -167,3 +167,9 @@ MonoBehaviour:
   animalName: Red Pig
   animalTier: 2
   PowerUpParticleSystem: {fileID: 1322935265087458161}
+  DamagedParticleSystem: {fileID: 8732009172180170888}
+--- !u!198 &8732009172180170888 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8636480580843389889, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+  m_PrefabInstance: {fileID: 1077667937256127305}
+  m_PrefabAsset: {fileID: 0}
