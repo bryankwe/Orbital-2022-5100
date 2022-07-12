@@ -28,7 +28,7 @@ public class Slot : MonoBehaviour, IDropHandler {
 
     // Need to include logic for combine => Check if id is same? but I cannot access BaseEntity.id through DragHandler
     public void OnDrop(PointerEventData eventData) {
-        Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
+        //Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
 
         DragHandler d = eventData.pointerDrag.GetComponent<DragHandler>();
 

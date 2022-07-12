@@ -21,7 +21,9 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     public Transform[] warbandTrans; // Position of warband
     public TextMeshProUGUI outcomeText;
     public Transform currentPanel; // Reference to current canvas
-    public bool outcomeIsWin; // Possibly for future animation for win / lose
+    public bool outcomeIsWin = false; // Possibly for future animation for win / lose
+    public ParticleSystem confettiParticleSystem;
+    //bool hasPlayedConfetti = false;
 
     void Start() {
         
@@ -32,6 +34,24 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
         // Reference Lives to Lives in Player Data
         currentLives = PlayerData.Instance.Lives;
         totalLives = PlayerData.Instance.maxLives;
+
+        //Debug.Log("Current wins: " + currentWins);
+        //Debug.Log("Current lives: " + currentLives);
+    }
+
+    void OnEnable() {
+        //Debug.Log("Current wins: " + currentWins.ToString());
+        //Debug.Log("Current lives: " + currentLives.ToString());
+        InstantiatePlayerWarband();
+
+        if (outcomeIsWin) {
+            PlayConfetti();
+        }
+    }
+
+    public void PlayConfetti() {
+        Debug.Log("Playing Confetti");
+        confettiParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
     }
     
     void Update() {

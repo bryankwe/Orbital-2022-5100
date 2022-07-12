@@ -64,7 +64,7 @@ public class BattleManager : Manager<BattleManager> {
             // Add the animal to playerTeam
             playerTeam.Add(newCard);
 
-            Debug.Log("Player Warband Added: " + newCard.name);
+            //Debug.Log("Player Warband Added: " + newCard.name);
         }
     }
     
@@ -93,7 +93,7 @@ public class BattleManager : Manager<BattleManager> {
 
             enemyTeam.Add(newCard);
 
-            Debug.Log("Enemy Warband Added: " + newCard.name);
+            //Debug.Log("Enemy Warband Added: " + newCard.name);
         }
         // Change State from 'Before Battle' to 'Battle'
         ChangeState(CurrentState.BATTLE);
@@ -286,6 +286,8 @@ public class BattleManager : Manager<BattleManager> {
         } else if (battleOutcomePanel == BattleOutcomePanel.GAMEOVERWIN) {
             // Set relevant text
             gameOverBattleOutcomePanel.SetOutcomeText("won", "in", PlayerData.Instance.TurnNumber, "!");
+            // Set outcomeIsWin variable to true to enable Confetti
+            gameOverBattleOutcomePanel.outcomeIsWin = true;
             // Set active panel
             gameOverBattleOutcomePanel.gameObject.SetActive(true);
         } else if (battleOutcomePanel == BattleOutcomePanel.GAMEOVERLOSE) {
