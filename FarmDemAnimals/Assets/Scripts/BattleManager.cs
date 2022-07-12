@@ -108,6 +108,7 @@ public class BattleManager : Manager<BattleManager> {
         Debug.Log("Battling ...");
         int counter = 1;
         // Make both teams battle
+
         while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
             Debug.Log("Fight Number: " + counter);
             // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
@@ -153,7 +154,7 @@ public class BattleManager : Manager<BattleManager> {
                 enemy1.Die();
                 enemyTeam.RemoveAt(0);
             }
-
+            //StartCoroutine(AnimateBattle());
             counter++;
         }
         Debug.Log("Exited while loop for battling");
@@ -169,8 +170,58 @@ public class BattleManager : Manager<BattleManager> {
             // battle outcome is draw
             battleOutcome = BattleOutcome.DRAW;
         }
-        ChangeState(CurrentState.AFTERBATTLE);
+        ChangeState(CurrentState.AFTERBATTLE);   
+    }
+
+    // NOTE: THIS CAUSES INFINITE LOOP (DOESN'T WORK)
+    private IEnumerator AnimateBattle() {
+        // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
+        //                          Make use of target reference and DecreaseBattleStats()
+        BaseEntity player1 = playerTeam[0];
+        BaseEntity enemy1 = enemyTeam[0];
+
+        // Set target reference
+        player1.target = enemy1;
+        enemy1.target = player1;
+
+        // Set variable to reference current Tweeen
+        Tween currentTween;
         
+        // Move
+        currentTween = player1.transform.DOMove(playerFightPos.position, 0.5f);
+        enemy1.transform.DOMove(enemyFightPos.position, 0.5f);
+        yield return currentTween.WaitForCompletion();
+
+        // Fight -> Use DecreaseBattleStats()
+        //          SetStats() changes the Max (which shouldn't be touched in Battle Phase)
+        // Fight (Punch -> Shake -> DecreaseBattleStats())
+        player1.transform.DOPunchPosition(Vector3.right * 1.5f, 0.3f, 0, 0);
+        enemy1.transform.DOPunchPosition(Vector3.left * 1.5f, 0.3f, 0, 0);
+        currentTween = player1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
+        enemy1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
+        yield return currentTween.WaitForCompletion();
+        player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
+        enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
+
+        // Pause before destroying (if dead)
+        yield return new WaitForSecondsRealtime(1f);
+        
+        // Fought one round already -> Check whether any of them died (Animate Death)
+        if (player1.IsDead()) {
+            currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            yield return currentTween.WaitForCompletion();
+            player1.Die();
+            playerTeam.RemoveAt(0);
+        }
+        if (enemy1.IsDead()) {
+            currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            yield return currentTween.WaitForCompletion();
+            enemy1.Die();
+            enemyTeam.RemoveAt(0);
+        }
+
+        // Pause before next battle
+        yield return new WaitForSecondsRealtime(1f);
     }
 
     /// <summary>
@@ -343,5 +394,40 @@ public class BattleManager : Manager<BattleManager> {
         PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
         PlayerData.Instance.IncreaseTurnNumber(); // For DEBUG purpose ONLY
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");
+    }*/
+
+    /*private IEnumerator MoveAnimalsToFight(BaseEntity player, BaseEntity enemy) {
+        Tween currentTween = player.transform.DOMove(playerFightPos.position, 0.5f);
+        enemy.transform.DOMove(enemyFightPos.position, 0.5f);
+        yield return currentTween.WaitForCompletion();
+    }
+
+    private IEnumerator MakeAnimalsFight(BaseEntity player, BaseEntity enemy) {
+        Tween currentTween = player.transform.DOPunchPosition(Vector3.right * 1.5f, 0.3f, 0, 0).OnComplete(() => {player.transform.DOShakePosition(0.3f, 0.3f, 10);});
+        enemy.transform.DOPunchPosition(Vector3.left * 1.5f, 0.3f, 0, 0).OnComplete(() => {player.transform.DOShakePosition(0.3f, 0.3f, 10);});
+        yield return currentTween.WaitForCompletion();
+    }
+
+    private IEnumerator ActivateFightEffect(BaseEntity player, BaseEntity enemy) {
+        player.DecreaseBattleStats(0, enemy.GetAttack()); // enemy1 attacks player1
+        enemy.DecreaseBattleStats(0, player.GetAttack()); // player1 attacks enemy1
+        yield return new WaitForSecondsRealtime(1f);
+    }
+
+    private IEnumerator CheckDeath(BaseEntity player, BaseEntity enemy) {
+        if (player.IsDead()) {
+            Tween currentTween = player.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            yield return currentTween.WaitForCompletion();
+            player.Die();
+            playerTeam.RemoveAt(0);
+        }
+        if (enemy.IsDead()) {
+            Tween currentTween = player.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            yield return currentTween.WaitForCompletion();
+            enemy.Die();
+            enemyTeam.RemoveAt(0);
+        }
+
+        yield return new WaitForSecondsRealtime(1f);
     }*/
 }
