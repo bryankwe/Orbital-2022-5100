@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame () 
+    public void OnPlayClick() 
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -13,4 +13,9 @@ public class MainMenu : MonoBehaviour
 
         //SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, 1, 2)
     } 
+
+    public void OnQuitGameClick() {
+        Application.Quit();
+        Debug.Log("Exited the game...");
+    }
 }
