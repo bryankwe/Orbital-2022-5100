@@ -163,16 +163,8 @@ public class BattleManager : Manager<BattleManager> {
             counter++;
         }
         Debug.Log("Exited while loop for battling");
-        */
-        
-        if (playerTeam.Count > 0 && enemyTeam.Count > 0) {
-            StartCoroutine(AnimateBattle());
-        } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) {
-            StopCoroutine(AnimateBattle());
-            ChangeState(CurrentState.AFTERBATTLE); 
-        } 
 
-        // At this point, at least one of the teams should be empty
+        */
         if (playerTeam.Count > 0) {
             // battle outcome is win
             battleOutcome = BattleOutcome.WIN; 
@@ -183,6 +175,16 @@ public class BattleManager : Manager<BattleManager> {
             // battle outcome is draw
             battleOutcome = BattleOutcome.DRAW; 
         }
+        
+        if (playerTeam.Count > 0 && enemyTeam.Count > 0) {
+            StartCoroutine(AnimateBattle());
+        } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) {
+            StopCoroutine(AnimateBattle());
+            ChangeState(CurrentState.AFTERBATTLE); 
+        } 
+
+        // At this point, at least one of the teams should be empty
+        
          
     }
 
