@@ -19,4 +19,8 @@ public class GameManager : SingletonManager<GameManager> {
         UnityEditor.EditorUtility.SetDirty(enemyDatabase);
     }
 
+    public IEnumerator WaitForXSeconds(float time) {
+        yield return new WaitForSecondsRealtime(time);
+    } 
+
 }
