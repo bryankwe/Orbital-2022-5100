@@ -9552,6 +9552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entitiesDatabase: {fileID: 11400000, guid: e5f06d556bbbcdf43a269edff119e658, type: 2}
   warbandData: {fileID: 11400000, guid: 47d04cf5b6e7dcc429e0be505b6ec5cc, type: 2}
+  shopData: {fileID: 11400000, guid: 0694e1e214b88c94fa4ed54781d9b9c8, type: 2}
   enemyDatabase: {fileID: 11400000, guid: fabc61d5151a7fc4599af42e16391d7e, type: 2}
 --- !u!4 &1275827977
 Transform:

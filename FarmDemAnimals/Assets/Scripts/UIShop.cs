@@ -10,6 +10,7 @@ public class UIShop : MonoBehaviour {
     public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO entitiesDatabase;
+    private ShopDataSO shopData;
     private List<UICard> allCards;
     private int entitiyCost = 3;
     private int rerollCost = 1;
@@ -18,15 +19,16 @@ public class UIShop : MonoBehaviour {
     private void Start() {
         //Debug.Log("Enter UIShop Start()");
         entitiesDatabase = GameManager.Instance.entitiesDatabase;
+        shopData = GameManager.Instance.shopData;
         PreparationManager.Instance.ActivateShopSlots();
         allCards = PreparationManager.Instance.allCards;
-        GenerateCard();
+        GenerateCardsAtStartOfTurn();
         PlayerData.Instance.OnUpdateMoney += Refresh; // Everytime a function calls OnUpdateMoney?.Invoke(), Refresh() is called
         Refresh();
     }
 
     /// <summary>
-    /// Randomly Selects an Animal of the Correct Tier from EntitiesDatabaseSO
+    /// Randomly Selects an Animal of the Correct (Allowable) Tier from EntitiesDatabaseSO
     /// </summary>
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
         //Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
@@ -39,17 +41,53 @@ public class UIShop : MonoBehaviour {
 
     /// <summary>
     /// Generates the card returned by ChooseAnimalFromDatabase() and Instantiates into the game through UICard.Setup()
+    /// Called when rerolling the cards
     /// </summary>
-    public void GenerateCard() {
-        //Debug.Log("Enter UIShop GenerateCard()");
+    private void RerollCards() {
+        //Debug.Log("RerollCards() called");
         for (int i = 0; i < allCards.Count; i++) {
-            if(allCards[i].CanGenerate()) { // If slot is active
-                if(allCards[i].transform.parent.transform.childCount > 1) { // If animal in slot
-                    if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) { // If not frozen
-                        Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject); // Destroy animal
-                        allCards[i].Setup(ChooseAnimalFromDatabase(), this); //Generate new animal
+            // If slot is active
+            if(allCards[i].CanGenerate()) { 
+                // If animal in slot
+                if(allCards[i].transform.parent.transform.childCount > 1) {
+                    // If animal is not frozen
+                    if(!allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) {
+                        // Destroy existing animal in slot (that is not frozen)
+                        Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
+                        // Generate new animal in slot
+                        allCards[i].Setup(ChooseAnimalFromDatabase(), this); 
                     }
                 } else {
+                    allCards[i].Setup(ChooseAnimalFromDatabase(), this);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Generates previously frozen animals through ShopDataSO.frozenShopEntities
+    /// Generates the remaining animals returned by ChooseAnimalFromDatabase() and Instantiates into the game through UICard.Setup()
+    /// Called only at the start of each preparation phase
+    /// </summary>
+    private void GenerateCardsAtStartOfTurn() {
+        //Debug.Log("GenerateCardsAtStartOfTurn() called");
+        // Fill up slots with previously frozen animals first
+        if (PlayerData.Instance.TurnNumber > 1) {
+            foreach (ShopDataSO.EntityData animalInfo in shopData.frozenShopEntities) {
+                // Grab the base Prefab based on animalID from entitiesDatabaseSO
+                EntitiesDatabaseSO.EntityData frozenAnimal = entitiesDatabase.allEntities[animalInfo.animalID - 1];
+                // Generate the animal in correct position
+                allCards[animalInfo.position].Setup(frozenAnimal, this);
+                Debug.Log("Generating previously frozen animal: " + frozenAnimal.prefab.name);
+            }
+        }
+        
+        // Fill up the rest of the available slots
+        for (int i = 0; i < allCards.Count; i++) {
+            // If slot is active
+            if(allCards[i].CanGenerate()) { 
+                // If slot is empty
+                if (allCards[i].transform.parent.transform.childCount == 1) {
                     allCards[i].Setup(ChooseAnimalFromDatabase(), this);
                 }
             }
@@ -61,7 +99,7 @@ public class UIShop : MonoBehaviour {
         if(PlayerData.Instance.CanAfford(rerollCost)) {
             //Debug.Log("Rerolled");
             PlayerData.Instance.SpendMoney(rerollCost);
-            GenerateCard();
+            RerollCards();
         }
     }
 

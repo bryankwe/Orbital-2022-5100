@@ -23,5 +23,9 @@ public class WarbandDataSO : ScriptableObject {
         }
     }
 
+    /// <summary> 
+    /// List of information (EntityData) about animals in warband
+    /// For instantiating a prefab and subsequently changing stats
+    /// </summary>
     public List<EntityData> warbandEntities;
 }

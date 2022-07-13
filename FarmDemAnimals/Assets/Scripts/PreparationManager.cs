@@ -7,10 +7,11 @@ public class PreparationManager : Manager<PreparationManager> {
     
     private EntitiesDatabaseSO entitiesDatabase;
     private WarbandDataSO warbandData;
+    private ShopDataSO shopData;
     private EnemyDatabaseSO enemyDatabase;
     public UIShop shopRef;
     public bool isTesting = false; // Remember to toggle this if debugging / testing
-    public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
+    public List<UICard> allCards; // Contains empty GameObjects used for Instantiation in Shop (Assigned in Editor)
     public List<Slot> warbandSlots; // Contains Slots to retrieve Animals in Warband (Assigned in Editor)
     public List<BaseEntity> warband = new List<BaseEntity>(); // Actual List of Animals in Warband (Updated with every Change)
 
@@ -30,6 +31,7 @@ public class PreparationManager : Manager<PreparationManager> {
         OnUpdateWarband += UpdateWarband;
         UpdateWarband();
         warbandData = GameManager.Instance.warbandData;
+        shopData = GameManager.Instance.shopData;
         enemyDatabase = GameManager.Instance.enemyDatabase;
         ChangeState(CurrentState.TURNSTART);
     }
@@ -111,32 +113,17 @@ public class PreparationManager : Manager<PreparationManager> {
     }
 
     /// <summary>
+    /// Saves relevant data from the current warband to reproduce in Battle Phase and next Preparation Phase
+    /// Also saves these data into the enemy database for retrieval as potential battle phase enemy
     /// Only done in Preparation Phase "End Turn"
     /// </summary>
     private void TransferWarbandInfo() {
-        // !! MUST CHANGE, only pointing, doesn't work
-        // Possible ways to fix:
-        //     (i)   Set parent to null and DontDestroyOnLoad
-        //     (ii)  [X] Deep Copy (Won't work I think)
-        //     (iii) [X] Move warband from PreparationManager to GameManager (Won't work I think)
-        //     (iv)  Store data in ScriptableObject and instantiate in each Preparation / Battle Scene
-        
-        // FIRST WAY (In Battle Phase: Set parent to Canvas, Disable TierBG, Set scale to 0.75)
-        /*GameManager.Instance.playerWarband = Instance.warband; // Simply pointing, not deep copying!
-        foreach (BaseEntity baseEntity in GameManager.Instance.playerWarband) {
-            if (baseEntity != null) {
-                baseEntity.transform.parent = null;
-                DontDestroyOnLoad(baseEntity);
-            }
-        }*/
-        
-        // FOURTH WAY (In Battle Phase: Initialize from EntitiesDatabase based on animalID and change stats)
+        // LOGIC: In Battle Phase: Initialize from EntitiesDatabase based on animalID and change stats
         warbandData.warbandEntities = new List<WarbandDataSO.EntityData>();
         for (int i = 0; i < 5; i++) {
             BaseEntity baseEntity = Instance.warband[i];
             if (baseEntity != null) {
                 int animalID = baseEntity.GetAnimalID();
-                //Sprite animalSprite = baseEntity.transform.Find("Animal").gameObject.GetComponent<Image>().sprite;
                 int attack = baseEntity.GetAttackMax();
                 int health = baseEntity.GetHealthMax();
                 int position = i;
@@ -148,6 +135,7 @@ public class PreparationManager : Manager<PreparationManager> {
             }
         }
         
+        // If doing test runs (e.g. Changing PlayerData.Money to > 10), set isTesting to True (or else our database is inaccurate)
         if (!isTesting) {
             int currentTurn = PlayerData.Instance.TurnNumber;
 
@@ -156,8 +144,36 @@ public class PreparationManager : Manager<PreparationManager> {
             // Add this instance into the EnemyDatabaseSO pastTeams
             enemyDatabase.pastTeams.Add(currentTeam);
 
-            // Other Way --> Using the Dictionary in EnemyDatabaseSO
+            // Other Way --> Using the Dictionary in EnemyDatabaseSO (Incomplete)
+            //List<List<WarbandDataSO.EntityData>> pastWarbandDatabase = enemyDatabase.teamDatabase[currentTurn]; 
             //enemyDatabase.teamDatabase[currentTurn].Add(warbandData.warbandEntities);
+        }
+    }
+
+    /// <summary>
+    /// Saves relevant data from frozen animals in the current shop to reproduce in the next Preparation Phase
+    /// Only done in Preparation Phase "End Turn"
+    /// </summary>
+    private void TransferFrozenShopInfo() {
+        shopData.frozenShopEntities = new List<ShopDataSO.EntityData>();
+        // Iterate through all cards
+        for (int i = 0; i < allCards.Count; i++) {
+            // If card is enabled (active)
+            if(allCards[i].CanGenerate()) {
+                // If animal in slot
+                if(allCards[i].transform.parent.transform.childCount > 1) {
+                    // if animal is frozen
+                    if(allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>().isFrozen) {
+                        BaseEntity currentShopAnimal = allCards[i].transform.parent.transform.GetChild(0).gameObject.GetComponent<BaseEntity>();
+                        int animalID = currentShopAnimal.GetAnimalID();
+                        int position = i;
+                        // Create new instance of ShopDataSO EntityData using the current animal in shop
+                        ShopDataSO.EntityData currentAnimal = new ShopDataSO.EntityData(animalID, position);
+                        // Add this instance into the ShopDataSO frozenShopEntities
+                        shopData.frozenShopEntities.Add(currentAnimal);
+                    }
+                }
+            }
         }
     }
 
@@ -209,6 +225,7 @@ public class PreparationManager : Manager<PreparationManager> {
                 break;
             case CurrentState.TURNEND:
                 EndTurn();
+                TransferFrozenShopInfo();
                 TransferWarbandInfo();
                 break;
             default:
