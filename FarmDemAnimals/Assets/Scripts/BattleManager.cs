@@ -237,7 +237,7 @@ public class BattleManager : Manager<BattleManager> {
             
         }
         if (enemy1.IsDead()) {
-            currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            currentTween = enemy1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             enemy1.Die();
             enemyTeam.RemoveAt(0);
