@@ -169,20 +169,21 @@ public class BattleManager : Manager<BattleManager> {
             StartCoroutine(AnimateBattle());
         } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) {
             StopCoroutine(AnimateBattle());
+            ChangeState(CurrentState.AFTERBATTLE); 
         } 
 
         // At this point, at least one of the teams should be empty
         if (playerTeam.Count > 0) {
             // battle outcome is win
-            battleOutcome = BattleOutcome.WIN;
+            battleOutcome = BattleOutcome.WIN; 
         } else if (enemyTeam.Count > 0) {
             // battle outcome is lose
-            battleOutcome = BattleOutcome.LOSE;
+            battleOutcome = BattleOutcome.LOSE; 
         } else {
             // battle outcome is draw
-            battleOutcome = BattleOutcome.DRAW;
+            battleOutcome = BattleOutcome.DRAW; 
         }
-        ChangeState(CurrentState.AFTERBATTLE);   
+         
     }
 
     // NOTE: THIS CAUSES INFINITE LOOP (DOESN'T WORK)
@@ -339,8 +340,8 @@ public class BattleManager : Manager<BattleManager> {
                 break;
             case CurrentState.AFTERBATTLE:
                 // Add Functions Here
-                //DecideCorrectPanelToDisplay();
-                //DisplayBattleOutcomePanel();
+                DecideCorrectPanelToDisplay();
+                DisplayBattleOutcomePanel();
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newState), newState, null);
