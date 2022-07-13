@@ -1435,3 +1435,167 @@ MonoBehaviour:
       position: 2
       totalEntityCount: 1
     turnNumber: 1
+  - warbandTeam:
+    - animalID: 1
+      attack: 3
+      health: 2
+      position: 0
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 2
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 1
+  - warbandTeam:
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 0
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 2
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 5
+      health: 6
+      position: 2
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 3
+      totalEntityCount: 1
+    turnNumber: 2
+  - warbandTeam:
+    - animalID: 1
+      attack: 2
+      health: 1
+      position: 0
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 3
+      health: 2
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 1
+  - warbandTeam:
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 0
+      totalEntityCount: 1
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 3
+      health: 3
+      position: 2
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 3
+      health: 2
+      position: 3
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 4
+      totalEntityCount: 1
+    turnNumber: 2
+  - warbandTeam:
+    - animalID: 1
+      attack: 6
+      health: 5
+      position: 0
+      totalEntityCount: 2
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 2
+      totalEntityCount: 1
+    - animalID: 6
+      attack: 3
+      health: 5
+      position: 3
+      totalEntityCount: 1
+    - animalID: 8
+      attack: 6
+      health: 7
+      position: 4
+      totalEntityCount: 2
+    turnNumber: 3
+  - warbandTeam:
+    - animalID: 1
+      attack: 6
+      health: 5
+      position: 0
+      totalEntityCount: 2
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 4
+      attack: 3
+      health: 1
+      position: 2
+      totalEntityCount: 1
+    - animalID: 6
+      attack: 6
+      health: 10
+      position: 3
+      totalEntityCount: 2
+    - animalID: 8
+      attack: 14
+      health: 15
+      position: 4
+      totalEntityCount: 4
+    turnNumber: 4
+  - warbandTeam:
+    - animalID: 1
+      attack: 8
+      health: 6
+      position: 0
+      totalEntityCount: 2
+    - animalID: 11
+      attack: 12
+      health: 17
+      position: 1
+      totalEntityCount: 2
+    - animalID: 6
+      attack: 3
+      health: 5
+      position: 2
+      totalEntityCount: 1
+    - animalID: 6
+      attack: 6
+      health: 10
+      position: 3
+      totalEntityCount: 2
+    - animalID: 8
+      attack: 14
+      health: 15
+      position: 4
+      totalEntityCount: 4
+    turnNumber: 5

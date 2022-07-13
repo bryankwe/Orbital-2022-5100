@@ -182,10 +182,6 @@ public class BattleManager : Manager<BattleManager> {
             StopCoroutine(AnimateBattle());
             ChangeState(CurrentState.AFTERBATTLE); 
         } 
-
-        // At this point, at least one of the teams should be empty
-        
-         
     }
 
     // NOTE: THIS CAUSES INFINITE LOOP (DOESN'T WORK)
@@ -399,7 +395,7 @@ public class BattleManager : Manager<BattleManager> {
         DisplayBattleOutcomePanel();
     }*/
     
-    public void OnWinBattle() {
+    /*public void OnWinBattle() {
         battleOutcome = BattleOutcome.WIN;
         DecideCorrectPanelToDisplay();
         DisplayBattleOutcomePanel();
@@ -415,7 +411,7 @@ public class BattleManager : Manager<BattleManager> {
         battleOutcome = BattleOutcome.LOSE;
         DecideCorrectPanelToDisplay();
         DisplayBattleOutcomePanel();
-    }
+    }*/
 
     /*public void onGoBackClick() {
         PlayerData.Instance.Victory(); // For DEBUG purpose ONLY
