@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Buy: Give a random animal +1/+1'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 376ce357bd0f76345931854618fdc918, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Bat
@@ -132,6 +136,7 @@ MonoBehaviour:
   battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  team: 0
   target: {fileID: 0}
   initialHealth: 2
   initialAttack: 1
