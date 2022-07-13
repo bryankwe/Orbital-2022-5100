@@ -1498,7 +1498,7 @@ GameObject:
   - component: {fileID: 278416466}
   - component: {fileID: 278416469}
   - component: {fileID: 278416468}
-  - component: {fileID: 278416467}
+  - component: {fileID: 278416470}
   m_Layer: 5
   m_Name: LifeImage
   m_TagString: Untagged
@@ -1526,20 +1526,6 @@ RectTransform:
   m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &278416467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278416465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
 --- !u!114 &278416468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,6 +1564,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278416465}
   m_CullTransparentMesh: 1
+--- !u!114 &278416470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278416465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Lives
+  content: Number of Lives Remaining
 --- !u!224 &290945795 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5653385538956978485, guid: bf788bb61137e99468948e0ed2b8c5b7, type: 3}
@@ -2157,7 +2157,7 @@ GameObject:
   - component: {fileID: 451414682}
   - component: {fileID: 451414685}
   - component: {fileID: 451414684}
-  - component: {fileID: 451414683}
+  - component: {fileID: 451414686}
   m_Layer: 5
   m_Name: WinImage
   m_TagString: Untagged
@@ -2185,20 +2185,6 @@ RectTransform:
   m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &451414683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451414681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
 --- !u!114 &451414684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,6 +2223,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451414681}
   m_CullTransparentMesh: 1
+--- !u!114 &451414686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451414681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Wins
+  content: Number of Wins Accumulated
 --- !u!1 &457350007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 959310553577168450, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}
@@ -4271,7 +4271,7 @@ GameObject:
   - component: {fileID: 803817672}
   - component: {fileID: 803817671}
   - component: {fileID: 803817669}
-  - component: {fileID: 803817670}
+  - component: {fileID: 803817673}
   m_Layer: 5
   m_Name: WinText
   m_TagString: Untagged
@@ -4368,20 +4368,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &803817670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803817668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
 --- !u!222 &803817671
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4410,6 +4396,20 @@ RectTransform:
   m_AnchoredPosition: {x: -30, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &803817673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803817668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Wins
+  content: Number of Wins Accumulated
 --- !u!224 &823754075 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 959310553577168449, guid: 4bcd6734fb1d27446b357ef186fa8fbb, type: 3}
@@ -4805,7 +4805,7 @@ GameObject:
   - component: {fileID: 853558206}
   - component: {fileID: 853558205}
   - component: {fileID: 853558203}
-  - component: {fileID: 853558204}
+  - component: {fileID: 853558207}
   m_Layer: 5
   m_Name: TurnText
   m_TagString: Untagged
@@ -4902,20 +4902,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &853558204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853558202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
 --- !u!222 &853558205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4944,6 +4930,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &853558207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853558202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Turn Number
+  content: Current Turn Number
 --- !u!1001 &864079498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8014,7 +8014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
+  content: You get 10 Gold every turn to spend
 --- !u!1001 &1344379139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12140,7 +12140,7 @@ GameObject:
   - component: {fileID: 1976735051}
   - component: {fileID: 1976735050}
   - component: {fileID: 1976735048}
-  - component: {fileID: 1976735049}
+  - component: {fileID: 1976735052}
   m_Layer: 5
   m_Name: LifeText
   m_TagString: Untagged
@@ -12237,20 +12237,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1976735049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976735047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
 --- !u!222 &1976735050
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12279,6 +12265,20 @@ RectTransform:
   m_AnchoredPosition: {x: -30, y: 0}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1976735052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976735047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Lives
+  content: Number of Lives Remaining
 --- !u!1 &1978668807
 GameObject:
   m_ObjectHideFlags: 0
@@ -12529,7 +12529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: Gold Amount
-  content: "You get 10 Gold every turn! \nSpend them by rerolling or buying animals"
+  content: You get 10 Gold every turn to spend
 --- !u!1 &2019729783
 GameObject:
   m_ObjectHideFlags: 0

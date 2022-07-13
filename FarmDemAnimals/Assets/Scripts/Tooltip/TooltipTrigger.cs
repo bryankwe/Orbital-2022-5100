@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
     
     private static LTDescr delay;
     public string header;
@@ -14,9 +14,13 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     
     public void OnPointerEnter(PointerEventData eventData) {
-        delay = LeanTween.delayedCall(0.5f, () => {
+        delay = LeanTween.delayedCall(0.35f, () => {
             TooltipManager.Show(content, header);
          });
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        TooltipManager.Show(content, header);
     }
 
     public void OnPointerExit(PointerEventData eventData) {
