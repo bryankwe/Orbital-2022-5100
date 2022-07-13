@@ -486,3 +486,20 @@ MonoBehaviour:
       position: 3
       totalEntityCount: 1
     turnNumber: 2
+  - warbandTeam:
+    - animalID: 1
+      attack: 3
+      health: 2
+      position: 0
+      totalEntityCount: 1
+    - animalID: 1
+      attack: 2
+      health: 1
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 1
