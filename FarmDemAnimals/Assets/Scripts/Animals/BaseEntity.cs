@@ -10,9 +10,11 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public enum Ability { BUY, SELL, TURNSTART, TURNEND, COMBINE, DEATH, ENRAGE, KILL };
     public abstract Ability ability { get; }// public abstract string ability { get; }
     public UIShop shopRef = null; // To be changed when instantiated in the shop
-    public BattleManager battleRef = null; // To be changed in the battle phase
+    public BattleManager battleRef = null; // To be changed when instantiated in the battle phase
     public bool isFrozen = false;
     public int totalEntityCount = 1; // Number of times the entity has been combined
+    public enum Team { PLAYER, ENEMY };
+    public Team team = Team.PLAYER; // To be changed in the battle phase
     public BaseEntity target = null; // BATTLE PHASE -> Set to opponent
 
     private protected StatsTracker statsTracker;
@@ -178,10 +180,22 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     /// <summary>
     /// BATTLE PHASE
-    /// Used ONLY (and Overriden) by: Bee, BlueBird, FatBird
+    /// Used by all
+    /// Overriden by DEATH ability: Bee, BlueBird, FatBird
     /// This is a placeholder function meant to be overriden
     /// </summary>
     public virtual void ActivateAbilityBeforeDeath() {
+        if (target.ability == BaseEntity.Ability.KILL) {
+            target.ActivateKillAbility();
+        }
+    }
+
+    /// <summary>
+    /// BATTLE PHASE
+    /// Used ONLY (and Overriden) by KILL ability: Rhino
+    /// This is a placeholder function meant to be overriden
+    /// </summary>
+    public virtual void ActivateKillAbility() {
 
     }
     

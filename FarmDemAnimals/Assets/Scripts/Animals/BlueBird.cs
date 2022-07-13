@@ -11,10 +11,18 @@ public class BlueBird : BaseEntity {
 
     /// <summary>
     /// Gives the 2 animals behind +1/+1 upon death
-    /// Note: If calling this ability, means this BlueBird is already at first position of BattleManager.playerTeam
+    /// Note: If calling this ability, means this BlueBird is already at first position of BattleManager.XXTeam
     /// </summary>
     public override void ActivateAbilityBeforeDeath() {
+        
+        base.ActivateAbilityBeforeDeath();
+        
         List<BaseEntity> currentTeam = battleRef.playerTeam;
+        // If animal is enemy team, assign the team reference to enemyTeam
+        if (team == BaseEntity.Team.ENEMY) {
+            currentTeam = battleRef.enemyTeam;
+        }
+
         if (currentTeam.Count == 2) { // If there is only one other animal other than this Blue Bird
             BaseEntity animalBehind = currentTeam[1];
             animalBehind.IncreaseBattleStats(1,1);

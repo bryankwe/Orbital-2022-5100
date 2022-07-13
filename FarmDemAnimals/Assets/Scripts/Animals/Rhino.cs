@@ -9,11 +9,19 @@ public class Rhino : BaseEntity {
     public override void activateAbility() {
         
     }
-    /*public override void Damage(int amount) {
-        statsTracker.Damage(amount);
-    }
 
-    public override void Heal(int amount) {
-        statsTracker.Heal(amount);
-    }*/
+    /// <summary>
+    /// Gives itself +3/+1 if it kills its target and survives
+    /// Note: If calling this ability, means this Rhino has already killed its enemy
+    /// </summary>
+    public override void ActivateKillAbility() {
+        // First, check if this Rhino is dead
+        if (IsDead()) {
+            // Do nothing
+            return;
+        }
+        // This rhino is not dead => Increase its battle stats
+        IncreaseBattleStats(3,1);
+        Debug.Log("Increased stats for itself");
+    }
 }

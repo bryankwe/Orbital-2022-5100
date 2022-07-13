@@ -91,6 +91,7 @@ public class BattleManager : Manager<BattleManager> {
             newCard.transform.Find("TierBG").gameObject.SetActive(false); // Remove TierBG
             newCard.SetStats(animalInfo.attack, animalInfo.health); // Update Stats Accordingly
             newCard.battleRef = Instance; // Set reference to BattleManager to current instance (this)
+            newCard.team = BaseEntity.Team.ENEMY; // Set team to Enemy
 
             enemyTeam.Add(newCard);
 
@@ -350,11 +351,6 @@ public class BattleManager : Manager<BattleManager> {
         BEFOREBATTLE,   // Instantiate Player's Team and Opponent's Team
         BATTLE,         // Animate Battle ==> DoTween .DOPunchPosition() / .DOShakePosition() / .DOJump()
         AFTERBATTLE     // Display Victory / Loss Panel?
-    }
-
-    public enum Team {
-        PLAYER,
-        OPPONENT
     }
 
     public enum BattleOutcomePanel {

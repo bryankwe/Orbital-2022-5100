@@ -117,10 +117,12 @@ public class Slot : MonoBehaviour, IDropHandler {
         itemBE.totalEntityCount += 1;
         Destroy(a.gameObject); // Destroy dragged (duplicate) animal
         PreparationManager.Instance.OnUpdateWarband?.Invoke();
-        if(itemBE.ability == BaseEntity.Ability.BUY && fromShop) { // If Combined from Shop
+        if(itemBE.ability == BaseEntity.Ability.BUY && fromShop) { // If Combined from Shop and ability is BUY
             itemBE.activateAbility();
             //PreparationManager.Instance.OnBuy?.Invoke();
-        } else if (itemBE.ability == BaseEntity.Ability.COMBINE && !fromShop) { // If Combined from Warband
+        } else if (itemBE.ability == BaseEntity.Ability.COMBINE && fromShop) { // If Combined from Shop and ability is COMBINE
+            itemBE.activateAbility();
+        } else if (itemBE.ability == BaseEntity.Ability.COMBINE && !fromShop) { // If Combined from Warband and ability is COMBINE
             itemBE.activateAbility();
         }
     }
