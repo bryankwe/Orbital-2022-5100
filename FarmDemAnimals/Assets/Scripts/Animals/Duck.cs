@@ -23,6 +23,6 @@ public class Duck : BaseEntity {
         }
         // This duck is not dead => Increase its battle stats
         IncreaseBattleStats(2,1);
-        Debug.Log("Increased stats for itself");
+        Debug.Log("Duck Increased stats for itself");
     }
 }

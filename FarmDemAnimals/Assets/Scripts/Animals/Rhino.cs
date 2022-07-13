@@ -22,6 +22,6 @@ public class Rhino : BaseEntity {
         }
         // This rhino is not dead => Increase its battle stats
         IncreaseBattleStats(3,1);
-        Debug.Log("Increased stats for itself");
+        Debug.Log("Rhino Increased stats for itself");
     }
 }

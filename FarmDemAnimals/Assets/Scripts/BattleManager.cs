@@ -203,21 +203,21 @@ public class BattleManager : Manager<BattleManager> {
         Tween currentTween;
         
         // Move
-        currentTween = player1.transform.DOMove(playerFightPos.position, 0.5f);
+        currentTween = player1.transform.DOMove(playerFightPos.position, 0.5f).SetEase(Ease.InOutSine);
+        enemy1.transform.DOMove(enemyFightPos.position, 0.5f).SetEase(Ease.InOutSine);
         yield return currentTween.WaitForCompletion();
-        currentTween = enemy1.transform.DOMove(enemyFightPos.position, 0.5f);
-        yield return currentTween.WaitForCompletion();
+
+        // Pause before fight
+        yield return new WaitForSecondsRealtime(0.5f);
 
         // Fight -> Use DecreaseBattleStats()
         //          SetStats() changes the Max (which shouldn't be touched in Battle Phase)
         // Fight (Punch -> Shake -> DecreaseBattleStats())
-        currentTween = player1.transform.DOPunchPosition(Vector3.right * 1.5f, 0.3f, 0, 0);
+        currentTween = player1.transform.DOPunchPosition(Vector3.right * 45f, 0.5f, 0, 0);
+        enemy1.transform.DOPunchPosition(Vector3.left * 45f, 0.5f, 0, 0);
         yield return currentTween.WaitForCompletion();
-        currentTween = enemy1.transform.DOPunchPosition(Vector3.left * 1.5f, 0.3f, 0, 0);
-        yield return currentTween.WaitForCompletion();
-        currentTween = player1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
-        yield return currentTween.WaitForCompletion();
-        currentTween = enemy1.transform.DOShakePosition(0.3f, 0.3f, 10).SetDelay(0.3f * 0.5f);
+        currentTween = player1.transform.DOShakePosition(0.5f, 20f, 50);
+        enemy1.transform.DOShakePosition(0.5f, 20f, 50);
         yield return currentTween.WaitForCompletion();
         player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
         enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
@@ -232,7 +232,7 @@ public class BattleManager : Manager<BattleManager> {
             player1.Die();
             playerTeam.RemoveAt(0);
             if (playerTeam.Count > 0) {
-                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f); //Move animal up the line
+                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f).SetEase(Ease.InOutSine); //Move animal up the line
             }
             
         }
@@ -242,7 +242,7 @@ public class BattleManager : Manager<BattleManager> {
             enemy1.Die();
             enemyTeam.RemoveAt(0);
             if (enemyTeam.Count > 0) {
-                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f); //Move animal up the line
+                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f).SetEase(Ease.InOutSine); //Move animal up the line
             }
         }
 
