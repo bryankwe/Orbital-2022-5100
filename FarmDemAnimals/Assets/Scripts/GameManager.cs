@@ -16,7 +16,9 @@ public class GameManager : SingletonManager<GameManager> {
         warbandData.warbandEntities = new List<WarbandDataSO.EntityData>();
         shopData.frozenShopEntities = new List<ShopDataSO.EntityData>();
         // This ensures any changes to the List<TeamData> pastTeams in enemyDatabase is saved even after we relaunch Unity Editor
+        #if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(enemyDatabase);
+        #endif
     }
 
     public IEnumerator WaitForXSeconds(float time) {
