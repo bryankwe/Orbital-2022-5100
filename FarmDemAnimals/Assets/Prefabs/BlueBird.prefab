@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Death: Give the 2 animals behind +1/+1 until the end of battle'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ec20bb0b8c1ad4d4f951318a269c13ae, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: BlueBird
@@ -140,6 +144,7 @@ MonoBehaviour:
   battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  team: 0
   target: {fileID: 0}
   initialHealth: 1
   initialAttack: 3

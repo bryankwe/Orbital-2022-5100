@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Sell: Give all animals +2/+2'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a648e47ce2643334c821cb63e03b81a4, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -119,6 +123,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
   m_PrefabInstance: {fileID: 7416032046042213058}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &859949863693654352
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814412456953019911}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 296b9f76b4cfba44698614cccdef58ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &8359043956636676550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +159,7 @@ MonoBehaviour:
   battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  team: 0
   target: {fileID: 0}
   initialHealth: 8
   initialAttack: 6

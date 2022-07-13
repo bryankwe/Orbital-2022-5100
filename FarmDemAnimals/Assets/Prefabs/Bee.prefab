@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Death: Give the animal behind +1/+1 until the end of battle'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4180918879b47c54c90f812e2a4ae3c7, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Bee
@@ -106,7 +110,7 @@ PrefabInstance:
     - target: {fileID: 7901097198577340855, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -7659945631384244969, guid: 8721cbbfe3ba6a8418cd21a8de3a410c, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8111280807716664547, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
     - {fileID: -3054322138711710988, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
@@ -137,6 +141,7 @@ MonoBehaviour:
   battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  team: 0
   target: {fileID: 0}
   initialHealth: 1
   initialAttack: 2
