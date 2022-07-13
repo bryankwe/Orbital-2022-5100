@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Start of Turn: Gain 1 Gold'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4f3e1aa915353eb4db090643989e77ab, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Bunny
@@ -135,6 +139,7 @@ MonoBehaviour:
   battleRef: {fileID: 0}
   isFrozen: 0
   totalEntityCount: 1
+  team: 0
   target: {fileID: 0}
   initialHealth: 3
   initialAttack: 1

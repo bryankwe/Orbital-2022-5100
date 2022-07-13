@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: content
       value: 'Kill: Gain +3/+1 until the end of the battle'
       objectReference: {fileID: 0}
+    - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a2ff390c0ebd23f47812e10882a23cd0, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Rhino
@@ -103,6 +107,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7901097198577340855, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1075854790282143660, guid: e3531be27cb827743bac8ea66dae5bfd, type: 3}
     - target: {fileID: 7901097199138762701, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Sprite
       value: 

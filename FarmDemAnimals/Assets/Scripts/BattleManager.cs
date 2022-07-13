@@ -399,7 +399,7 @@ public class BattleManager : Manager<BattleManager> {
         DisplayBattleOutcomePanel();
     }*/
     
-    public void OnWinBattle() {
+    /*public void OnWinBattle() {
         battleOutcome = BattleOutcome.WIN;
         DecideCorrectPanelToDisplay();
         DisplayBattleOutcomePanel();
@@ -415,7 +415,7 @@ public class BattleManager : Manager<BattleManager> {
         battleOutcome = BattleOutcome.LOSE;
         DecideCorrectPanelToDisplay();
         DisplayBattleOutcomePanel();
-    }
+    }*/
 
     /*public void onGoBackClick() {
         PlayerData.Instance.Victory(); // For DEBUG purpose ONLY

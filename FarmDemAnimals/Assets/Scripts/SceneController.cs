@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class SceneController : SingletonManager<SceneController> {
 
@@ -21,11 +22,15 @@ public class SceneController : SingletonManager<SceneController> {
         loaderCanvas.SetActive(true);
 
         do {
-            await System.Threading.Tasks.Task.Delay(100);
+            await Task.Delay(100);
+            // If Task.Delay() causes error in webGL, try Yield()
+            //await Task.Yield();
             target = scene.progress;
         } while (scene.progress < 0.9f);
 
-        await System.Threading.Tasks.Task.Delay(500);
+        await Task.Delay(500);
+        // If Task.Delay() causes error in webGL, try Yield()
+        //await Task.Yield();
 
         scene.allowSceneActivation = true;
         loaderCanvas.SetActive(false);
