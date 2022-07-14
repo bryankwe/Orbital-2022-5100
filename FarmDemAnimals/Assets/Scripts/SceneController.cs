@@ -22,15 +22,15 @@ public class SceneController : SingletonManager<SceneController> {
         loaderCanvas.SetActive(true);
 
         do {
-            await Task.Delay(100);
+            //await Task.Delay(100);
             // If Task.Delay() causes error in webGL, try Yield()
-            //await Task.Yield();
+            await Task.Yield();
             target = scene.progress;
         } while (scene.progress < 0.9f);
 
-        await Task.Delay(500);
+        //await Task.Delay(500);
         // If Task.Delay() causes error in webGL, try Yield()
-        //await Task.Yield();
+        await Task.Yield();
 
         scene.allowSceneActivation = true;
         loaderCanvas.SetActive(false);
