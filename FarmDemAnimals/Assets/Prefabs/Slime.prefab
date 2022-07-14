@@ -18,7 +18,7 @@ PrefabInstance:
     - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a648e47ce2643334c821cb63e03b81a4, type: 2}
+      objectReference: {fileID: 9100000, guid: d6358b7c84ee7044ba381359e812c29f, type: 2}
     - target: {fileID: 7901097197990843589, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Name
       value: Slime
