@@ -1724,3 +1724,20 @@ MonoBehaviour:
       position: 4
       totalEntityCount: 1
     turnNumber: 5
+  - warbandTeam:
+    - animalID: 1
+      attack: 3
+      health: 2
+      position: 0
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 2
+      health: 3
+      position: 1
+      totalEntityCount: 1
+    - animalID: 2
+      attack: 1
+      health: 2
+      position: 2
+      totalEntityCount: 1
+    turnNumber: 1

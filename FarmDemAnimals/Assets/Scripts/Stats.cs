@@ -8,12 +8,14 @@ public class Stats : Manager<Stats> {
     public TextMeshProUGUI lives; // Display the number of remaining lives
     public TextMeshProUGUI wins; // Display the number of wins accummulated
     public TextMeshProUGUI turnNumber; // Displays the current turn
+    public GameObject TutorialPanel;
 
     private void Start() {
         //Debug.Log("Enter Stats Start()");
         RefreshLives();
         RefreshWins();
         RefreshTurnNumber();
+        TutorialPanel.SetActive(false);
     }
 
     void RefreshLives() {
@@ -30,5 +32,13 @@ public class Stats : Manager<Stats> {
 
     public void OnPauseClick() {
         PauseMenu.Instance.PauseGame();
+    }
+
+    public void OnHelpClick() {
+        TutorialPanel.SetActive(true);
+    }
+
+    public void OnDoneClick() {
+        TutorialPanel.SetActive(false);
     }
 }
