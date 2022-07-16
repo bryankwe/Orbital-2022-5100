@@ -184,3 +184,15 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b93d8798196b9a6468cecf76a4677185, type: 3}
+    name: Punch
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 97c4dda9b4d7f3548803ac0de80bb1bd, type: 3}
+    name: Combine
+    volume: 0.27
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

@@ -61,6 +61,8 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void ShopToWarband(DragHandler d, BaseEntity a) {
+        //Sounds
+        SoundManager.Instance.Play("Buy");
         if (!item && a.shopRef.OnDragToWarband()) { // If enough money to buy animal & the warband slot is empty
             if(a.isFrozen) {
                 a.FreezeToggle(); // Unfreeze
@@ -102,6 +104,8 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void WarbandToSell(DragHandler d, BaseEntity a) {
+        //Sounds
+        SoundManager.Instance.Play("Sell");
         a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
         if(a.ability == BaseEntity.Ability.SELL) { // Activate animal's SELL special ability
             a.activateAbility(); // Must ensure the ability does not apply to self (haven't destroy self yet)
@@ -112,6 +116,8 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void CombineAnimals(BaseEntity a, bool fromShop) {
+        //Sounds
+        SoundManager.Instance.Play("Combine");
         BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
         itemBE.IncreasePreparationStats(a.GetAttackMax(), a.GetHealthMax());
         itemBE.totalEntityCount += 1;
