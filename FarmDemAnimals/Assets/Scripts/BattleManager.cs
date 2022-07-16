@@ -202,6 +202,10 @@ public class BattleManager : Manager<BattleManager> {
         player1.target = enemy1;
         enemy1.target = player1;
 
+        // Store attack stats before fighting (in case it changes due to special ability)
+        int playerAttack = player1.GetAttack();
+        int enemyAttack = enemy1.GetAttack();
+
         // Set variable to reference current Tweeen
         Tween currentTween;
         
@@ -222,14 +226,29 @@ public class BattleManager : Manager<BattleManager> {
         currentTween = player1.transform.DOShakePosition(0.5f, 20f, 50);
         enemy1.transform.DOShakePosition(0.5f, 20f, 50);
         yield return currentTween.WaitForCompletion();
-        player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
-        enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
+        player1.DecreaseBattleStats(0, enemyAttack); // enemy1 attacks player1
+        enemy1.DecreaseBattleStats(0, playerAttack); // player1 attacks enemy1
 
         // Pause before destroying (if dead)
         yield return new WaitForSeconds(1f);
         
         // Fought one round already -> Check whether any of them died (Animate Death)
-        if (player1.IsDead()) {
+        if (player1.IsDead() && enemy1.IsDead()) {
+            currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            enemy1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
+            yield return currentTween.WaitForCompletion();
+            player1.Die();
+            enemy1.Die();
+            playerTeam.RemoveAt(0);
+            enemyTeam.RemoveAt(0);
+            if (playerTeam.Count > 0) {
+                playerTeam[0].transform.DOMove(playerTrans[0].position, 0.5f).SetEase(Ease.InOutSine); //Move animal up the line
+            }
+            if (enemyTeam.Count > 0) {
+                enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f).SetEase(Ease.InOutSine); //Move animal up the line
+            }
+        }
+        else if (player1.IsDead()) {
             currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             player1.Die();
@@ -239,7 +258,7 @@ public class BattleManager : Manager<BattleManager> {
             }
             
         }
-        if (enemy1.IsDead()) {
+        else if (enemy1.IsDead()) {
             currentTween = enemy1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             enemy1.Die();
