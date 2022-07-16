@@ -109,11 +109,6 @@ public class UIShop : MonoBehaviour {
         SceneController.Instance.LoadScene("Scenes/Battle Scene");
     }
 
-    /// For DEBUG only
-    public void OnMainMenuClick() {
-        SceneController.Instance.LoadScene("Scenes/Main Menu");
-    }
-
     public bool OnDragToWarband() {
         //Debug.Log("Bought");
         bool ans = AllowDragToWarband();
@@ -135,4 +130,10 @@ public class UIShop : MonoBehaviour {
     public void Refresh() {
         money.text = PlayerData.Instance.Money.ToString();
     }
+
+    // -------------------------------- DEBUG BUTTONS --------------------------------------
+    /// For DEBUG only
+    /*public void OnMainMenuClick() {
+        SceneController.Instance.LoadScene("Scenes/Main Menu");
+    }*/
 }

@@ -53,6 +53,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     private void StatsTracker_OnDamaged(object sender, System.EventArgs e) {
         DamagedParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
+        ActivateAbilityAfterDamaged();
     }
 
     public void FreezeToggle() {
@@ -178,6 +179,15 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         statsTracker.Die();
     }
 
+    /// <summary>
+    /// BATTLE PHASE
+    /// Used ONLY (and Overriden) by ENRAGE ability: Duck
+    /// This is a placeholder function meant to be overriden
+    /// </summary>
+    public virtual void ActivateAbilityAfterDamaged() {
+        
+    }
+    
     /// <summary>
     /// BATTLE PHASE
     /// Used by all

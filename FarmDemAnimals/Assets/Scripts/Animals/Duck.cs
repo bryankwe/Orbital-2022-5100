@@ -13,9 +13,7 @@ public class Duck : BaseEntity {
     /// Gives itself +2/+1 if it takes damage and survives
     /// Note: If calling this ability, means this Duck has already taken damage from its enemy
     /// </summary>
-    public override void DecreaseBattleStats(int damageAmount, int healthAmount) {
-        // Let this duck take damage first
-        base.DecreaseBattleStats(damageAmount, healthAmount);
+    public override void ActivateAbilityAfterDamaged() {
         // Check if this duck is still alive
         if (IsDead()) {
             // Do nothing
