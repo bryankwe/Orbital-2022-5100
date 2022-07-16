@@ -29,7 +29,7 @@ public class UICard : MonoBehaviour {
         transform.parent.gameObject.SetActive(true);
     }
 
-    public void Setup(EntitiesDatabaseSO.EntityData myData, UIShop shopRef) {
+    public void Setup(EntitiesDatabaseSO.EntityData myData, UIShop shopRef, bool isFrozen) {
         //icon = myData.icon;
         //animalName.text = myData.name;
         //display = myData.prefab;
@@ -41,7 +41,11 @@ public class UICard : MonoBehaviour {
         newCard.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         newCard.transform.SetAsFirstSibling();
         newCard.shopRef = this.shopRef;
-        Debug.Log("Generated: " + newCard.name);
+        if (isFrozen) {
+            newCard.FreezeToggle();
+        }
+        
+        //Debug.Log("Generated: " + newCard.name);
     }
 
     /// <summary>

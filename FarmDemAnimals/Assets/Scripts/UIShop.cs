@@ -55,10 +55,10 @@ public class UIShop : MonoBehaviour {
                         // Destroy existing animal in slot (that is not frozen)
                         Destroy(allCards[i].transform.parent.transform.GetChild(0).gameObject);
                         // Generate new animal in slot
-                        allCards[i].Setup(ChooseAnimalFromDatabase(), this); 
+                        allCards[i].Setup(ChooseAnimalFromDatabase(), this, false); 
                     }
                 } else {
-                    allCards[i].Setup(ChooseAnimalFromDatabase(), this);
+                    allCards[i].Setup(ChooseAnimalFromDatabase(), this, false);
                 }
             }
         }
@@ -77,7 +77,7 @@ public class UIShop : MonoBehaviour {
                 // Grab the base Prefab based on animalID from entitiesDatabaseSO
                 EntitiesDatabaseSO.EntityData frozenAnimal = entitiesDatabase.allEntities[animalInfo.animalID - 1];
                 // Generate the animal in correct position
-                allCards[animalInfo.position].Setup(frozenAnimal, this);
+                allCards[animalInfo.position].Setup(frozenAnimal, this, true);
                 Debug.Log("Generating previously frozen animal: " + frozenAnimal.prefab.name);
             }
         }
@@ -88,7 +88,7 @@ public class UIShop : MonoBehaviour {
             if(allCards[i].CanGenerate()) { 
                 // If slot is empty
                 if (allCards[i].transform.parent.transform.childCount == 1) {
-                    allCards[i].Setup(ChooseAnimalFromDatabase(), this);
+                    allCards[i].Setup(ChooseAnimalFromDatabase(), this, false);
                 }
             }
         }
