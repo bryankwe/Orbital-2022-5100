@@ -80,6 +80,7 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnContinueClick() {
+        SoundManager.Instance.Play("Click");
         PlayerData.Instance.IncreaseTurnNumber();
         PlayerData.Instance.ResetMoney();
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");

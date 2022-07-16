@@ -130,6 +130,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnMainMenuClick() {
+        SoundManager.Instance.Play("Click");
         // Reset all the stats in PlayerData
         PlayerData.Instance.ResetAllStats();
         // Load Main Menu Scene
