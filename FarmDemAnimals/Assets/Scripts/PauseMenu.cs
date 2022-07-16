@@ -19,18 +19,21 @@ public class PauseMenu : Manager<PauseMenu> {
     }
 
     public void ResumeGame() {
+        SoundManager.Instance.Play("Click");
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
     }
 
     public void PauseGame() {
+        SoundManager.Instance.Play("Click");
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
     }
 
     public void LoadMenu() {
+        SoundManager.Instance.Play("Click");
         SceneController.Instance.LoadScene("Scenes/Main Menu");
         Time.timeScale = 1f;
     }

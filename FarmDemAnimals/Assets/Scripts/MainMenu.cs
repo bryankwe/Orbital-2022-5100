@@ -14,8 +14,9 @@ public class MainMenu : MonoBehaviour
     public void OnPlayClick() 
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+        SoundManager.Instance.Play("Click");
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");
+
 
         //SceneController.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, 1, 2)
     }
@@ -26,6 +27,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OnHelpClick() {
+        SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(true);
     }
 
