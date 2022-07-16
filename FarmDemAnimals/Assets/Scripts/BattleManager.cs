@@ -76,7 +76,7 @@ public class BattleManager : Manager<BattleManager> {
                 enemyTeams.Add(rTeam);
             }
         }
-        EnemyDatabaseSO.TeamData randomTeam = enemyTeams[Random.Range(0, enemyTeams.Count)];
+        EnemyDatabaseSO.TeamData randomTeam = enemyTeams[Random.Range(0, enemyTeams.Count - 1)];
         foreach (WarbandDataSO.EntityData animalInfo in randomTeam.warbandTeam) {
             BaseEntity actualPrefab = entitiesDatabase.allEntities[animalInfo.animalID - 1].prefab;
 
