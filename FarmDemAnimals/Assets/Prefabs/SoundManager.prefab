@@ -150,7 +150,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: c3b66b0d6c60aaf428d3d1644a431a2c, type: 3}
     name: Error
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -168,25 +168,25 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: e002a4b47e392694e996d0597a503d53, type: 3}
     name: Background
-    volume: 0.25
+    volume: 0.15
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 008750acb4847f2468b6730cde555c5c, type: 3}
     name: Drag
-    volume: 0.5
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 7af80afc40cdbff4bad27ee98c82dfca, type: 3}
     name: Drop
-    volume: 0.27
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 82853dc5b8070c64dbf580ad5374dbab, type: 3}
     name: Coins
-    volume: 0.5
+    volume: 0.35
     pitch: 1
     loop: 0
     source: {fileID: 0}
