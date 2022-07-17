@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OnQuitGameClick() {
+        SoundManager.Instance.Play("Click");
         Application.Quit();
         Debug.Log("Exited the game...");
     }
@@ -32,6 +33,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void OnDoneClick() {
+        SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(false);
     }
 }

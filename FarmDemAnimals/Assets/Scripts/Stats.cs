@@ -31,14 +31,17 @@ public class Stats : Manager<Stats> {
     }
 
     public void OnPauseClick() {
+        SoundManager.Instance.Play("Click");
         PauseMenu.Instance.PauseGame();
     }
 
     public void OnHelpClick() {
+        SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(true);
     }
 
     public void OnDoneClick() {
+        SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(false);
     }
 }

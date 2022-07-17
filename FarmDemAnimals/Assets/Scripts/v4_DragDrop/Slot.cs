@@ -45,24 +45,30 @@ public class Slot : MonoBehaviour, IDropHandler {
             if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
                 if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
                     ShopToWarband(d, a);
+                    SoundManager.Instance.Play("Drop");
                 } else { // If dragged from Warband (Swap positions)
                     WarbandToWarband(d, a);
+                    SoundManager.Instance.Play("Drop");
                 }
             } else if(typeOfItem == DragHandler.Origin.SHOP) { // if the slot is FREEZE
                 if(d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
                     ShopToFreeze(d, a);
+                    SoundManager.Instance.Play("Drop");
+                } else { // If dragged from elsewhere (which is not allowed)
+                    SoundManager.Instance.Play("Error");
                 }
             } else if(typeOfItem == DragHandler.Origin.WARBAND) { // if the slot is SELL
                 if(d.typeOfItem == DragHandler.Origin.WARBAND) { // If dragged from Warband
                     WarbandToSell(d, a);
+                    SoundManager.Instance.Play("Drop");
+                } else { // If dragged from elsewhere (which is not allowed)
+                    SoundManager.Instance.Play("Error");
                 }
             }
         }
     }
 
     void ShopToWarband(DragHandler d, BaseEntity a) {
-        //Sounds
-        SoundManager.Instance.Play("Buy");
         if (!item && a.shopRef.OnDragToWarband()) { // If enough money to buy animal & the warband slot is empty
             if(a.isFrozen) {
                 a.FreezeToggle(); // Unfreeze
@@ -104,8 +110,6 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void WarbandToSell(DragHandler d, BaseEntity a) {
-        //Sounds
-        SoundManager.Instance.Play("Sell");
         a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
         if(a.ability == BaseEntity.Ability.SELL) { // Activate animal's SELL special ability
             a.activateAbility(); // Must ensure the ability does not apply to self (haven't destroy self yet)
@@ -116,8 +120,6 @@ public class Slot : MonoBehaviour, IDropHandler {
     }
 
     void CombineAnimals(BaseEntity a, bool fromShop) {
-        //Sounds
-        SoundManager.Instance.Play("Combine");
         BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
         itemBE.IncreasePreparationStats(a.GetAttackMax(), a.GetHealthMax());
         itemBE.totalEntityCount += 1;

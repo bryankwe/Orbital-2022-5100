@@ -49,6 +49,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
 
     private void StatsTracker_OnStatsIncreased(object sender, System.EventArgs e) {
         PowerUpParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
+        SoundManager.Instance.Play("PowerUp");
     }
 
     private void StatsTracker_OnDamaged(object sender, System.EventArgs e) {
@@ -58,6 +59,7 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     public void FreezeToggle() {
         transform.Find("FreezeBG").gameObject.SetActive(!isFrozen);
         isFrozen = !isFrozen;
+        SoundManager.Instance.Play("Freeze");
         //Debug.Log(transform.name + " Freeze Status: " + isFrozen.ToString());
     }
 

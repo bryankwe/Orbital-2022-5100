@@ -67,11 +67,13 @@ public class PlayerData : SingletonManager<PlayerData> {
     public void SpendMoney(int amount)
     {
         Money -= amount;
+        SoundManager.Instance.Play("Coins");
         OnUpdateMoney?.Invoke(); //Use this to update UI
     }
 
     public void AddMoney(int amount) {
         Money += amount;
+        SoundManager.Instance.Play("Coins");
         OnUpdateMoney?.Invoke();
     }
 

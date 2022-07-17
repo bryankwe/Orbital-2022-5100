@@ -35,6 +35,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         startPosition = transform.position;
         startParent = transform.parent;
         canvasGroup.blocksRaycasts = false;
+        SoundManager.Instance.Play("Drag");
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -48,6 +49,6 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         canvasGroup.blocksRaycasts = true;
         if(transform.parent == startParent) {
             transform.position = startPosition;
-        } 
+        }
     }
 }
