@@ -20,7 +20,9 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
 
     public TextMeshProUGUI outcomeText;
     public TextMeshProUGUI continueText;
-    public bool outcomeIsWin; // Possibly for future animation for win / lose
+    
+    public bool outcomeIsWin = false; // Possibly for future animation for win / lose
+    bool hasPlayedAnimations = false;
 
     void Start() {
         
@@ -33,6 +35,16 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
         totalLives = PlayerData.Instance.maxLives;
     }
     
+    public void PlayAnimations() {
+        if (outcomeIsWin == true && !hasPlayedAnimations) {
+            SoundManager.Instance.Play("Win");
+            hasPlayedAnimations = true;
+        } else if (outcomeIsWin == false && !hasPlayedAnimations) {
+            SoundManager.Instance.Play("Lose");
+            hasPlayedAnimations = true;
+        }
+    }
+
     void Update() {
 
         // Logic for trophies display
@@ -69,6 +81,8 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
                 lives[i].enabled = false;
             }*/
         }
+
+        PlayAnimations();
     }
 
     public void SetOutcomeText(string outcome, string punctuation) {
@@ -80,6 +94,7 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnContinueClick() {
+        SoundManager.Instance.Play("Click");
         PlayerData.Instance.IncreaseTurnNumber();
         PlayerData.Instance.ResetMoney();
         SceneController.Instance.LoadScene("Scenes/Preparation Scene");

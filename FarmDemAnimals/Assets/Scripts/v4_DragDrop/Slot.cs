@@ -45,16 +45,24 @@ public class Slot : MonoBehaviour, IDropHandler {
             if(typeOfItem == DragHandler.Origin.BOTH) { // if the slot is WARBAND
                 if (d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
                     ShopToWarband(d, a);
+                    SoundManager.Instance.Play("Drop");
                 } else { // If dragged from Warband (Swap positions)
                     WarbandToWarband(d, a);
+                    SoundManager.Instance.Play("Drop");
                 }
             } else if(typeOfItem == DragHandler.Origin.SHOP) { // if the slot is FREEZE
                 if(d.typeOfItem == DragHandler.Origin.SHOP) { // If dragged from Shop
                     ShopToFreeze(d, a);
+                    SoundManager.Instance.Play("Drop");
+                } else { // If dragged from elsewhere (which is not allowed)
+                    SoundManager.Instance.Play("Error");
                 }
             } else if(typeOfItem == DragHandler.Origin.WARBAND) { // if the slot is SELL
                 if(d.typeOfItem == DragHandler.Origin.WARBAND) { // If dragged from Warband
                     WarbandToSell(d, a);
+                    SoundManager.Instance.Play("Drop");
+                } else { // If dragged from elsewhere (which is not allowed)
+                    SoundManager.Instance.Play("Error");
                 }
             }
         }

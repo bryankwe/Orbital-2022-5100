@@ -23,7 +23,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     public Transform currentPanel; // Reference to current canvas
     public bool outcomeIsWin = false; // Possibly for future animation for win / lose
     public ParticleSystem confettiParticleSystem;
-    bool hasPlayedConfetti = false;
+    bool hasPlayedAnimations = false;
 
     void Start() {
         
@@ -55,10 +55,14 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     /// <summary> 
     /// Not sure why I cannot call this from BattleManager / OnEnable(). Only works when I call in Update()
     /// </summary>
-    public void PlayConfetti() {
-        if (outcomeIsWin == true && !hasPlayedConfetti) {
+    public void PlayAnimations() {
+        if (outcomeIsWin == true && !hasPlayedAnimations) {
             confettiParticleSystem.transform.GetComponent<UnityEngine.UI.Extensions.UIParticleSystem>().StartParticleEmission();
-            hasPlayedConfetti = true;
+            SoundManager.Instance.Play("WinGame");
+            hasPlayedAnimations = true;
+        } else if (outcomeIsWin == false && !hasPlayedAnimations) {
+            SoundManager.Instance.Play("Lose");
+            hasPlayedAnimations = true;
         }
     }
     
@@ -99,7 +103,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
             }*/
         }
 
-        PlayConfetti();
+        PlayAnimations();
     }
 
     /// <summary>
@@ -130,6 +134,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnMainMenuClick() {
+        SoundManager.Instance.Play("Click");
         // Reset all the stats in PlayerData
         PlayerData.Instance.ResetAllStats();
         // Load Main Menu Scene
@@ -137,6 +142,7 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     }
 
     public void OnQuitGameClick() {
+        SoundManager.Instance.Play("Click");
         // Reset all the stats in PlayerData
         PlayerData.Instance.ResetAllStats();
         // Quit application, but won't work in Unity Play Mode (need to build externally)

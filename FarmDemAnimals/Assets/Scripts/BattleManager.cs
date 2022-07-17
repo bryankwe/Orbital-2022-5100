@@ -223,6 +223,7 @@ public class BattleManager : Manager<BattleManager> {
         currentTween = player1.transform.DOPunchPosition(Vector3.right * 45f, 0.5f, 0, 0);
         enemy1.transform.DOPunchPosition(Vector3.left * 45f, 0.5f, 0, 0);
         yield return currentTween.WaitForCompletion();
+        SoundManager.Instance.Play("Hit");
         currentTween = player1.transform.DOShakePosition(0.5f, 20f, 50);
         enemy1.transform.DOShakePosition(0.5f, 20f, 50);
         yield return currentTween.WaitForCompletion();
@@ -318,6 +319,8 @@ public class BattleManager : Manager<BattleManager> {
             // Set relevant text
             normalBattleOutcomePanel.SetOutcomeText("won", "!");
             normalBattleOutcomePanel.SetContinueText(PlayerData.Instance.TurnNumber + 1);
+            // Set outcomeIsWin variable to true to play correct sounds
+            normalBattleOutcomePanel.outcomeIsWin = true;
             // Set active panel
             normalBattleOutcomePanel.gameObject.SetActive(true);
         } else if (battleOutcomePanel == BattleOutcomePanel.NORMALDRAW) {
@@ -335,7 +338,7 @@ public class BattleManager : Manager<BattleManager> {
         } else if (battleOutcomePanel == BattleOutcomePanel.GAMEOVERWIN) {
             // Set relevant text
             gameOverBattleOutcomePanel.SetOutcomeText("won", "in", PlayerData.Instance.TurnNumber, "!");
-            // Set outcomeIsWin variable to true to enable Confetti
+            // Set outcomeIsWin variable to true to enable animations
             gameOverBattleOutcomePanel.outcomeIsWin = true;
             // Set active panel
             gameOverBattleOutcomePanel.gameObject.SetActive(true);
