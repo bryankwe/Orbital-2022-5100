@@ -27,7 +27,7 @@ public class SoundManager : SingletonManager<SoundManager>
     }
 
     void Start() {
-        Play("Background");
+        //Play("Background");
     }
 
     public void Play (string name) {

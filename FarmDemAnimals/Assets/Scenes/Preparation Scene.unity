@@ -2067,6 +2067,10 @@ PrefabInstance:
       propertyPath: mixer
       value: 
       objectReference: {fileID: 24100000, guid: a501da87dd2056d42aac4ebcdf7c9ef5, type: 2}
+    - target: {fileID: 5964146508887353915, guid: c37593bdcdf6d8e4192a721f1f7f3ec9, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e002a4b47e392694e996d0597a503d53, type: 3}
     - target: {fileID: 7115770404627418175, guid: c37593bdcdf6d8e4192a721f1f7f3ec9, type: 3}
       propertyPath: m_RootOrder
       value: 19
