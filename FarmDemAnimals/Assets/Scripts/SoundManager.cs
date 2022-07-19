@@ -6,6 +6,8 @@ public class SoundManager : SingletonManager<SoundManager>
 {
     // Start is called before the first frame update
     [SerializeField] Sound[] sounds;
+    [SerializeField] AudioMixer mixer;
+    public const string MUSIC_KEY = "musicVolume";
     new void Awake()
     {
         if (Instance == null) {
@@ -21,7 +23,7 @@ public class SoundManager : SingletonManager<SoundManager>
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
          }
-        
+         LoadVolume();
     }
 
     void Start() {
@@ -40,6 +42,11 @@ public class SoundManager : SingletonManager<SoundManager>
             return;
         }
         sound.source.Play();
+    }
+
+    public void LoadVolume() {
+        float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
+        mixer.SetFloat(PauseMenu.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
     }
 
 }
