@@ -26,19 +26,16 @@ public class Slot : MonoBehaviour, IDropHandler {
         }
     }
 
-    // Need to include logic for combine => Check if id is same? but I cannot access BaseEntity.id through DragHandler
+    /// <summary>
+    /// Drops the DragHandler object on the Slot if allowed
+    /// Calls many helper functions for conditional checks in the various allowable ways to be dropped
+    /// </summary>
     public void OnDrop(PointerEventData eventData) {
         //Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
 
         DragHandler d = eventData.pointerDrag.GetComponent<DragHandler>();
 
         BaseEntity a = eventData.pointerDrag.GetComponent<BaseEntity>();
-
-        /*if (eventData.pointerDrag.TryGetComponent(out BaseEntity animal)) { // Always true
-            animal.shopRef.AllowDragToWarband
-        }*/
-
-        //if(DragHandler.itemBeingDragged.transform.parent.gameObject.tag == "Shop")
 
         if(d != null) {
 
@@ -68,6 +65,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         }
     }
 
+    /// <summary>
+    /// Helper function for OnDrop()
+    /// Checks and plays logic for various ways animal can be dragged from Shop and dropped in Warband
+    /// </summary>
     void ShopToWarband(DragHandler d, BaseEntity a) {
         if (!item && a.shopRef.OnDragToWarband()) { // If enough money to buy animal & the warband slot is empty
             if(a.isFrozen) {
@@ -87,6 +88,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         }
     }
 
+    /// <summary>
+    /// Helper function for OnDrop()
+    /// Checks and plays logic for various ways animal can be dragged from Warband and dropped in Warband
+    /// </summary>
     void WarbandToWarband(DragHandler d, BaseEntity a) {
         if (!item) { // If warband slot is empty
             DragHandler.itemBeingDragged.transform.SetParent(transform);
@@ -102,6 +107,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         }
     }
 
+    /// <summary>
+    /// Helper function for OnDrop()
+    /// Checks and plays logic for various ways animal can be dragged from Shop and dropped in Freeze
+    /// </summary>
     void ShopToFreeze(DragHandler d, BaseEntity a) {
         /*if(!a.isFrozen) {
             a.FreezeToggle(); // Freeze
@@ -109,6 +118,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         a.FreezeToggle(); // Freeze or Unfreeze
     }
 
+    /// <summary>
+    /// Helper function for OnDrop()
+    /// Checks and plays logic for various ways animal can be dragged from Warband and dropped in Sell
+    /// </summary>
     void WarbandToSell(DragHandler d, BaseEntity a) {
         a.shopRef.SellSuccess(a.totalEntityCount); // Add Money
         if(a.ability == BaseEntity.Ability.SELL) { // Activate animal's SELL special ability
@@ -119,6 +132,10 @@ public class Slot : MonoBehaviour, IDropHandler {
         PreparationManager.Instance.OnUpdateWarband?.Invoke();
     }
 
+    /// <summary>
+    /// Helper function for OnDrop()
+    /// Checks and plays logic for various ways animal can be combined with each other
+    /// </summary>
     void CombineAnimals(BaseEntity a, bool fromShop) {
         BaseEntity itemBE = item.transform.GetComponent<BaseEntity>();
         itemBE.IncreasePreparationStats(a.GetAttackMax(), a.GetHealthMax());

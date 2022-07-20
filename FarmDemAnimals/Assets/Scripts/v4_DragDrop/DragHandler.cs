@@ -29,6 +29,9 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    /// <summary>
+    /// Starts the movement of the dragged object
+    /// </summary>
     public void OnBeginDrag(PointerEventData eventData) {
         //Debug.Log("OnBeginDrag");
         itemBeingDragged = gameObject;
@@ -38,11 +41,17 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         SoundManager.Instance.Play("Drag");
     }
 
+    /// <summary>
+    /// Moves the dragged object's position accordingly to the mouse position
+    /// </summary>
     public void OnDrag(PointerEventData eventData) {
         //Debug.Log("OnDrag");
         this.transform.position = eventData.position;
     }
 
+    /// <summary>
+    /// Resets the dragged object's position to the origginal position if the parent did not change
+    /// </summary>
     public void OnEndDrag(PointerEventData eventData) {
         //Debug.Log("OnEndDrag");
         itemBeingDragged = null;

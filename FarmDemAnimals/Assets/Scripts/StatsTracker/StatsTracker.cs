@@ -19,7 +19,6 @@ public class StatsTracker {
     public event EventHandler OnAttackMaxChanged; // PREPARATION
     public event EventHandler OnNerfed; // <- Never happens (Battle Phase attack never lowers)
     public event EventHandler OnBuffed;
-    //public event EventHandler OnReset;
 
     public event EventHandler OnStatsIncreased; // BOTH (when any stats increases)
 
@@ -118,16 +117,6 @@ public class StatsTracker {
         OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
 
-    /*/// <summary>
-    /// Reset this StatsTracker to the maximum health amount
-    /// Called at the start of Preparation Phase (After Battle Phase ends)
-    /// </summary>
-    public void ResetHealth() {
-        health = healthMax;
-        OnHealthChanged?.Invoke(this, EventArgs.Empty);
-        OnReset?.Invoke(this, EventArgs.Empty);
-    }*/
-
     /// <summary>
     /// Increases the Max Health Amount, and sets the Health Amount to the new Max
     /// Max Health Amount has a ceiling of 99
@@ -205,16 +194,6 @@ public class StatsTracker {
         OnBuffed?.Invoke(this, EventArgs.Empty);
         OnStatsIncreased?.Invoke(this, EventArgs.Empty);
     }
-
-    /*/// <summary>
-    /// Reset this StatsTracker to the maximum attack amount
-    /// Called at the start of Preparation Phase (After Battle Phase ends)
-    /// </summary>
-    public void ResetAttack() {
-        attack = attackMax;
-        OnAttackChanged?.Invoke(this, EventArgs.Empty);
-        OnReset?.Invoke(this, EventArgs.Empty);
-    }*/
 
     /// <summary>
     /// Increases the Max Attack Amount, and sets the Attack Amount to the new Max

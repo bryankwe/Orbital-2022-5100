@@ -34,22 +34,34 @@ public class PauseMenu : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Deactivates Pause Menu and unfreezes background
+    /// </summary>
     public void ResumeGame() {
+        // If player enters Pause Menu through clicking button and NOT "escape" key
         if (!Input.GetKeyDown(KeyCode.Escape)) {
             SoundManager.Instance.Play("Click");
         }
         pauseMenu.SetActive(false);
+        // Reset the timescale back to 1 (Unfreeze background)
         Time.timeScale = 1f;
         isGamePaused = false;
         PlayerPrefs.SetFloat(SoundManager.MUSIC_KEY, musicSlider.value);
     }
 
+    /// <summary>
+    /// Activates Pause Menu and freezes background
+    /// </summary>
     public void PauseGame() {
         pauseMenu.SetActive(true);
+        // Set the timescale to 0 (Freeze background)
         Time.timeScale = 0f;
         isGamePaused = true;
     }
 
+    /// <summary>
+    /// Loads Main Menu On Click and resets player data
+    /// </summary>
     public void LoadMenu() {
         SoundManager.Instance.Play("Click");
         PlayerData.Instance.ResetAllStats();
@@ -57,6 +69,9 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
+    /// <summary>
+    /// Quits application and resets player data
+    /// </summary>
     public void QuitGame() {
         SoundManager.Instance.Play("Click");
         PlayerData.Instance.ResetAllStats();
@@ -64,6 +79,9 @@ public class PauseMenu : MonoBehaviour {
         Debug.Log("Exited Game");
     }
 
+    /// <summary>
+    /// Sets background volume according to slider
+    /// </summary>
     public void SetMusicVolume(float value) {
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value)*20);
     }

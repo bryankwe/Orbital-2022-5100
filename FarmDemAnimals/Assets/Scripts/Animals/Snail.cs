@@ -13,13 +13,6 @@ public class Snail : BaseEntity {
             
             int selfIndex = currentWarband.FindIndex(x => x == this); // Find self index
 
-            /*for (int i = 0; i < currentWarband.Count; i++) {
-                if (currentWarband[i] == this) {
-                    selfIndex = i;
-                    break;
-                }
-            }*/
-
             for (int i = selfIndex - 1; i >= 0; i--) { // Loop through from self position to first
                 if (currentWarband[i] != null) { // skip if empty
                     currentWarband[i].IncreasePreparationStats(1,1);

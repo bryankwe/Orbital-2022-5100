@@ -19,14 +19,11 @@ public class Tooltip : MonoBehaviour {
         gameObject.SetActive(false); // Deactivate tooltip on awake
     }
     
+    /// <summary>
+    /// Sets input texts correctly and display in the UI
+    /// </summary>
     public void SetText(string content, string header = "") {
-        /*if(string.IsNullOrEmpty(header)) { // Some objects might not have headers, so don't show headers
-            headerField.gameObject.SetActive(false);
-        } else {
-            headerField.gameObject.SetActive(true);
-            headerField.text = header;
-        }*/
-
+        
         headerField.text = header;
         contentField.text = content;
 

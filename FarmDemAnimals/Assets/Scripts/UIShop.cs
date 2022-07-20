@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public class UIShop : MonoBehaviour {
-    //public List<UICard> allCards; // Contains empty GameObjects used for Instantiation (Assigned in Editor)
-    //public List<BaseEntity> warband = new List<BaseEntity>(); // To be updated upon click of "End Turn" Button?
     public TextMeshProUGUI money; //Display the amount of money available
     
     private EntitiesDatabaseSO entitiesDatabase;
@@ -30,6 +28,12 @@ public class UIShop : MonoBehaviour {
     /// <summary>
     /// Randomly Selects an Animal of the Correct (Allowable) Tier from EntitiesDatabaseSO
     /// </summary>
+    /// <remarks>
+    /// Incorporates the Animal Tiering System
+    /// </remarks>
+    /// <returns>
+    /// Struct of EntitiesDatabaseSO.EntityData that contains the prefab reference of the animal
+    /// </returns>
     private EntitiesDatabaseSO.EntityData ChooseAnimalFromDatabase() {
         //Debug.Log("Enter UIShop ChooseAnimalFromDatabase()");
         EntitiesDatabaseSO.EntityData randomAnimal = entitiesDatabase.allEntities[Random.Range(0, entitiesDatabase.allEntities.Count)];
@@ -41,8 +45,10 @@ public class UIShop : MonoBehaviour {
 
     /// <summary>
     /// Generates the card returned by ChooseAnimalFromDatabase() and Instantiates into the game through UICard.Setup()
-    /// Called when rerolling the cards
     /// </summary>
+    /// <remarks>
+    /// Called upon clicking REROLL button
+    /// </remarks>
     private void RerollCards() {
         //Debug.Log("RerollCards() called");
         for (int i = 0; i < allCards.Count; i++) {
@@ -67,8 +73,10 @@ public class UIShop : MonoBehaviour {
     /// <summary>
     /// Generates previously frozen animals through ShopDataSO.frozenShopEntities
     /// Generates the remaining animals returned by ChooseAnimalFromDatabase() and Instantiates into the game through UICard.Setup()
-    /// Called only at the start of each preparation phase
     /// </summary>
+    /// <remarks>
+    /// Called ONLY at the START of each PREPARATION PHASE
+    /// </remarks>
     private void GenerateCardsAtStartOfTurn() {
         //Debug.Log("GenerateCardsAtStartOfTurn() called");
         // Fill up slots with previously frozen animals first
@@ -94,6 +102,11 @@ public class UIShop : MonoBehaviour {
         }
     }
     
+    /// <summary>
+    /// Checks if player has sufficient money to reroll
+    /// If allowed, rerolls Shop Animals by calling RerollCards()
+    /// Reduces the Gold Amount by 1
+    /// </summary>
     public void OnRerollClick() {
         //Check if can afford, then decrease money and generate new cards
         if(PlayerData.Instance.CanAfford(rerollCost)) {
@@ -105,6 +118,10 @@ public class UIShop : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Changes current state to "TURNEND"
+    /// Proceeds to change scenes to Battle Scene
+    /// </summary>
     public void OnEndTurnClick() {
         PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
         SoundManager.Instance.Play("Click");
@@ -112,6 +129,13 @@ public class UIShop : MonoBehaviour {
         SceneController.Instance.LoadScene("Scenes/Battle Scene");
     }
 
+    /// <summary>
+    /// Checks if player has sufficient money to buy an animal through AllowDragToWarband()
+    /// If allowed, reduces the Gold Amount by 3
+    /// </summary>
+    /// <returns>
+    /// Boolean representing whether the player is allowed to buy an animal
+    /// </returns>
     public bool OnDragToWarband() {
         //Debug.Log("Bought");
         bool ans = AllowDragToWarband();
@@ -123,15 +147,30 @@ public class UIShop : MonoBehaviour {
         return ans;
     }
 
+    /// <summary>
+    /// Increases Gold Amount by the totalEntityCount of the sold animal
+    /// </summary>
     public void SellSuccess(int totalEntityCount) {
         //Debug.Log("Sold " + totalEntityCount);
         PlayerData.Instance.AddMoney(sellCost * totalEntityCount);
     }
 
-    bool AllowDragToWarband() {
+    /// <summary>
+    /// Helper function for OnDragToWarband()
+    /// Checks if player has sufficient money to reroll
+    /// </summary>
+    /// <returns>
+    /// Boolean representing whether the player is allowed to buy an animal
+    /// </returns>
+    private bool AllowDragToWarband() {
         return PlayerData.Instance.CanAfford(entitiyCost);
     }
 
+    /// <summary>
+    /// Function that listens to the OnUpdateMoney event
+    /// Called whenever OnUpdateMoney is invoked
+    /// Updates the Gold Amount to the correct amount
+    /// </summary>
     public void Refresh() {
         money.text = PlayerData.Instance.Money.ToString();
     }

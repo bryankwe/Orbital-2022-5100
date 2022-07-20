@@ -57,6 +57,9 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
         ActivateAbilityAfterDamaged();
     }
 
+    /// <summary>
+    /// Toggles the Freeze Icon
+    /// </summary>
     public void FreezeToggle() {
         transform.Find("FreezeBG").gameObject.SetActive(!isFrozen);
         isFrozen = !isFrozen;
@@ -95,16 +98,6 @@ public abstract class BaseEntity : MonoBehaviour, IGetStatsTracker {
     }
 
     // -------------------------- TRANSITIONAL FUNCTIONS -------------------------------
-    
-    /*/// <summary>
-    /// MIGHT NOT USE (see SetStats())
-    /// BEFORE PREPARATION PHASE, AFTER BATTLE PHASE
-    /// Resets to maximum health and attack amount
-    /// </summary>
-    public virtual void ResetStats() {
-        statsTracker.ResetHealth();
-        statsTracker.ResetAttack();
-    }*/
 
     /// <summary>
     /// USE IN PLACE OF ResetStats()

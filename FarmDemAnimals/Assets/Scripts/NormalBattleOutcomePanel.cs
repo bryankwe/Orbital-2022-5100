@@ -21,8 +21,8 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
     public TextMeshProUGUI outcomeText;
     public TextMeshProUGUI continueText;
     
-    public bool outcomeIsWin = false; // Possibly for future animation for win / lose
-    bool hasPlayedAnimations = false;
+    public bool outcomeIsWin = false; // variable to signal if the panel is supposed to show win or lose effects
+    bool hasPlayedAnimations = false; // variable to signal whether effects have been played
 
     void Start() {
         
@@ -35,6 +35,10 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
         totalLives = PlayerData.Instance.maxLives;
     }
     
+    /// <summary>
+    /// Plays animations and sound effects accordingly to the battle outcome
+    /// Played only ONCE
+    /// </summary>
     public void PlayAnimations() {
         if (outcomeIsWin == true && !hasPlayedAnimations) {
             SoundManager.Instance.Play("Win");
@@ -56,13 +60,6 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
             } else {
                 wins[i].color = emptyTrophyColor;
             }
-
-            // Trivial Check if Number of Trophies Displayed is more than 5 (Not needed)
-            /*if (i < totalWinsNeeded) {
-                wins[i].enabled = true;
-            } else {
-                wins[i].enabled = false;
-            }*/
         }
 
         // Logic for hearts display
@@ -74,25 +71,29 @@ public class NormalBattleOutcomePanel : MonoBehaviour {
             } else {
                 lives[i].color = emptyHeartColor;
             }
-
-            /*if (i < totalLives) {
-                lives[i].enabled = true;
-            } else {
-                lives[i].enabled = false;
-            }*/
         }
 
         PlayAnimations();
     }
 
+    /// <summary>
+    /// Helper function to set the outcome text correctly in BattleManager
+    /// </summary>
     public void SetOutcomeText(string outcome, string punctuation) {
         outcomeText.text = string.Format("You {0} the battle{1}", outcome, punctuation);
     }
 
+    /// <summary>
+    /// Helper function to set the continue text correctly in BattleManager
+    /// </summary>
     public void SetContinueText(int turnNumber) {
         continueText.text = string.Format("Proceed to Turn {0}", turnNumber);
     }
 
+    /// <summary>
+    /// Loads the Preparation Scene on click
+    /// Resets the Gold Amount and increases the Turn Number by 1
+    /// </summary>
     public void OnContinueClick() {
         SoundManager.Instance.Play("Click");
         PlayerData.Instance.IncreaseTurnNumber();
