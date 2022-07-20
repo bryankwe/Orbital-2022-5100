@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 310650183539547847, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: content
-      value: 'Start of Turn: Gain 1 Gold'
+      value: 'Start of Turn: Gain 2 Gold'
       objectReference: {fileID: 0}
     - target: {fileID: 4735202029942682599, guid: 8938641722615e843acfe8c2c99c9e08, type: 3}
       propertyPath: m_Controller
