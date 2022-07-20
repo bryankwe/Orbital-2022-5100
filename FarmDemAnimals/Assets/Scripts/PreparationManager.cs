@@ -18,12 +18,6 @@ public class PreparationManager : Manager<PreparationManager> {
     public CurrentState currentState;
 
     public System.Action OnUpdateWarband;
-    /*public System.Action OnBuy;
-    public System.Action OnSell;
-    public System.Action OnTurnStart;
-    public System.Action OnTurnEnd;
-    public System.Action OnCombine;*/
-
     
     private void Start() {
         //Debug.Log("Enter PrepManager Start()");
@@ -54,8 +48,11 @@ public class PreparationManager : Manager<PreparationManager> {
     }
 
     /// <summary>
-    /// Instantiates Warband Animals after BATTLE Phase
+    /// Instantiates Warband Animals that were previously in the warband and sets their stats correctly
     /// </summary>
+    /// <remarks>
+    /// Called after BATTLE PHASE ends
+    /// </remarks>
     private void RestoreWarbandAnimals() {
         // Not required for the first turn
         if (PlayerData.Instance.TurnNumber == 1) {
@@ -84,6 +81,9 @@ public class PreparationManager : Manager<PreparationManager> {
     /// <summary>
     /// Activate any START OF TURN special abilities
     /// </summary>
+    /// <remarks>
+    /// Called at the START of PREPARATION PHASE
+    /// </remarks>
     private void StartTurn() {
         // Debug.Log("Enter PrepManager StartTurn()");
         foreach (BaseEntity baseEntity in warband) {
@@ -101,6 +101,9 @@ public class PreparationManager : Manager<PreparationManager> {
     /// <summary>
     /// Activate any END OF TURN special abilities
     /// </summary>
+    /// <remarks>
+    /// Called at the END of PREPARATION PHASE
+    /// </remarks>
     private void EndTurn() {
         foreach (BaseEntity baseEntity in warband) {
             if (baseEntity != null) {
@@ -115,8 +118,10 @@ public class PreparationManager : Manager<PreparationManager> {
     /// <summary>
     /// Saves relevant data from the current warband to reproduce in Battle Phase and next Preparation Phase
     /// Also saves these data into the enemy database for retrieval as potential battle phase enemy
-    /// Only done in Preparation Phase "End Turn"
     /// </summary>
+    /// <remarks>
+    /// Only Called on clicking "END TURN" in PREPARATION PHASE
+    /// </remarks>
     private void TransferWarbandInfo() {
         // LOGIC: In Battle Phase: Initialize from EntitiesDatabase based on animalID and change stats
         warbandData.warbandEntities = new List<WarbandDataSO.EntityData>();
@@ -152,8 +157,10 @@ public class PreparationManager : Manager<PreparationManager> {
 
     /// <summary>
     /// Saves relevant data from frozen animals in the current shop to reproduce in the next Preparation Phase
-    /// Only done in Preparation Phase "End Turn"
     /// </summary>
+    /// <remarks>
+    /// Only Called on clicking "END TURN" in PREPARATION PHASE
+    /// </remarks>
     private void TransferFrozenShopInfo() {
         shopData.frozenShopEntities = new List<ShopDataSO.EntityData>();
         // Iterate through all cards
@@ -178,7 +185,7 @@ public class PreparationManager : Manager<PreparationManager> {
     }
 
     /// <summary>
-    /// Counts the number of animals in the warband AFTER any action is carried out (before OnUpdateWarband is invoked);
+    /// Counts the number of actual animals in the warband AFTER any action is carried out (before OnUpdateWarband is invoked);
     /// </summary>
     public int CountWarbandAnimals() {
         int counter = 0;
@@ -193,6 +200,9 @@ public class PreparationManager : Manager<PreparationManager> {
     /// <summary>
     /// Control the number of shop slots available
     /// </summary>
+    /// <remarks>
+    /// Called at the START of Preparation Phase -> Shop Tiering System
+    /// </remarks>
     public void ActivateShopSlots() {
         // Debug.Log("Enter PrepManager ActivateShopSlots()");
         int turnNumber = PlayerData.Instance.TurnNumber;
@@ -208,12 +218,18 @@ public class PreparationManager : Manager<PreparationManager> {
         }
     }
 
+    /// <summary>
+    /// Helper function for ActivateShopSlots()
+    /// </summary>
     private void SetActiveSpecifiedSlots(int limit) {
         for (int i = 0; i < limit; i++) {
             allCards[i].EnableCard();
         }
     }
 
+    /// <summary>
+    /// Changes the State of the Preparation Phase to the newState
+    /// </summary>
     public void ChangeState(CurrentState newState) {
         currentState = newState;
         switch (newState) {

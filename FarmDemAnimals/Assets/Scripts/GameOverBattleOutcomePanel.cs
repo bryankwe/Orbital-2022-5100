@@ -22,8 +22,8 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
     public TextMeshProUGUI outcomeText;
     public Transform currentPanel; // Reference to current canvas
     public bool outcomeIsWin = false; // Possibly for future animation for win / lose
-    public ParticleSystem confettiParticleSystem;
-    bool hasPlayedAnimations = false;
+    public ParticleSystem confettiParticleSystem; // variable to signal if the panel is supposed to show win or lose effects
+    bool hasPlayedAnimations = false; // variable to signal whether effects have been played
 
     void Start() {
         
@@ -52,8 +52,9 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
         InstantiatePlayerWarband();
     }
 
-    /// <summary> 
-    /// Not sure why I cannot call this from BattleManager / OnEnable(). Only works when I call in Update()
+    /// <summary>
+    /// Plays animations and sound effects accordingly to the battle outcome
+    /// Played only ONCE
     /// </summary>
     public void PlayAnimations() {
         if (outcomeIsWin == true && !hasPlayedAnimations) {
@@ -77,13 +78,6 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
             } else {
                 wins[i].color = emptyTrophyColor;
             }
-
-            // Trivial Check if Number of Trophies Displayed is more than 5 (Not needed)
-            /*if (i < totalWinsNeeded) {
-                wins[i].enabled = true;
-            } else {
-                wins[i].enabled = false;
-            }*/
         }
 
         // Logic for hearts display
@@ -95,12 +89,6 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
             } else {
                 lives[i].color = emptyHeartColor;
             }
-
-            /*if (i < totalLives) {
-                lives[i].enabled = true;
-            } else {
-                lives[i].enabled = false;
-            }*/
         }
 
         PlayAnimations();
@@ -129,10 +117,17 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Helper function to set the outcome text correctly in BattleManager
+    /// </summary>
     public void SetOutcomeText(string outcome, string connector, int turnNumber, string punctuation) {
         outcomeText.text = string.Format("You {0} the game {1} {2} turns{3}", outcome, connector, turnNumber, punctuation);
     }
 
+    /// <summary>
+    /// Loads the Main Menu Scene on click
+    /// Resets all stats
+    /// </summary>
     public void OnMainMenuClick() {
         SoundManager.Instance.Play("Click");
         // Reset all the stats in PlayerData
@@ -141,6 +136,10 @@ public class GameOverBattleOutcomePanel : MonoBehaviour {
         SceneController.Instance.LoadScene("Scenes/Main Menu");
     }
 
+    /// <summary>
+    /// Quits the application on click
+    /// Resets all stats
+    /// </summary>
     public void OnQuitGameClick() {
         SoundManager.Instance.Play("Click");
         // Reset all the stats in PlayerData

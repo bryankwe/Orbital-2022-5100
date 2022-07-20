@@ -18,28 +18,46 @@ public class Stats : Manager<Stats> {
         TutorialPanel.SetActive(false);
     }
 
+    /// <summary>
+    /// Refreshes the Lives Count and Displays correctly on UI
+    /// </summary>
     void RefreshLives() {
         lives.text = PlayerData.Instance.Lives.ToString();
     }
 
+    /// <summary>
+    /// Refreshes the Win Count and Displays correctly on UI
+    /// </summary>
     void RefreshWins() {
         wins.text = PlayerData.Instance.Trophies.ToString();
     }
 
+    /// <summary>
+    /// Refreshes the Turn Number and Displays correctly on UI
+    /// </summary>
     void RefreshTurnNumber() {
         turnNumber.text = "Turn: " + PlayerData.Instance.TurnNumber.ToString();
     }
 
+    /// <summary>
+    /// Opens Pause Menu on click
+    /// </summary>
     public void OnPauseClick() {
         SoundManager.Instance.Play("Click");
         PauseMenu.Instance.PauseGame();
     }
 
+    /// <summary>
+    /// Opens Tutorial Panel on click
+    /// </summary>
     public void OnHelpClick() {
         SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(true);
     }
 
+    /// <summary>
+    /// Closes Tutorial Panel on click
+    /// </summary>
     public void OnDoneClick() {
         SoundManager.Instance.Play("Click");
         TutorialPanel.SetActive(false);

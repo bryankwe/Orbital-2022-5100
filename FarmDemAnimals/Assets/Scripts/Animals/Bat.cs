@@ -6,17 +6,7 @@ public class Bat : BaseEntity {
 
     public override Ability ability { get { return Ability.BUY; } } //public override string ability { get { return "BUY";} }
     
-    /*private void OnEnable() {
-        //PreparationManager.Instance.OnBuy += Bought;
-    }
-
-    private void OnDisable() {
-        //PreparationManager.Instance.OnBuy -= Bought;
-    }*/
-    
-    // Why do all Bats call this event? ==> Because of OnEnable() ==> Need to only Bought() when actually buying and not OnEnable()
-    // Incomplete ==> Did not cater for Combine()
-    public override void activateAbility() { // private void Bought() {
+    public override void activateAbility() {
         
         List<BaseEntity> currentWarband = PreparationManager.Instance.warband;
         
@@ -37,12 +27,4 @@ public class Bat : BaseEntity {
             }
         }
     }
-
-    /*public override void Damage(int amount) {
-        statsTracker.Damage(amount);
-    }
-
-    public override void Heal(int amount) {
-        statsTracker.Heal(amount);
-    }*/
 }

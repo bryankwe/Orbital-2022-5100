@@ -69,6 +69,10 @@ public class BattleManager : Manager<BattleManager> {
         }
     }
     
+    /// <summary>
+    /// Instantiates the enemy's warband taken from the enemyDatbase
+    /// Adds each animal into the enemyTeam List in correct position
+    /// </summary>
     private void InstantiateEnemyWarband() {
         List<EnemyDatabaseSO.TeamData> enemyTeams = new List<EnemyDatabaseSO.TeamData>();
         foreach (EnemyDatabaseSO.TeamData rTeam in enemyDatabase.pastTeams) {
@@ -107,7 +111,7 @@ public class BattleManager : Manager<BattleManager> {
     /// This function is called before DecideCorrectPanelToDisplay()
     /// </summary>
     private void Battle() {
-        Debug.Log("Battling ...");
+        //Debug.Log("Battling ...");
         /*
         int counter = 1;
         
@@ -176,25 +180,21 @@ public class BattleManager : Manager<BattleManager> {
             battleOutcome = BattleOutcome.DRAW; 
         }
         
-        if (playerTeam.Count > 0 && enemyTeam.Count > 0) {
+        if (playerTeam.Count > 0 && enemyTeam.Count > 0) { // If there are still animals in both teams, animate battle
             StartCoroutine(AnimateBattle());
-        } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) {
+        } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) { // If there is at least one team empty, stop the battle
             StopCoroutine(AnimateBattle());
             ChangeState(CurrentState.AFTERBATTLE); 
-        } 
-
-        // At this point, at least one of the teams should be empty
-        
-         
+        }      
     }
 
-    // NOTE: THIS CAUSES INFINITE LOOP (DOESN'T WORK)
+    /// <summary>
+    /// Animates the battle and holds battle logic
+    /// Called repeatedly by Battle() until at least one team is empty
+    /// </summary>
     private IEnumerator AnimateBattle() {
-        // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
-        //                          Make use of target reference and DecreaseBattleStats()
-        // Changes made (12/07): Made every Tween distinct to see animation time (can always change back for some tweens to all happen at once)
-        //                       Moved Animals up the line when animals in front die (not all yet, but can easily be done)
-        //                                                 
+
+        // Create local variable for first animal of each team
         BaseEntity player1 = playerTeam[0];
         BaseEntity enemy1 = enemyTeam[0];
 
@@ -314,7 +314,7 @@ public class BattleManager : Manager<BattleManager> {
     /// battleOutcomePanel variable should have been set before calling this function
     /// Panel is transition between Battle and Preparation Phase / Main Menu (if Game Over)
     /// </summary>
-    public void DisplayBattleOutcomePanel() {
+    private void DisplayBattleOutcomePanel() {
         if (battleOutcomePanel == BattleOutcomePanel.NORMALWIN) {
             // Set relevant text
             normalBattleOutcomePanel.SetOutcomeText("won", "!");
