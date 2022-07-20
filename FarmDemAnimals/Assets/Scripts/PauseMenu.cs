@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour {
     void Awake() {
         Instance = this;
         pauseMenu.SetActive(false);
+        //Call function SetMusicVolume to change volume when slider is adjusted
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
     }
     
@@ -46,6 +47,7 @@ public class PauseMenu : MonoBehaviour {
         // Reset the timescale back to 1 (Unfreeze background)
         Time.timeScale = 1f;
         isGamePaused = false;
+        //Save the slider value in SoundManager for changes in scene
         PlayerPrefs.SetFloat(SoundManager.MUSIC_KEY, musicSlider.value);
     }
 
