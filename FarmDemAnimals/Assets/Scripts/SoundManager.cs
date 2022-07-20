@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : SingletonManager<SoundManager> 
 {
-    // Start is called before the first frame update
-    [SerializeField] Sound[] sounds;
-    [SerializeField] AudioMixer mixer;
-    public const string MUSIC_KEY = "musicVolume";
+    [SerializeField] Sound[] sounds; //List of all our custom AudioClips
+    [SerializeField] AudioMixer mixer; //Mixer to change the volume of background music
+    public const string MUSIC_KEY = "MusicVolume";
     new void Awake()
     {
         if (Instance == null) {
@@ -25,11 +24,9 @@ public class SoundManager : SingletonManager<SoundManager>
          }
          LoadVolume();
     }
-
-    void Start() {
-        //Play("Background");
-    }
-
+    //<summary>
+    // Plays and AudioClip from our list based on the name it was assigned
+    //<summary>
     public void Play (string name) {
         Sound sound = null;
         foreach (Sound s in sounds) {
@@ -44,6 +41,9 @@ public class SoundManager : SingletonManager<SoundManager>
         sound.source.Play();
     }
 
+    //<summary>
+    // Loads Volume according to the slider for all other scenes
+    //<summary>
     public void LoadVolume() {
         float musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
         mixer.SetFloat(PauseMenu.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);

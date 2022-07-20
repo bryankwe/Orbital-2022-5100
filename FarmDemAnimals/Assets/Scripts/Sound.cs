@@ -2,7 +2,7 @@ using UnityEngine.Audio;
 using UnityEngine;
 
 [System.Serializable]
-public class Sound 
+public class Sound //Class created to contain AudioClip and change some of its parameters
 {
     public AudioClip clip;
 

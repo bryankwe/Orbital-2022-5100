@@ -111,64 +111,6 @@ public class BattleManager : Manager<BattleManager> {
     /// This function is called before DecideCorrectPanelToDisplay()
     /// </summary>
     private void Battle() {
-        //Debug.Log("Battling ...");
-        /*
-        int counter = 1;
-        
-        // Make both teams battle
-        
-        while (playerTeam.Count > 0 && enemyTeam.Count > 0) {
-            Debug.Log("Fight Number: " + counter);
-            // Fight -> Use xxTeam.RemoveAt(0) to remove first animal in the list
-            /*
-            BaseEntity player1 = playerTeam[0];
-            BaseEntity enemy1 = enemyTeam[0];
-            player1.transform.DOMove(new Vector3(1,0,0), 2);
-            enemy1.transform.DOMove(new Vector3(0,0,1), 2);
-            player1.SetStats(player1.GetAttack(), player1.GetHealth() - enemy1.GetAttack());
-            enemy1.SetStats(enemy1.GetAttack(), enemy1.GetHealth() - player1.GetAttack());
-            if (player1.GetHealth() < 0) {
-                
-                playerTeam.RemoveAt(0);
-            }
-            if (enemy1.GetHealth() < 0) {
-                enemyTeam.RemoveAt(0);
-            }
-
-            // ------------------ PLEASE SEE!!~~ -------------------
-            // Changes made (10/07):    Add playerFightPos & enemyFightPos to move correctly;
-            //                          Make use of target reference and DecreaseBattleStats()
-            BaseEntity player1 = playerTeam[0];
-            BaseEntity enemy1 = enemyTeam[0];
-
-            // Set target reference
-            player1.target = enemy1;
-            enemy1.target = player1;
-
-            // DoTween the movement (Causes error I think cuz I destroy the animals before they even move due to delay (?))
-            //player1.transform.DOMove(playerFightPos.position, 2);
-            //enemy1.transform.DOMove(enemyFightPos.position, 2);
-            
-            // Fight -> Use DecreaseBattleStats()
-            //          SetStats() changes the Max (which shouldn't be touched in Battle Phase)
-            player1.DecreaseBattleStats(0, enemy1.GetAttack()); // enemy1 attacks player1
-            enemy1.DecreaseBattleStats(0, player1.GetAttack()); // player1 attacks enemy1
-            
-            // Fought one round already -> Check whether any of them died 
-            if (player1.IsDead()) {
-                player1.Die();
-                playerTeam.RemoveAt(0);
-            }
-            if (enemy1.IsDead()) {
-                enemy1.Die();
-                enemyTeam.RemoveAt(0);
-            }
-            //StartCoroutine(AnimateBattle());
-            counter++;
-        }
-        Debug.Log("Exited while loop for battling");
-
-        */
         if (playerTeam.Count > 0) {
             // battle outcome is win
             battleOutcome = BattleOutcome.WIN; 
@@ -184,7 +126,7 @@ public class BattleManager : Manager<BattleManager> {
             StartCoroutine(AnimateBattle());
         } else if (playerTeam.Count == 0 || enemyTeam.Count == 0) { // If there is at least one team empty, stop the battle
             StopCoroutine(AnimateBattle());
-            ChangeState(CurrentState.AFTERBATTLE); 
+            ChangeState(CurrentState.AFTERBATTLE); //Change State from 'Battle' to 'After Battle'
         }      
     }
 
@@ -234,7 +176,7 @@ public class BattleManager : Manager<BattleManager> {
         yield return new WaitForSeconds(1f);
         
         // Fought one round already -> Check whether any of them died (Animate Death)
-        if (player1.IsDead() && enemy1.IsDead()) {
+        if (player1.IsDead() && enemy1.IsDead()) { //Check if both die at the same time (Required for some animals like 'Rhino' and 'Duck')
             currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             enemy1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
@@ -249,7 +191,7 @@ public class BattleManager : Manager<BattleManager> {
                 enemyTeam[0].transform.DOMove(enemyTrans[0].position, 0.5f).SetEase(Ease.InOutSine); //Move animal up the line
             }
         }
-        else if (player1.IsDead()) {
+        else if (player1.IsDead()) { //Only player animal dies
             currentTween = player1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             player1.Die();
@@ -259,7 +201,7 @@ public class BattleManager : Manager<BattleManager> {
             }
             
         }
-        else if (enemy1.IsDead()) {
+        else if (enemy1.IsDead()) { //Only enemy animal dies
             currentTween = enemy1.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
             yield return currentTween.WaitForCompletion();
             enemy1.Die();
@@ -271,7 +213,7 @@ public class BattleManager : Manager<BattleManager> {
 
         // Pause before next battle
         yield return new WaitForSecondsRealtime(1f);
-        Battle();
+        Battle(); //Call 'Battle' again to check whether the battle is over
     }
 
     /// <summary>
