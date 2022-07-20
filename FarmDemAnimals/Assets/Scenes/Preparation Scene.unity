@@ -1866,6 +1866,7 @@ GameObject:
   - component: {fileID: 309321077}
   - component: {fileID: 309321079}
   - component: {fileID: 309321078}
+  - component: {fileID: 309321080}
   m_Layer: 5
   m_Name: ShopSign
   m_TagString: Untagged
@@ -1932,6 +1933,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309321076}
   m_CullTransparentMesh: 1
+--- !u!114 &309321080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309321076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Shop Area
+  content: 'This is your shop. You can:
+
+    - Buy (or combine) animals
+
+    - Freeze
+    animals
+
+    - Reroll the shop'
 --- !u!1 &323136888
 GameObject:
   m_ObjectHideFlags: 0
@@ -6057,6 +6079,7 @@ GameObject:
   - component: {fileID: 922397411}
   - component: {fileID: 922397413}
   - component: {fileID: 922397412}
+  - component: {fileID: 922397414}
   m_Layer: 5
   m_Name: ThisWaySign
   m_TagString: Untagged
@@ -6123,6 +6146,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922397410}
   m_CullTransparentMesh: 1
+--- !u!114 &922397414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922397410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Direction
+  content: 'Your rightmost animal is the first to battle.
+
+    Remember, positioning
+    matters... Have fun strategising!'
 --- !u!1 &923788368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6134,6 +6174,7 @@ GameObject:
   - component: {fileID: 923788369}
   - component: {fileID: 923788371}
   - component: {fileID: 923788370}
+  - component: {fileID: 923788372}
   m_Layer: 5
   m_Name: WarbandSign
   m_TagString: Untagged
@@ -6200,6 +6241,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923788368}
   m_CullTransparentMesh: 1
+--- !u!114 &923788372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923788368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc947fc359118448b8587c7b0b6df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Warband Area
+  content: 'This is your warband. You can:
+
+    - Swap animal positions
+
+    - Sell
+    animals
+
+    - Combine animals'
 --- !u!1 &931468009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6598,7 +6660,7 @@ RectTransform:
   - {fileID: 1865506599}
   - {fileID: 323136889}
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6718,7 +6780,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8850,7 +8912,7 @@ RectTransform:
   - {fileID: 922397411}
   - {fileID: 309321077}
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8936,7 +8998,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1276964338}
   - {fileID: 1915528842}
   - {fileID: 2105997263}
   - {fileID: 1627620322}
@@ -8944,6 +9005,7 @@ RectTransform:
   - {fileID: 1565736129}
   - {fileID: 996869737}
   - {fileID: 1546432472}
+  - {fileID: 1276964338}
   - {fileID: 837715955}
   m_Father: {fileID: 2100927492}
   m_RootOrder: 0
@@ -11022,7 +11084,7 @@ RectTransform:
   - {fileID: 1996865462}
   - {fileID: 1321039788}
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11237,7 +11299,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12089,7 +12151,7 @@ RectTransform:
   - {fileID: 297304110}
   - {fileID: 1501056392}
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -14070,7 +14132,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14922,7 +14984,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1284963004}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14993,8 +15055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   header: Sell Button
-  content: "Drag warband animals here to sell them. \nYou get 1 Gold for each animal
-    sold."
+  content: "Drag warband animals here to sell them. \nYou earn Gold equal to the
+    number of animals combined in that animal"
 --- !u!1 &2112920825
 GameObject:
   m_ObjectHideFlags: 0
