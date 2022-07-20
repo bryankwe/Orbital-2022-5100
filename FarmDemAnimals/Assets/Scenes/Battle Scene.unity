@@ -9703,7 +9703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8539897875137098587, guid: c37593bdcdf6d8e4192a721f1f7f3ec9, type: 3}
       propertyPath: m_Name
-      value: SoundManager 1
+      value: SoundManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c37593bdcdf6d8e4192a721f1f7f3ec9, type: 3}
