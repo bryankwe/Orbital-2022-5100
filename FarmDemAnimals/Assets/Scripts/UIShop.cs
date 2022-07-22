@@ -123,10 +123,14 @@ public class UIShop : MonoBehaviour {
     /// Proceeds to change scenes to Battle Scene
     /// </summary>
     public void OnEndTurnClick() {
-        PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
-        SoundManager.Instance.Play("Click");
-        // Go to next scene ==> Should implement some sort of wait first
-        SceneController.Instance.LoadScene("Scenes/Battle Scene");
+        if (PreparationManager.Instance.CountWarbandAnimals() == 0) { // If there are no animals in the warband yet
+            SoundManager.Instance.Play("Error");
+        } else {
+            PreparationManager.Instance.ChangeState(PreparationManager.CurrentState.TURNEND);
+            SoundManager.Instance.Play("Click");
+            // Go to next scene ==> Should implement some sort of wait first
+            SceneController.Instance.LoadScene("Scenes/Battle Scene");
+        }
     }
 
     /// <summary>
